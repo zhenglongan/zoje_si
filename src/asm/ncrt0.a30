@@ -1,0 +1,214 @@
+;*************************************************************************** ;
+; C COMPILER for M16C/60
+; Copyright 1995,1996,1997 MITSUBISHI ELECTRIC CORPORATION
+; AND MITSUBISHI ELECTRIC SEMICONDUCTOR SYSTEMS CORPORATION
+; All Rights Reserved.
+;
+;       ncrt0.a30 : NC30 startup program
+;
+; This program is applicable when using the basic I/O library
+;       
+;       $Id: ncrt0.a30,v 1.8 97/03/28 10:47:10 aoyama Exp $
+;
+;***************************************************************************
+
+;---------------------------------------------------------------------
+; HEEP SIZE definition
+;---------------------------------------------------------------------
+HEAPSIZE .equ 300h
+
+;---------------------------------------------------------------------
+; STACK SIZE definition
+;---------------------------------------------------------------------
+STACKSIZE .equ 300h
+
+;---------------------------------------------------------------------
+; INTERRUPT STACK SIZE definition
+;---------------------------------------------------------------------
+ISTACKSIZE .equ 300h
+
+;---------------------------------------------------------------------
+; INTERRUPT VECTOR ADDRESS  definition
+;---------------------------------------------------------------------
+
+VECTOR_ADR  .equ 0f9200h
+
+;---------------------------------------------------------------
+; special page defination
+;---------------------------------------------------------------
+;       macro define for special page
+;
+;Format:
+; SPECIAL number
+;
+
+SPECIAL .macro NUM
+ .org 0FFFFEH-(NUM*2)
+ .glb __SPECIAL_@NUM
+ .word __SPECIAL_@NUM  & 0FFFFH
+.endm
+;---------------------------------------------------------------------
+; Section allocation
+;---------------------------------------------------------------------
+ .list OFF
+ .include sect30.inc
+ .list ON
+
+;---------------------------------------------------------------------
+; SBDATA area definition
+;---------------------------------------------------------------------
+ .glb __SB__
+__SB__ .equ data_SE_top
+
+;====================================================================
+; Initialize Macro declaration
+;---------------------------------------------------------------------
+N_BZERO .macro TOP_ ,SECT_
+ mov.b #00H, R0L
+ mov.w #(TOP_ & 0FFFFH), A1
+ mov.w #sizeof SECT_ , R3
+ sstr.b 
+ .endm
+
+N_BCOPY .macro FROM_,TO_,SECT_
+ mov.w #(FROM_ & 0FFFFH),A0
+ mov.b #(FROM_ >>16),R1H
+ mov.w #TO_ ,A1
+ mov.w #sizeof SECT_ , R3
+ smovf.b
+ .endm
+
+BZERO .macro TOP_,SECT_
+ push.w #sizeof SECT_ >> 16
+ push.w #sizeof SECT_  & 0ffffh
+ pusha TOP_ >>16
+ pusha TOP_ & 0ffffh
+
+ .glb _bzero 
+ jsr.a _bzero
+ .endm
+
+
+BCOPY .macro FROM_ ,TO_ ,SECT_
+ push.w #sizeof SECT_  >> 16
+ push.w #sizeof SECT_  & 0ffffh
+ pusha TO_ >>16
+ pusha TO_  & 0ffffh
+ pusha FROM_ >>16
+ pusha FROM_  & 0ffffh
+
+ .glb _bcopy
+ jsr.a _bcopy
+ .endm
+
+;====================================================================
+; Interrupt section start
+;---------------------------------------------------------------------
+ .glb start
+ .section interrupt
+start:
+;---------------------------------------------------------------------
+; after reset,this program will start
+;---------------------------------------------------------------------
+ ldc #istack_top, isp ;set istack pointer
+ bset 1,0ah
+ mov.b #00h,04h  ;set processer mode 
+        mov.b   #08h,05h                ;set reserved area expansion bit
+ bclr 1,0ah
+        bset    0,0ah
+        mov.b   #20h,07h                ;set clock control register
+        mov.b   #08h,06h                ;to no clock division
+        bclr    0,0ah
+ ldc #0080h, flg
+ ldc #stack_top, sp ;set stack pointer 
+ ldc #data_SE_top, sb ;set sb register 
+
+ fclr U   ;ADD THIS TO SELECT ISP
+ fset I   ;ADD THIS TO ENABLE INTERRUPTS & STOPPING PROGRAM
+
+ ldintb #VECTOR_ADR
+
+;====================================================================
+; NEAR area initialize.
+;--------------------------------------------------------------------
+; bss zero clear
+;--------------------------------------------------------------------
+ N_BZERO bss_SE_top,bss_SE
+ N_BZERO bss_SO_top,bss_SO
+ N_BZERO bss_NE_top,bss_NE
+ N_BZERO bss_NO_top,bss_NO
+
+;---------------------------------------------------------------------
+; initialize data section
+;---------------------------------------------------------------------
+ N_BCOPY data_SEI_top,data_SE_top,data_SE
+ N_BCOPY data_SOI_top,data_SO_top,data_SO
+ N_BCOPY data_NEI_top,data_NE_top,data_NE
+ N_BCOPY data_NOI_top,data_NO_top,data_NO
+
+;====================================================================
+; FAR area initialize.
+;---------------------------------------------------------------------
+; bss zero clear
+;---------------------------------------------------------------------
+ BZERO bss_FE_top,bss_FE
+ BZERO bss_FO_top,bss_FO
+
+;---------------------------------------------------------------------
+; Copy edata_E(O) section from edata_EI(OI) section
+;---------------------------------------------------------------------
+ BCOPY data_FEI_top,data_FE_top,data_FE
+ BCOPY data_FOI_top,data_FO_top,data_FO
+
+ ldc #stack_top,sp
+
+;====================================================================
+; heap area initialize
+;---------------------------------------------------------------------
+ .glb __mbase
+ .glb __mnext
+ .glb __msize
+ mov.w #(heap_top&0FFFFH), __mbase
+ mov.w #(heap_top>>16), __mbase+2
+ mov.w #(heap_top&0FFFFH), __mnext
+ mov.w #(heap_top>>16), __mnext+2
+ mov.w #(HEAPSIZE&0FFFFH), __msize
+ mov.w #(HEAPSIZE>>16), __msize+2
+
+;====================================================================
+; Initialize standard I/O
+;---------------------------------------------------------------------
+; .glb _init
+; jsr.a _init
+
+;====================================================================
+; Call main() function
+;---------------------------------------------------------------------
+ ldc #0h,fb ; for debuger
+
+ .glb _main
+ jsr.a _main
+
+;====================================================================
+; exit() function
+;---------------------------------------------------------------------
+ .glb _exit
+ .glb $exit
+_exit:      ; End program
+$exit:
+ jmp _exit
+
+;====================================================================
+; dummy interrupt function
+;---------------------------------------------------------------------
+dummy_int:
+ reit
+ .end
+;***************************************************************************
+;
+; C COMPILER for M16C/60
+; Copyright 1995,1996,1997 MITSUBISHI ELECTRIC CORPORATION
+; AND MITSUBISHI ELECTRIC SEMICONDUCTOR SYSTEMS CORPORATION
+; All Rights Reserved.
+;
+;***************************************************************************
