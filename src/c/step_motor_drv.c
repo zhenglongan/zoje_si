@@ -2825,7 +2825,13 @@ void process_rotated_cutter(void)
     {
 		if( sys.status == ERROR)
 		   break;
-
+		#if DSP3_CUTER_DRIVER
+		if( (indraft_control_counter==0) &&( indraft_control_flag == 1) )
+		{
+			indraft_control_flag = 0;
+			output_cs3(4,0);
+		}
+		#endif
 		if( PAUSE == pause_active_level)//press sotp button when stepper motor moving
 	  	{
 			delay_ms(20);
@@ -3216,6 +3222,9 @@ void process_rotated_cutter(void)
 						 milling_first_move = 0;
 					}	
 				}		
+			milling_cutter_action_flag = 0;
+	
+			break;
 			}
 	
 	}

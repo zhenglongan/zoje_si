@@ -306,7 +306,7 @@ void pwm_int(void)
 	temp16c = motor.angle_adjusted;
     if( (test_flag>0)&&(test_flag<20) )
 	{
-		da1 = 200;
+		da1 = 0;
 		test_flag++;
 	}
 	else if( (test_flag>20)&&(test_flag<40) )
