@@ -3946,7 +3946,8 @@ void calculate_inpress_angle(INT16 speed)
 	//在run_status()里面缝制前修改inpress_follow_range是没有用的，因为缝制中会不断调用此函数将其更新
 	if(para.start_sew_change_inpress_high_enable==55
 		&&stitch_counter<=para.start_sew_change_inpress_high_stitchs
-		&&para.start_sew_change_inpress_high_range<=inpress_follow_range)
+		&& stitch_counter < 20
+		/*&&para.start_sew_change_inpress_high_range<=inpress_follow_range*/)
 	{
 		//如果启用此功能，并且各个参数合适，且属于指定的缝制前几针，此时赋值
 		inpress_follow_range = para.start_sew_change_inpress_high_range;
@@ -13920,7 +13921,8 @@ void special_sewing(UINT8 flag,UINT8 cnt,INT16 xoffset)
 						    	//此处程序用于将中压脚随动范围恢复到正常值,最后一针的时候，需要把中压脚的高度恢复到正常高度
 								if(para.start_sew_change_inpress_high_enable == 55 
 									&& stitch_counter == para.start_sew_change_inpress_high_stitchs
-									&&para.start_sew_change_inpress_high_range<=inpress_follow_range )
+									&& stitch_counter < 20
+									/*&&para.start_sew_change_inpress_high_range<=inpress_follow_range*/ )
 								{
 									//计算正常的随动高度到变量inpress_follow_range中
 									if( inpress_follow_range_pc == 0)//k173，中压脚随动高度，操作头下发
@@ -14275,7 +14277,8 @@ void zoom_in_one_stitch(UINT8 stitchs,UINT8 cflag)
 						    	//此处程序用于将中压脚随动范围恢复到正常值,最后一针的时候，需要把中压脚的高度恢复到正常高度
 								if(para.start_sew_change_inpress_high_enable == 55 
 									&& stitch_counter == para.start_sew_change_inpress_high_stitchs
-									&&para.start_sew_change_inpress_high_range<=inpress_follow_range )
+									&& stitch_counter < 20
+									/*&&para.start_sew_change_inpress_high_range<=inpress_follow_range*/ )
 								{
 									//计算正常的随动高度到变量inpress_follow_range中
 									if( inpress_follow_range_pc == 0)//k173，中压脚随动高度，操作头下发

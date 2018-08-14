@@ -3970,7 +3970,8 @@ void run_status(void)
 					    	//此处程序用于将中压脚随动范围恢复到正常值,最后一针的时候，需要把中压脚的高度恢复到正常高度
 							if(para.start_sew_change_inpress_high_enable == 55 
 								&& stitch_counter == para.start_sew_change_inpress_high_stitchs
-								&&para.start_sew_change_inpress_high_range<=inpress_follow_range )
+								&& stitch_counter < 20
+								/*&&para.start_sew_change_inpress_high_range<=inpress_follow_range*/ )
 							{
 								//计算正常的随动高度到变量inpress_follow_range中
 								if( inpress_follow_range_pc == 0)//k173，中压脚随动高度，操作头下发
