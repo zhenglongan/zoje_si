@@ -1030,11 +1030,11 @@ void movestep_x2(int x_data)
 
 void movestep_x(int x_data)
 { 
-	#if X_COMPENSATION
+	#if X_COMPENSATION//需要对X轴进行齿轮间隙补偿
 	int xtmp;
     UINT16 quick_time,tmp16;
 	if( timer_x != 0 )//非找原点
-		xtmp = process_x_compensation(x_data);
+		xtmp = process_x_compensation(x_data);//计算补偿值
 	else
 	    xtmp = x_data;
 	tmp16 = fabsm(xtmp);	
@@ -1588,7 +1588,7 @@ void movestep_ct(int ct_data,UINT16 time)
 
 
 #if SUPPORT_UNIFY_DRIVER
-void movestep_lct(int ct_data,UINT16 time)
+void movestep_lct(int ct_data,UINT16 time)//直线切刀？？？
 {  		
 	while(spi_flag > 0);
 	if( ct_data !=0)
@@ -1707,7 +1707,8 @@ void movestep_zx(int zx_data,UINT16 time)
 	SPISTE3 = 1;
 	SPISTE4 = 1;
 	#if COMPILE_MACHINE_TYPE == MACHINE_CONFIG_NUMBER40
-	//if( para.rotate_cutter_working_mode == 55)	
+	//if( para.rotate_cutter_working_mode == 55)
+	//机型40使用了SC0716步进板，因此中压脚改到了DSP2A,实际是DSP1A，但是之前已经改了DSP1和DSP2的片选
 		inpress_port = 1;	
 	#endif
 	if( fabsm(zx_data) < 127 )
@@ -1718,14 +1719,14 @@ void movestep_zx(int zx_data,UINT16 time)
 	   	    time = 63;
 		if( zx_data > 0 )
 		{
-			if( inpress_port == 0)//1,2,4  X21
+			if( inpress_port == 0)//1,2,4  X21,DSP2B
 			{
 				if( z_motor_dir== 1)
 					trans_x.word=(UINT16)0xc000+((UINT16)zx_data<<6)+(UINT16)time;
 				else
 				    trans_x.word=(UINT16)0x8000+((UINT16)zx_data<<6)+(UINT16)time;
 			}
-			else
+			else//1,2,3  X23,DSP2A
 			{
 				if( z_motor_dir== 1)
 					trans_x.word=(UINT16)0x4000+((UINT16)zx_data<<6)+(UINT16)time;
@@ -2576,9 +2577,9 @@ void go_origin_rotated_cutter(void)
 		  }
 	}
 	delay_ms(5);
-	if( cutter_motor_initial_angle != 0 )
+	if( cutter_motor_initial_angle != 0 )//旋转切刀零位角度不为0
 	{
-		movestep_cs3(0x4000,cutter_motor_initial_angle,31);  
+		movestep_cs3(0x4000,cutter_motor_initial_angle,31);
 		delay_ms(50);
 	}
     rotated_cutter_position = 0;//cutter_motor_initial_angle;//2016-6-22
@@ -2677,7 +2678,7 @@ void go_origin_stepper_cutter(void)
 		  }
 	}
 	delay_ms(5);
-	if( stepper_cutter_origin_offset != 0)
+	if( stepper_cutter_origin_offset != 0)//直线切刀原点补偿
 	{
 		movestep_lct(stepper_cutter_origin_offset,63);  
 		delay_ms(100);
@@ -2986,7 +2987,7 @@ void process_rotated_cutter(void)
 			if( cutter_function_flag == 1)
 			{	
 				da1 = 150;
-				delay_ms(para.rotate_cutter_delaytime1);			
+				delay_ms(para.rotate_cutter_delaytime1);//旋转切刀角度电机动作前延时			
 				rotated_cutter_by_data();
 				cutter_function_flag = 0;
 				process_data();
@@ -3024,7 +3025,7 @@ void process_rotated_cutter(void)
 						tmp_speed =	spdlimit1_tab[y_tmp-1];
 							
 					timer_x = MoveTime1_Speed[tmp_speed/100];	
-					if( timer_x > para.rotate_cutter_movetime	)
+					if( timer_x > para.rotate_cutter_movetime	)//旋转切刀机型XY动框时间限定
 						timer_x = para.rotate_cutter_movetime;
 					
 					timer_y = timer_x;
@@ -3033,7 +3034,7 @@ void process_rotated_cutter(void)
 				
 				da1 = 200;		
 						
-					delay_ms(para.rotate_cutter_delaytime2);
+					delay_ms(para.rotate_cutter_delaytime2);//旋转切刀机型XY动框前延时
 				    
 					if(fabsm(ystep_cou) > 0)
 					{
@@ -3299,30 +3300,36 @@ void process_laser_offset_move(UINT8 dir)
 		return;
 	allx_step_tmp = allx_step;
 	ally_step_tmp = ally_step;
-	if( dir == 0)//正向前进
+	//正向试缝一步
+	if( dir == 0)
 	{
 		if( (milling_cutter_action_flag == 1)&& (milling_first_move == 0) )//遇到切割开始，并且没偏移过
 		{
+			//向前试缝碰到了切割开始，那么走一个偏移地址
 			go_commandpoint(x_bios_offset + allx_step, y_bios_offset + ally_step);	 
-			milling_first_move = 1;
+			milling_first_move = 1;//表示偏移地址已走
 		}
 		else if( (milling_cutter_action_flag == 2)&& (milling_first_move == 1) )//遇到切割结束，偏移恢复
 		{
+			//向前试缝碰到了切割结束，那么恢复偏移前的地址
 			go_commandpoint(allx_step - x_bios_offset ,ally_step - y_bios_offset);	 
-			milling_first_move = 0;
+			milling_first_move = 0;//表示偏移地址已经恢复
 		}
 	}
-	else 		//反向后退
+	//反向试缝一步
+	else
 	{
 		if( (milling_cutter_action_flag == 2)&& (milling_first_move == 0) )//遇到结束，直出偏移
 		{
+			//向后试缝碰到了切割结束，此时说明进入了上一段激光切割段，所以需要走一个偏移地址
 			go_commandpoint(x_bios_offset + allx_step, y_bios_offset + ally_step);	 
-			milling_first_move = 1;
+			milling_first_move = 1;//表示偏移地址已走
 		}
 		else if( (milling_cutter_action_flag==1)&& (milling_first_move == 1) )//偏移不为0
 		{
+			//向后试缝碰到了切割开始，此时说明要退出这一段激光切割段，所以恢复偏移前的地址
 			go_commandpoint(allx_step - x_bios_offset ,ally_step - y_bios_offset);	 
-			milling_first_move = 0;
+			milling_first_move = 0;//表示偏移地址已经恢复
 		}		
 	}
 	allx_step = allx_step_tmp;
@@ -3335,13 +3342,13 @@ void process_laser_offset_move(UINT8 dir)
 void turnon_laser_power(void)
 {
 	UINT16 i;	
-	laser_power_on_flag = 1;
+	laser_power_on_flag = 1;//用于TA0中断中2min计数关闭总电源
 	laser_power_on_counter = 0;
-	LASER_INDICATIOR_LED = 0;
-	LASET_POWER_SWITCH = 1;		//打开系统总电源
-	LASER_FUN_PIN = 1;
+	LASER_INDICATIOR_LED = 0;//关闭指示灯
+	LASET_POWER_SWITCH = 1;//打开系统总电源
+	LASER_FUN_PIN = 1;//打开风扇
 	delay_ms(200);
-	LASET_MIRROR_COVER = 1;	
+	LASET_MIRROR_COVER = 1;//压下布料
 	delay_ms(50);	 
 	if( power_on_laser_cool_flag == 0)//首次上水
 	{
@@ -3353,10 +3360,10 @@ void turnon_laser_power(void)
 		#endif
 			  delay_ms(10);
 	}
-	if( laser_power_on_enable == 1)
-		LASER_POWER_PIN = 1;
+	if( laser_power_on_enable == 1)//k196，激光使能开关
+		LASER_POWER_PIN = 1;//打开激光
 		
-	if( first_start_flag == 0)
+	if( first_start_flag == 0)//激光总电源首次上电标志，此时应该延时一段时间等待稳定
 		delay_ms(para_x_take_offset_left);//k203
 	else
 		delay_ms(para_right_barcode_position);//k202
@@ -3409,28 +3416,28 @@ void process_laser_cutter(void)
 	
 	if( ((laser_offset_x!=0)||(laser_offset_y!=0))&& (milling_first_move == 0) )//偏移不为0
 	{
-	     go_commandpoint(laser_offset_x + allx_step,laser_offset_y + ally_step);	  
+	     go_commandpoint(laser_offset_x + allx_step,laser_offset_y + ally_step);//执行偏移地址
 		 delay_ms(300);
-		 milling_first_move = 1;
+		 milling_first_move = 1;//避免重复偏移
 	}
-	allx_step = allx_step_tmp;//为显示的光标正确
+	allx_step = allx_step_tmp;//为显示的光标正确，绝对坐标不考虑偏移值，和画笔偏移是一样的
 	ally_step = ally_step_tmp;
 
 	delay_ms(50);
-	milling_cutter_stop_flag = 1;
+	milling_cutter_stop_flag = 1;//这里表示激光已经关闭
 	protect_flag = 0;
 
-	inflection_poin_flag = 0;
-	laser_cutter_aciton_flag = 0;
+	inflection_poin_flag = 0;//拐点降速标志
+	laser_cutter_aciton_flag = 0;//TB4中断不发送插补动作序列给DSP
 	rec1_total_counter = 0;
 	frame_start_counter = 0;
-	if( cutter_syn_delay < 15)//速度上限
+	if( cutter_syn_delay < 15)//k183,切刀同步延时，速度上限
 		cutter_syn_delay = 15;
 	for(i=0;i<50;i++)
 	{
 		x_buf[i] = 0;
 		y_buf[i] = 0;
-		speed_tab[i] = cutter_syn_delay;
+		speed_tab[i] = cutter_syn_delay;//速度序列
 	}
 	spd_down_flag = 0;
 	spd_down_cnt = 0;
@@ -3438,7 +3445,7 @@ void process_laser_cutter(void)
 	    spd_tmp = 0;
 	else
 		spd_tmp = ( 250 - cutter_syn_delay )/9;
-	for( i = 0;i<10;i++)//遇到拐点降速时的速度给定
+	for( i = 0;i<10;i++)//遇到拐点降速时的速度给定，值由小到大，再由大到小。速度相反
 	{
 		spd_delta[i]   = cutter_syn_delay + spd_tmp*i;//0, 1,  2, 3, 4,5,6,7,8,9
 		spd_delta[19-i] = spd_delta[i];				  //19,18,17,16,15 速度越来越慢，时间越来越长，两边对称
@@ -3446,34 +3453,36 @@ void process_laser_cutter(void)
 
 	while(1)
     {
+    	//如果是除了激光保护开关和急停之外的其他错误，那么跳出循环
 		if( (sys.status == ERROR)&&(sys.error != ERROR_98)&&(sys.error != ERROR_02) )
 		     break;
-		
+		//变量laser_power_error_flag暂未使用，先不用管它
 		if( (LASER_HEADER_PROTECT == 1)||(laser_power_error_flag==1) )//激光保护开关
 		{
 			delay_ms(20);
 			if( (LASER_HEADER_PROTECT == 1)||(laser_power_error_flag ==1) )
 				{					
-					if(frame_start_counter >0)
+					if(frame_start_counter >0)//如果还有未发送的规划动框数据
 					{
 						movestep_xy3(x_buf,y_buf,frame_start_counter,speed_tab);
 					}
-					while( requery_dsp1_status() != 1)
+					while( requery_dsp1_status() != 1)//等待已经发送的动作完成
 			  		 		rec_com();
-					for( i=0;i<k112;i++)
+					for( i=0;i<k112;i++)//延时？？？？？
 				   		delay_ms(200);
-					LASER_POWER_PIN = 0;
-					LASET_MIRROR_COVER = 0;	
-					LASER_INDICATIOR_LED = LASER_LED_ON;
+					LASER_POWER_PIN = 0;//关闭激光
+					LASET_MIRROR_COVER = 0;	//不再压着物料
+					LASER_INDICATIOR_LED = LASER_LED_ON;//打开激光指示灯
 					laser_fun_delay_counter = 0;			
-					laser_fun_delay_off_flag = 1;
+					laser_fun_delay_off_flag = 1;//用于在TA0中断中延时6s关闭风扇	
 				
 					sys.error = ERROR_98;
 					sys.status = ERROR;
-					milling_cutter_stop_flag = 1;
-					stop_status = 1;
+					milling_cutter_stop_flag = 1;//激光关闭标志
+					stop_status = 1;//用于指示本函数后面的程序部分
 				} 
 		}
+
 		/*
 		切割中的急停处理
 		先把步进停止下来，这样步进里有没走的位移，缓冲区里也可能有新的数据没发
@@ -3482,31 +3491,30 @@ void process_laser_cutter(void)
 		复位找原点： 慢速找传感器原点
 		启动继续切割： 启动继续激光切割命令，缓冲区里的内容继续处理
 		*/
-
 		dsp_ret = check_pause_status();
 		if( (laser_emergency_stop == 1)&&(stop_status == 0))
 		 {
-				laser_fun_delay_counter = 0;			
+				laser_fun_delay_counter = 0;//用于在TA0中断中延时6s关闭风扇			
 				laser_fun_delay_off_flag = 1;
 				if( cutting_in_progress == 1)//已经在激光处理过程中
 				{
-					send_dsp_command(DSP1,0x0005);//急停
+					send_dsp_command(DSP1,0x0005);//X轴急停
 					for(j=0;j<200;j++)			  //等待动作结束 
 					{
 						delay_ms(1);
 						if( check_motion_done() )
 						   break;
 				  	}
-				    LASER_POWER_PIN = 0;	
+				    LASER_POWER_PIN = 0;//关闭激光
 					//LASET_MIRROR_COVER = 0;					 				
-					LASER_INDICATIOR_LED = LASER_LED_ON;
+					LASER_INDICATIOR_LED = LASER_LED_ON;//打开激光指示灯
 				 	send_dsp1_command(0x0007,0x5555);
 					if( recieve_x.word != 0xd0a0) //步进还有没走完的数据
 					{
 						dsp_ret = recieve_x.word;		//还有多少针没走
 						cutting_in_progress = 0;						
 					}
-					else//按急停了，但是已经走完了
+					else//按急停了，但是已经走完了，这种情况没有清除cutting_in_progress
 					{
 						stop_status = 1;
 						laser_emergency_stop = 0;
@@ -3527,6 +3535,7 @@ void process_laser_cutter(void)
 						predit_shift = 0;
 						sys.error = 0;
 					}
+					//机头保护错误恢复，，好像没有退出while(1)小循环？？？？？
 					if( (sys.status == ERROR)&&(sys.error ==ERROR_98) )
 					{
 						if(LASER_HEADER_PROTECT == 0)
@@ -3546,7 +3555,7 @@ void process_laser_cutter(void)
 							flash_led(); 
 						}
 					}
-					else if( LASER_HEADER_PROTECT == 1)
+					else if( LASER_HEADER_PROTECT == 1)//此时出现了机头保护错误
 					{
 						delay_ms(20);
 						if( LASER_HEADER_PROTECT == 1)
@@ -3562,7 +3571,7 @@ void process_laser_cutter(void)
 							milling_cutter_stop_flag = 1;
 						}
 					}					
-					else if( DVA == 0) 
+					else if( DVA == 0)//急停后重新启动 
 					{
 						delay_ms(20);
 						if( DVA == 0)
@@ -3574,7 +3583,7 @@ void process_laser_cutter(void)
 							  
 							  if(end_flag == 1 )//等结束时发生急停
 							  {
-								  while( requery_dsp1_status() != 1)
+								  while( requery_dsp1_status() != 1)//等待已经发送的动作完成
 								  {
 								  	 rec_com();
 									 dsp_ret = check_pause_status();
@@ -3707,14 +3716,14 @@ void process_laser_cutter(void)
 		else
 			restart_flag = 1;
 		
-		if( cutter_function_flag == 1)
+		if( cutter_function_flag == 1)//旋转切刀角度设置指令
 		{				
 			cutter_function_flag = 0;
 		}
 		
 		if( move_flag == 1  )
 		{
-			laser_fun_delay_counter = 0;				
+			laser_fun_delay_counter = 0;//更新延时关闭风扇时间				
 			if( frame_start_counter < 49 )
 			{
 				if((0 != xstep_cou) || (0 != ystep_cou))
@@ -3736,7 +3745,7 @@ void process_laser_cutter(void)
 					}
 					else
 					{
-						if( stitch_cnt< 10)
+						if( stitch_cnt< 10)//起缝慢速
 						{
 							speed_tab[frame_start_counter] = spd_delta[9 -stitch_cnt];
 							stitch_cnt++;
@@ -3747,6 +3756,7 @@ void process_laser_cutter(void)
 							y_tmp = fabsm(ystep_cou);
 							if( (x_tmp<=10) && (y_tmp <=10 ) )//都小于0.5mm针距
 							{
+								//动框时间不能少于200
 								if( cutter_syn_delay < 200)
 									speed_tab[frame_start_counter] = 200;
 								else
@@ -3765,9 +3775,9 @@ void process_laser_cutter(void)
 					
 				}	
 			}
-			else
+			else//之前49个，当前正好满50个
 			{
-					if( milling_cutter_stop_flag == 1)
+					if( milling_cutter_stop_flag == 1)//如果激光关闭，要打开激光
 					{
 						turnon_laser_power();
 					}
@@ -3793,19 +3803,20 @@ void process_laser_cutter(void)
 					nopmove_flag = 0;
 					allx_step = allx_step + xstep_cou;                        
 				  	ally_step = ally_step + ystep_cou;
-					movestep_xy3(x_buf,y_buf,50,speed_tab);					
-					cutting_in_progress = 1;
+					movestep_xy3(x_buf,y_buf,50,speed_tab);//发送50个给DSP规划动框	
+					cutting_in_progress = 1;//DSP已经在动作了
 			}
 		}
 		
 		
-		if( cut_flag == 1)
+		if( cut_flag == 1)//不响应剪线码
 		    cut_flag = 0;
-		if(nopmove_flag == 1)
+		if(nopmove_flag == 1)//空送码
 		{
-				stitch_cnt = 0;
+				stitch_cnt = 0;//已走针数清0，方便后面的慢速启动
+				//置1时定时器TB4中断函数才会正常发送插补动作序列给DSP,规划动框模式未用上
 				laser_cutter_aciton_flag = 0; 
-				if(frame_start_counter >0)
+				if(frame_start_counter >0)//将剩下的数据发给DSP，此时不一定有50个
 				{
 					if( milling_cutter_stop_flag == 1)
 					{
@@ -3820,24 +3831,24 @@ void process_laser_cutter(void)
 				}
 				else
 				{
-					while( requery_dsp1_status() != 1)
+					while( requery_dsp1_status() != 1)//等待DSP动作完成
 					{
 						if( check_pause_status()== 1)
 							break;
 			  		 	   rec_com();
 					}
-					if( laser_emergency_stop == 0)
+					if( laser_emergency_stop == 0)//未按下急停
 					{
 						for( i=0;i<k112;i++)
 						   delay_ms(200);
-						LASER_POWER_PIN = 0;	
+						LASER_POWER_PIN = 0;	//先关闭激光，再处理空送
 						LASET_MIRROR_COVER = 0;					 				
 						LASER_INDICATIOR_LED = LASER_LED_ON;
 						laser_fun_delay_counter = 0;			
 						laser_fun_delay_off_flag = 1;
 						milling_cutter_stop_flag = 1;
 						cutting_in_progress = 0;
-					    while( nopmove_flag == 1 )
+					    while( nopmove_flag == 1 )//处理空送
 						{
 							do_pat_point_sub_one();
 							sys.status = READY;
@@ -3861,11 +3872,13 @@ void process_laser_cutter(void)
 					}
 				}
 		}
-		
+
+		//对结束码的响应
 		if(end_flag == 1)
 		{
 				if(frame_start_counter >0)//花样已经遇到结束了，但缓冲区还有数据没发完
 				{
+					//为什么到处都有这句？
 					if( milling_cutter_stop_flag == 1)
 					{
 						turnon_laser_power();
@@ -3879,28 +3892,28 @@ void process_laser_cutter(void)
 				}
 				else
 				{
-					while( requery_dsp1_status() != 1)
+					while( requery_dsp1_status() != 1)//等待DSP动作完成
 					{
 						if( check_pause_status()== 1)
 							break;
 				  		rec_com();
 					}
-					if( laser_emergency_stop == 0)
+					if( laser_emergency_stop == 0)//未按下急停
 					{
 						for( i=0;i<k112;i++)
 						    delay_ms(200);
 						if(inpress_flag == 0)  
 				   			inpress_up();
 						cutting_in_progress = 0;   
-						break;
+						break;//退出大while(1)循环,这里没有关闭激光，退出大循环后关闭激光
 					}
 				}
 			
 		}
 			
-		if( milling_cutter_action_flag == 2)//遇到结束码
+		if( milling_cutter_action_flag == 2)//遇到激光切割结束码
 		{
-				if(frame_start_counter >0)
+				if(frame_start_counter >0)//激光切割段已经遇到结束码了，但缓冲区还有数据没发完
 				{
 					if( milling_cutter_stop_flag == 1)
 					{
@@ -3926,7 +3939,7 @@ void process_laser_cutter(void)
 						for( i=0;i<k112;i++)
 						   delay_ms(200);
 						laser_cutter_aciton_flag = 0;
-						LASER_POWER_PIN = 0;
+						LASER_POWER_PIN = 0;//先关闭激光切割
 						LASET_MIRROR_COVER = 0;	
 						LASER_INDICATIOR_LED = LASER_LED_ON;
 						laser_fun_delay_counter = 0;			
@@ -3934,7 +3947,7 @@ void process_laser_cutter(void)
 						delay_ms(200);
 						cutting_in_progress = 0;
 						milling_cutter_action_flag = 0;
-						if( (laser_offset_x!=0)||(laser_offset_y!=0) )//偏移不为0
+						if( (laser_offset_x!=0)||(laser_offset_y!=0) )//偏移不为0，恢复偏移前的位置
 						{
 							 allx_step_tmp = allx_step;
 						     ally_step_tmp = ally_step;			
@@ -3942,16 +3955,16 @@ void process_laser_cutter(void)
 							 allx_step = allx_step_tmp;//为显示的光标正确
 							 ally_step = ally_step_tmp;
 							 delay_ms(300);
-							 milling_first_move = 0;
+							 milling_first_move = 0;//已恢复偏移前位置
 						}
-						break;
+						break;//退出大while(1)循环
 					}
 				}			
 		}
 	}
 	stitch_cnt = 0;
 	double_xy_time_flag = 0;
-	LASER_POWER_PIN = 0;
+	LASER_POWER_PIN = 0;//关闭激光
 	LASET_MIRROR_COVER = 0;	
     LASER_INDICATIOR_LED = LASER_LED_ON;
 	laser_fun_delay_counter = 0;			
@@ -4022,7 +4035,7 @@ void process_laser_cutter(void)
 	ally_step = ally_step_tmp;
 
 	delay_ms(50);
-	milling_cutter_stop_flag = 1;
+	milling_cutter_stop_flag = 1;//激光关闭标志
 	protect_flag = 0;
 	first_flag = 0;
 	inflection_poin_flag = 0;
@@ -4042,37 +4055,41 @@ void process_laser_cutter(void)
     {
 		if( (sys.status == ERROR)&&(sys.error != ERROR_98) )
 		     break;
-		
+
+		//先看是否报错
 		if( (LASER_HEADER_PROTECT == 1)||(laser_power_error_flag==1) )
 		{
 			delay_ms(20);
 			if( (LASER_HEADER_PROTECT == 1)||(laser_power_error_flag ==1) )
 				{
+					//如果使用了插补算法，那么先等待缓冲区处理完
 					#if INSERPOINT_ENABLE
 					while( rec1_total_counter > 0 )
 					rec_com();
 					stitch_cnt = 0;
 					tb4s = 0;
-					laser_cutter_aciton_flag = 0; 
+					laser_cutter_aciton_flag = 0;//TB4中断不再发送插补数据给DSP
 					#endif
-					LASER_POWER_PIN = 0;
-					LASET_MIRROR_COVER = 0;	
-					LASER_INDICATIOR_LED = LASER_LED_ON;
-					laser_fun_delay_counter = 0;			
+					LASER_POWER_PIN = 0;//关闭激光
+					LASET_MIRROR_COVER = 0;	//不再压着物料
+					LASER_INDICATIOR_LED = LASER_LED_ON;//打开激光指示灯
+					laser_fun_delay_counter = 0;//用于在TA0中断中延时6s关闭风扇		
 					laser_fun_delay_off_flag = 1;
 				
-					sys.error = ERROR_98;
+					sys.error = ERROR_98;//报错，机头保护错误
 					sys.status = ERROR;
-					milling_cutter_stop_flag = 1;
-					stop_status = 1;
+					milling_cutter_stop_flag = 1;//激光关闭标志
+					stop_status = 1;//用于指示本函数后面的程序部分
 				} 
 		}
-		
+
+		//再看是否急停
 		if( PAUSE == pause_active_level)//press sotp button when stepper motor moving
 	  	{
-			delay_ms(20);
+			delay_ms(20);//防抖延时
 			if( PAUSE == pause_active_level)
 			{
+				//如果使用了插补算法，那么先等待缓冲区处理完
 				#if INSERPOINT_ENABLE
 					while( rec1_total_counter > 0 )
 					rec_com();
@@ -4080,32 +4097,32 @@ void process_laser_cutter(void)
 					tb4s = 0;
 					laser_cutter_aciton_flag = 0; 
 				#endif
-				LASER_POWER_PIN = 0;
-				LASET_MIRROR_COVER = 0;	
-				LASER_INDICATIOR_LED = LASER_LED_ON;
-				laser_fun_delay_counter = 0;			
+				LASER_POWER_PIN = 0;//关闭激光
+				LASET_MIRROR_COVER = 0;//不再压着物料
+				LASER_INDICATIOR_LED = LASER_LED_ON;//打开激光指示灯
+				laser_fun_delay_counter = 0;//用于在TA0中断中延时6s关闭风扇	
 				laser_fun_delay_off_flag = 1;
 	            
-				sys.status = READY;
-				milling_cutter_stop_flag = 1;
-				stop_status = 1;
+				sys.status = READY;//切换到ready状态，和画笔出现急停是一样的
+				milling_cutter_stop_flag = 1;//激光关闭标志
+				stop_status = 1;//用于指示本函数后面的程序部分
 			}
 		}
 		 
 		
-		if( stop_status == 1)
+		if( stop_status == 1)//本函数之前的部分报错了或者急停了
 		{
 				stitch_cnt = 0;
 				while( 1 )
 				{
 					if( (sys.status == ERROR)&&(sys.error ==ERROR_98) )
 					{
-						if(LASER_HEADER_PROTECT == 0)
+						if(LASER_HEADER_PROTECT == 0)//错误解除
 						{
 							delay_ms(20);
 							if( LASER_HEADER_PROTECT == 0)
 							{
-								turnoff_ledbuz();					
+								turnoff_ledbuz();//关闭蜂鸣器					
 				           		sys.status = READY;
 								StatusChangeLatch = READY;
 			                	sys.error = OK; 								
@@ -4113,10 +4130,11 @@ void process_laser_cutter(void)
 						}
 						else
 						{
-							flash_buz();
+							flash_buz();//间隔开启蜂鸣器
 							flash_led(); 
 						}
 					}
+					//如果急停时又出现了机头保护错误
 					else if( LASER_HEADER_PROTECT == 1)
 					{
 						delay_ms(20);
@@ -4133,7 +4151,7 @@ void process_laser_cutter(void)
 							milling_cutter_stop_flag = 1;
 						}
 					}					
-					else if( DVA == 0) 
+					else if( DVA == 0) //启动踩下，退出急停
 					{
 						delay_ms(20);
 						if( DVA == 0)
@@ -4146,9 +4164,9 @@ void process_laser_cutter(void)
 					}			
 					
 					delay_ms(1);
-					if( origin_com == 1 )
+					if( origin_com == 1 )//找原点指令
 					{
-						end_flag = 1;
+						end_flag = 1;//比画笔多了这句？？？，退出玄幻后使用此变量了
 						predit_shift = 0; 
 						single_flag = 0;
 				   		//sys.status = READY;
@@ -4157,6 +4175,7 @@ void process_laser_cutter(void)
 						//return;
 						break;
 					}
+					//跳转
 					if(coor_com  == 1)
 					{
 						predit_shift = 0;
@@ -4214,23 +4233,23 @@ void process_laser_cutter(void)
 					}
 				}
 		}
-		if(end_flag == 1)
+		if(end_flag == 1)//之前碰到了找原点指令，或者花样结束码
 		{
 			if(inpress_flag == 0)  
-			   inpress_up();
+			   inpress_up();//抬起中压脚，然后退出
 			break;
 		}
 
 		process_data();		//延时等着刀都切完，停到指定位置，然后刀不动，再动框
 		
-		if( cutter_function_flag == 1)
+		if( cutter_function_flag == 1)//不使用
 		{				
 			cutter_function_flag = 0;
 		}
 		
-		if( move_flag == 1  )
+		if( move_flag == 1  )//车缝数据，即激光切割数据
 		{
-				if( milling_cutter_stop_flag == 1)
+				if( milling_cutter_stop_flag == 1)//如果激光已经关闭
 				{
 						//delay_ms(3000);		
 					  if( first_flag == 1)
@@ -4254,9 +4273,9 @@ void process_laser_cutter(void)
 							laser_power_on_counter = 0;
 							LASER_INDICATIOR_LED = 0;
 							LASET_POWER_SWITCH = 1;		//打开系统总电源
-							LASER_FUN_PIN = 1;
+							LASER_FUN_PIN = 1;//打开风扇
 							delay_ms(500);
-							LASET_MIRROR_COVER = 1;						
+							LASET_MIRROR_COVER = 1;//压料板压下						
 							delay_ms(1000);	
 							if( laser_power_on_enable == 1)				  
 								LASER_POWER_PIN = 1;
@@ -4275,17 +4294,18 @@ void process_laser_cutter(void)
 				slow_flag = 0;					
 				laser_fun_delay_counter = 0;			
 				laser_fun_delay_off_flag = 1;
-					
+
+			//使用插补算法？？
 			#if INSERPOINT_ENABLE
 					double_xy_time_flag = 0;
-					if( inflection_poin_flag == 1)
+					if( inflection_poin_flag == 1)//拐点降速点
 					{
 					    stitch_cnt = 0;
 						inflection_poin_flag = 0;
 					}
-					PBP_Line(stitch_cnt);
+					PBP_Line(stitch_cnt);//参数未使用，逐点比较法直线插补算法
 
-					if (laser_cutter_aciton_flag == 0)//重新启动
+					if (laser_cutter_aciton_flag == 0)//重新启动TB4，用于发送插补动作序列
 					{
 						tb4 = dly *24; 
 						laser_cutter_aciton_flag = 1;						
@@ -4746,10 +4766,10 @@ void process_stepper_cutter(void)
 						dly_time = 30+stepper_cutter_delay;
 					}
 						
-					movestep_lct(-tmp,dly_time);
+					movestep_lct(-tmp,dly_time);//先上升
 					delay_ms(dly_time);
 					
-					movestep_lct(stepper_cutter_shake_rage,10 + dly_time);
+					movestep_lct(stepper_cutter_shake_rage,10 + dly_time);//再下降，上下摆动
 					delay_ms(5);
 					
 					if(y_tmp > 0)
@@ -5170,7 +5190,7 @@ void go_origin_bobbin_case_arm(UINT8 pos)
 	{
 		if( get_bobbin_case_arm_org_status() ==1)//光耦挡片没有挡上，在工作范围之外了
 		{
-			ret = find_a_bobbin_case(1);//先找个有旋梭的
+			ret = find_a_bobbin_case(1);//梭盘电机先找个有旋梭的
 			if(ret == 0)
 			{
 				sys.status = ERROR;
@@ -5268,7 +5288,8 @@ void go_origin_bobbin_case_arm(UINT8 pos)
 			    bobbin_case_arm_position = 100;
 		}
 	}
-	
+
+	//当前在机头，要向梭盘走
 	if ( (pos == 0 )&&(bobbin_case_arm_position == 50) )//从 机头 往 梭盘 旋转 校正过程
 	{
 		temp16 = 0;
@@ -5403,7 +5424,7 @@ void go_origin_bobbin_case_arm(UINT8 pos)
 	{
 		if( bobbin_case_platform_offset != 0 )
 		{
-			movestep_cs3(0x2000,bobbin_case_platform_offset,31); 
+			movestep_cs3(0x2000,bobbin_case_platform_offset,31); //换梭对接位置修正补偿
 			delay_ms(70);
 		}
 		bobbin_case_arm_position = 100; //当前在梭盘
@@ -5412,7 +5433,7 @@ void go_origin_bobbin_case_arm(UINT8 pos)
 	{
 		if( bobbin_case_arm_offset != 0 )
 		{
-			movestep_cs3(0x2000,bobbin_case_arm_offset,31);
+			movestep_cs3(0x2000,bobbin_case_arm_offset,31);//机头对接位置修正补偿
 			delay_ms(70);
 		}
 		bobbin_case_arm_position = 50; //当前在机头
@@ -5434,7 +5455,7 @@ UINT8 find_a_bobbin_case(UINT8 full)
 	UINT8 i,j;
 	UINT16 temp16;
 	//加个偏移位置
-	if( bobbin_plateform_org_offset !=0 )
+	if( bobbin_plateform_org_offset !=0 )//k192，梭盘电机零位补偿
 	{
 		movestep_cs3(0xa000,-bobbin_plateform_org_offset,30);
 		delay_ms(100);
@@ -5568,7 +5589,7 @@ UINT8 find_a_bobbin_case(UINT8 full)
 }
 
 /*
-停车到特定位置
+主轴停车到特定位置，转到80度，保证下轴梭芯利于换梭臂抓取
 */
 void bobbin_case_motor_adjust(void)
 {	 
@@ -5605,7 +5626,8 @@ void bobbin_case_motor_adjust(void)
 		delay_ms(80);
 	}
 }
-//先 从机头取出 再 选一个放入
+//先从下轴取出空梭芯，然后再从梭盘取一个放入
+//返回1表示成功，0表示失败
 UINT8 bobbin_case_workflow1(void)
 {
 	UINT8 empty,full,j,i,k;
@@ -5621,16 +5643,16 @@ UINT8 bobbin_case_workflow1(void)
 		go_origin_bobbin_case_arm(1);//先转到机头接抓位置
 		delay_ms(100);
 		BOBBIN_CASE_ARM_OUT = 1;     //机械臂伸出去
-		delay_ms(bobbin_case_inout_delay);
+		delay_ms(bobbin_case_inout_delay);//前后抓紧气缸到位延时
 		BOBBIN_CASE_ARM_SCRATH = 1;  //机械手夹紧
-		delay_ms(bobbin_case_scrath_delay);
+		delay_ms(bobbin_case_scrath_delay);//夹紧气缸到位延时
 		BOBBIN_CASE_ARM_OUT = 0;     //机械臂收回
 		delay_ms(500);
 		if( bobbin_case_workmode == 0)//空梭芯放到梭盘
 		{
 			go_origin_bobbin_case_arm(0);//转到梭盘对应位置
 			delay_ms(100);
-			empty = find_a_bobbin_case(0);
+			empty = find_a_bobbin_case(0);//梭盘找一个空位置
 			if( empty == 0 )
 			{
 				//报错退出
@@ -5669,8 +5691,9 @@ UINT8 bobbin_case_workflow1(void)
 		}
 		else //丢弃
 		{
-			go_origin_bobbin_case_arm(0);//转到收集位置
+			go_origin_bobbin_case_arm(0);//转到梭盘位置
 			delay_ms(50);
+			//超过梭盘，到达丢弃位置
 			for(k=0; k<bobbin_case_dump_position; k++)//试探着走50步看看
 			{
 				movestep_cs3(0x2000,-1,1);   //逆时针
@@ -5682,11 +5705,13 @@ UINT8 bobbin_case_workflow1(void)
 			delay_ms(200);
 			BOBBIN_CASE_ARM_OUT = 0;     //机械臂收回
 			delay_ms(200);
-			go_origin_bobbin_case_arm(0);//转到收集位置
+			go_origin_bobbin_case_arm(0);//转到梭盘
 			delay_ms(100);
 		}
+//_________________________________________________上面已经完成取出下轴空梭芯——————————
 
-			//放入梭壳后，确认传感器没有被晃动到外边
+
+			//放入梭壳后，确认传感器没有被晃动到外边，丢弃不应考虑此步骤
 			k=0;
 			while((BOBBIN_CASE_PLATFORM_ORG == 0)&&(k<20) )//挡片挡上了
 			{
@@ -5694,9 +5719,12 @@ UINT8 bobbin_case_workflow1(void)
 				delay_ms(1);
 				k++;
 			}
+
+
+			
 			for( j = 0; j<8 ; j++)
 			{
-				full = find_a_bobbin_case(1);
+				full = find_a_bobbin_case(1);//梭盘转到有梭芯的位置
 				if( full == 0)
 				{
 					sys.status = ERROR;
@@ -5725,10 +5753,10 @@ UINT8 bobbin_case_workflow1(void)
 				BOBBIN_CASE_ARM_OUT = 0;     //机械臂收回
 				delay_ms(300);
 				//核查一下
-				if( BOBBIN_CASE_EMPTY_CHECK == 1)//有信号反馈,没找出来
+				if( BOBBIN_CASE_EMPTY_CHECK == 1)//有信号反馈,没抓出来
 				{
 					BOBBIN_CASE_ARM_SCRATH = 0;  //机械手松开
-					go_origin_bobbin_case_arm(0);//转到梭盘对应位置
+					go_origin_bobbin_case_arm(0);//重新转到梭盘对应位置，保证确实在梭盘位置
 					delay_ms(200);
 				    continue;
 				}
@@ -5740,7 +5768,7 @@ UINT8 bobbin_case_workflow1(void)
 				delay_ms(200);
 				BOBBIN_CASE_ARM_OUT = 0;     //机械臂收回
 				delay_ms(500);
-				if( bobbin_case_stop_position == 0)
+				if( bobbin_case_stop_position == 0)//k161,换梭停止位置0-梭盘侧，1-机头侧
 				    go_origin_bobbin_case_arm(0);//转到梭盘对应位置
 				break;
 			}
@@ -6140,10 +6168,10 @@ UINT8 write_stepmotor_curve(UINT8 port,UINT8 *pdata)
 
 
 //===============================================================================
-
+//仅机型：18
 #if CURRENT_STEPPER_CONFIG_TYPE == CONFIG_MACHINE_TYPE_6037// 小模板机
-	#if SINGLE_X_MOTOR
-		#if NEW_STEEPER_ANGLE_MODE16
+	#if SINGLE_X_MOTOR//机型18满足
+		#if NEW_STEEPER_ANGLE_MODE16//机型18满足
 		const UINT16 config_para[]=//24546 20513
 		{
 			//0x11 0x1f   0x20 0x21 0x22 0x23  0x27 0x28-0      0x28-1     0x28-2  0x28-3
@@ -6169,7 +6197,7 @@ UINT8 write_stepmotor_curve(UINT8 port,UINT8 *pdata)
 			0x0005,0x0101,1000,1000,20513,16384 ,100, (128<<7)+40,(30<<7)+5,(1<<12),(1<<12)+4095,//DSP2
 		};
 		#endif
-	#else
+	#else//目前无满足此处的机型情况
 	const UINT16 config_para[]=
 	{
 		//0x11 0x1f   0x20 0x21 0x22 0x23  0x27 0x28-0      0x28-1     0x28-2  0x28-3
@@ -6381,10 +6409,12 @@ const UINT16 config_para[]=
 #endif
 
 
-
-#if SUPPORT_UNIFY_DRIVER
+//机型2、15、16、17、18、19、20、21、22、23、24、25、26、27、28、29、30、31、33、34、35、36、37
+//38、39、40、41、42、44、55
+#if SUPPORT_UNIFY_DRIVER//一体化驱动
 
 	#if ENABLE_CONFIG_PARA == 1 
+	//机型：35、36、37、38、39、40、41、42、44
 	void setup_stepper_moter(void)
 	{
 	 	UINT16 current1,current2;
@@ -6448,6 +6478,7 @@ const UINT16 config_para[]=
 	}
 	
 	#else
+	//机型2、15、16、17、18、19、20、21、22、23、24、25、26、27、28、29、30、31、33、34、55
  	void setup_stepper_moter(void)
 	{
 		 UINT16 current1,current2;	 
@@ -6458,14 +6489,15 @@ const UINT16 config_para[]=
 		 send_dsp1_command(0x0021,config_para[3]);//DSP:2轴编码器线数
 		 send_dsp1_command(0x0022,config_para[4]);//DSP:1轴步距角
 		 send_dsp1_command(0x0023,config_para[5]);//DSP:2轴步距角 
-	#if DOUBLE_X_60MOTOR 
+	
+	#if DOUBLE_X_60MOTOR //在这种上下文情况下只有机型：15、16满足
 		 current1 = x_step_current_level;
 		 current2 = x_step_current_level;
-	#else
+	#else//在这种上下文情况下只有机型：2、17、18、19、20、21、22、23、24、25、26、27、28、29、30、31、33、34、55满足
 		 current1 = x_step_current_level;
 		 current2 = y_step_current_level;
 	#endif
-		 current1 = ( (current1<<3) + 2) <<8 ;
+		 current1 = ( (current1<<3) + 2) <<8 ;//半流默认为2
 		 current2 = (current2<<3) +  2 + current1;	 
 		 send_dsp1_command(0x0026,current2 );
 		 send_dsp1_command(0x0027,config_para[6]); 			//工作电流和半流
@@ -6476,9 +6508,9 @@ const UINT16 config_para[]=
 		 //DSP2
 		 send_dsp2_command(0x0011,config_para[11]);//平台类型	
 		 send_dsp2_command(0x001F,config_para[12]);//配置
-		 
+	  //机型18、55
 	  #if SECOND_GENERATION_PLATFORM 
-	  	if( DVB == 0)	
+	  	if( DVB == 0)//压框踏板/按钮踩下
 		{
 			send_dsp2_command(0x0020,400);//DSP:1轴编码器线数
 		    send_dsp2_command(0x0021,400);//DSP:2轴编码器线数
@@ -6489,7 +6521,7 @@ const UINT16 config_para[]=
 		    send_dsp2_command(0x0021,1000);//DSP:2轴编码器线数
 		}
 	  #else
-	  if( special_encoder_mode == 1)
+	  if( special_encoder_mode == 1)//上电同时按急停和DVB
 	  {
 		  send_dsp2_command(0x0020,400);//DSP:1轴编码器线数
 		  send_dsp2_command(0x0021,400);//DSP:2轴编码器线数
@@ -6503,14 +6535,14 @@ const UINT16 config_para[]=
 	  
 		 send_dsp2_command(0x0022,config_para[15]);//DSP:1轴步距角
 		 send_dsp2_command(0x0023,config_para[16]);//DSP:2轴步距角 
-	#if DOUBLE_X_60MOTOR 
+	#if DOUBLE_X_60MOTOR //在这种上下文情况下只有机型：15、16满足
 		 current1 = y_step_current_level;
 		 current2 = inpress_step_current_level;
 	#else
 		 current1 = foot_step_current_level;
 		 current2 = inpress_step_current_level;
 	#endif
-		 current1 = ( (current1<<3) + 2) <<8 ;
+		 current1 = ( (current1<<3) + 2) <<8 ;//半流默认为2
 		 current2 = (current2<<3) +  2 + current1;	 
 		 send_dsp2_command(0x0026,current2 );
 		 send_dsp2_command(0x0027,config_para[17]); 		//工作电流和半流
@@ -6518,7 +6550,7 @@ const UINT16 config_para[]=
 		 send_dsp2_command(config_para[19],config_para[20]);//第二路超差+第一路精度系数
 	     send_dsp_command(2,config_para[21]);				//第二路精度系数
 	
-		 if(SUPPORT_CS3_FUN == 1)
+		 if(SUPPORT_CS3_FUN == 1)//K169取值2或者3时满足
 		{
 			step_cfg_data = 0x0011; 
 			spi_flag = 1;
@@ -6573,8 +6605,11 @@ void setup_stepper_moter(void)
 	send_dsp2_command(0x0026,inpress_step_configure_tab5[inpress_step_current_level]+foot_step_configure_tab5[foot_step_current_level]);
 	send_dsp2_command(0x0027,300);
 }	
-#elif DOUBLE_X_60MOTOR 
+#elif DOUBLE_X_60MOTOR //机型4、6、8、9、10、11、12、13、14、15、16
 
+//小模板机（机型18）K169取值为7：CONFIG_MACHINE_TYPE_6037_800
+//但是CURRENT_STEPPER_CONFIG_TYPE取值为CONFIG_MACHINE_TYPE_6037
+//无机型对于此情况
 #if CURRENT_STEPPER_CONFIG_TYPE == CONFIG_MACHINE_TYPE_6037_800
 
 	void setup_stepper_moter(void)
@@ -6775,7 +6810,10 @@ void setup_stepper_moter(void)
 }
 #endif
 
-
+//步进规划动框状态读取
+//返回值：1，表示两组缓冲空间均为空
+//2,表示有一个缓冲空间为空，可以发送数据
+//3,表示两个缓冲空间均有数据，不可以再发送新的数据
 UINT8 requery_dsp1_status(void)
 {
 	send_dsp1_command(0x0015,0x5555);		
@@ -6783,7 +6821,7 @@ UINT8 requery_dsp1_status(void)
 }
 
 #if LASER_DSP_PROCESS
-
+//发送步进规划动框模式给DSP
 void movestep_xy3(INT8 * buf_x,INT8 * buf_y,UINT8 length,UINT8 *spd_tab)
 {
 	UINT8 i,spd,j;	
@@ -6791,7 +6829,7 @@ void movestep_xy3(INT8 * buf_x,INT8 * buf_y,UINT8 length,UINT8 *spd_tab)
 	while( requery_dsp1_status() >= 3)//等待缓冲区空  1-表示两组缓冲区均空 2-有一个缓冲区为空 3-表示两个缓冲区均有数据
 	{
 		   rec_com();
-		   if( PAUSE == pause_active_level)
+		   if( PAUSE == pause_active_level)//急停按下
 	  	   {
 				delay_ms(20);
 				if( PAUSE == pause_active_level)
@@ -6804,7 +6842,7 @@ void movestep_xy3(INT8 * buf_x,INT8 * buf_y,UINT8 length,UINT8 *spd_tab)
 				}
 		   }
 	}
-	send_dsp1_command(0x0014,length);
+	send_dsp1_command(0x0014,length);//步进规划动框模式
 	for(i=0;i<length;i++)
 	{
 		spd = spd_tab[i];
@@ -6818,8 +6856,9 @@ void movestep_xy3(INT8 * buf_x,INT8 * buf_y,UINT8 length,UINT8 *spd_tab)
 			timer_x = spd;
 		    timer_y = 0;
 		}
-		movestep_x3(buf_x[i]); 
-		movestep_y3(buf_y[i]);
+		//发送动框数据给DSP
+		movestep_x3(buf_x[i]);//奇数为X动框数据
+		movestep_y3(buf_y[i]);//偶数为Y动框数据
 		#if UART1_DEBUG_OUTPUT_MODE
 			set_func_code_info(i,spd,fabsm(buf_x[i])>>1,fabsm(buf_y[i])>>1);
 		#endif
@@ -6908,9 +6947,9 @@ void set_rotated_cutter_speed(UINT16 speed)
 	UINT16 tmp;
 	send_dsp2_command(0x001F,(para.DSP2_para_1F&0x00ff)|0x0300 );  //开环闭环切换 1表示闭环，2表示开环，3表示转速模式，4表示随动模式，5表示双轴同步
 	delay_ms(2);
-	tmp = (speed & 0x0fff) + 0xa000;
+	tmp = (speed & 0x0fff) + 0xa000;//A（1010）bit15=1表示选择第二路电机，速度在bit0-11
 	if( yj_motor_dir == 1)
-		tmp += 0x4000;
+		tmp += 0x4000;//bit14=1,表示正向
 	send_dsp_command(2,tmp);
 	if( speed == 0)
 	{

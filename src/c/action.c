@@ -24,6 +24,7 @@
 #include "..\..\include\solenoid.h"       // solenoid driver definition
 #include "..\..\include\ctmotor.h"        // thread clamp motor function
 #include "..\..\include\M_debug.h"        
+#include "..\..\include\pattern_check.h"  //2018-9-17，花样码检查相关
 
 //--------------------------------------------------------------------------------------
 //  Internal function define
@@ -2623,15 +2624,15 @@ void go_origin_allmotor(void)
   	//1.5 X、Y轴执行找原点，分成是否有翻转装置来选择检索原点的顺序
 	if(k110 == 1)
 	{
-		switch(k93)
+		switch(k93)//原点检索/原点复位线路选择
 		{
-			case 0:
-			case 1:
-			case 2:
+			case 0://标准
+			case 1://反转
+			case 2://Y-X
 				go_origin_xy();
 				break;
 			
-			case 3:
+			case 3://X-Y
 				go_origin_x();
 				delay_ms(2);
 				go_origin_y();
@@ -2644,22 +2645,22 @@ void go_origin_allmotor(void)
 	}
 	else
 	{
-		switch(k92)
+		switch(k92)//原点检索/原点复位线路选择
 		{
-			case 0:
-			case 1:
-			case 2:
+			case 0://标准
+			case 1://反转
+			case 2://Y-X
 				go_origin_xy();
 				break;
 	
-			case 3:
+			case 3://X-Y
 				go_origin_x();
 				delay_ms(2);
 				go_origin_y();
 				allx_step = 0;
 				ally_step = 0;
 				break;
-			case 4:
+			case 4://只动Y轴
 				go_origin_y();
 				allx_step = 0;
 				ally_step = 0;
@@ -2677,7 +2678,7 @@ void go_origin_allmotor(void)
 	//1.6 根据停车位置情况，调整机针最后的停针点
 	if(u42 == 0)
 	{
-		if(u94 == 1)
+		if(u94 == 1)//停车到上死点（0度）
 		{
 			find_up_position();
 		}
@@ -2835,7 +2836,7 @@ void foot_down(void)
 {
 	if(foot_flag == 1)
 	{
-		if(k74 == 1)
+		if(k74 == 1)//气动压框
 		  {
 	          #if ENABLE_SCRATCH_FUN
 			  if(k169 != MACHINE_BOBBIN_CUTTER )
@@ -4648,19 +4649,19 @@ void check_data(UINT8 control_flag)
 	 //根据参数限制最高工作转速范围
 	  switch(u101)
 	  {
-			case 0:
+			case 0://*0-2700rpm/3.0mm
 				if (temp_speed_xy >= MAX_SPEED_LIMIT)
 					temp_speed_xy = MAX_SPEED_LIMIT;
 				break;
-			case 1:
+			case 1://1-2200rpm/3.0mm
 				if (temp_speed_xy >= 2200)
 					temp_speed_xy = 2200;
 				break;		
-			case 2:
+			case 2://2-1800rpm/3.0mm
 				if (temp_speed_xy >= 1800)
 					temp_speed_xy = 1800;
 				break;	
-			case 3:
+			case 3://3-1400rpm/3.0mm
 				if (temp_speed_xy >= 1400)
 					temp_speed_xy = 1400;
 				break;	
@@ -4681,12 +4682,13 @@ void check_data(UINT8 control_flag)
   	else if(max8 <= 70)
   		temp_speed_inpress = 700;	
 
+	//选择转速小的那个
 	if(temp_speed_xy >= temp_speed_inpress)
 	  	temp_speed = temp_speed_inpress;
 	else 
 	  	temp_speed = temp_speed_xy;
 		
-    //物料厚度算法 调速工作转速
+    //物料厚度算法 调速工作转速，如果满足条件，temp_speed被重写，之前的修改机制无效
     if(k06 != 0)    
     {
 	    /*
@@ -5984,12 +5986,12 @@ void process_sewingtest_data(void)
 								FootRotateFlag = 1; 
 							break;
 							case 3://激光切割结束
-								milling_cutter_action_flag = 2;
-								find_laser_start_stop_flag = 1;
+								milling_cutter_action_flag = 2;//表示碰到了激光切割结束码
+								find_laser_start_stop_flag = 1;//表示函数process_laser_offset_move()需要处理偏移
 							break;
 							case 4://激光切割开始
-								milling_cutter_action_flag = 1;
-								find_laser_start_stop_flag = 1;
+								milling_cutter_action_flag = 1;//表示碰到了激光切割开始码
+								find_laser_start_stop_flag = 1;//表示函数process_laser_offset_move()需要处理偏移
 							break;
 							default:
 								FootRotateFlag = 1;  
@@ -6103,12 +6105,12 @@ void process_sewingtest_data(void)
 								FootRotateFlag = 1; 
 							break;
 							case 3://激光切割结束
-								milling_cutter_action_flag = 2;
-								find_laser_start_stop_flag = 1;
+								milling_cutter_action_flag = 2;//表示碰到了激光切割结束码
+								find_laser_start_stop_flag = 1;//表示函数process_laser_offset_move()需要处理偏移
 							break;
 							case 4://激光切割开始
-								milling_cutter_action_flag = 1;
-								find_laser_start_stop_flag = 1;
+								milling_cutter_action_flag = 1;//表示碰到了激光切割开始码
+								find_laser_start_stop_flag = 1;//表示函数process_laser_offset_move()需要处理偏移
 							break;
 							default:
 								FootRotateFlag = 1;  
@@ -7254,7 +7256,14 @@ void go_beginpoint(UINT8 FirstNopmoveFlag)
 				针数 > 0 采用的是 V 型加固，要先移动几针，再反向缝制回来；指针、坐标先调整过去；
 				针数 < 0 采用的是 W 型加固，到下个起缝点，先走几针，再返回来，再重新缝制下去；
 				*/
-				if( (sewingcontrol_flag == 2)&&(need_backward_sewing == 1) )
+				//需要先判断，是否后面跟着的是特殊功能码，如画笔、激光切割、旋转切刀、直线切刀
+				//等段，后面也是车缝数据，但是并非车缝段，不需要考虑加固处理，否则会导致前几针
+				//没有被处理
+				if(check_subsequent_special_segment( (PATTERN_DATA*)(pat_point-1) ) >= 2)//如果是特殊功能段，pat_point-1指向了最后一针空送代码
+				{
+					//啥也不干，不处理起缝加固内容
+				}
+				else if( (sewingcontrol_flag == 2)&&(need_backward_sewing == 1) )//车缝段再考虑加固情况
 				{
 					process_data();
 					if(origin2_lastmove_flag == 1) //如果是空送中遇到第二原点，就跳过去
@@ -9064,7 +9073,7 @@ void single_next(void)
 	    	}
 			if(FootRotateFlag == 1)
 			{
-				if( (k110 == 0) )
+				if( (k110 == 0) )//画笔
 				{
 					marking_flag = 1;
 					single_flag = 1;
@@ -11111,7 +11120,7 @@ void course_back(void)
 		else
 		{
 			if(k110 == 1)  
-				R_AIR = R_AIR^1;
+				R_AIR = R_AIR^1;//取反
 		 	else if(k110 == 2)
 			 {
 				if(stretch_foot_flag == 0)
@@ -11137,7 +11146,7 @@ void course_back(void)
     	ally_step = ally_step - ystep_cou;
 		if(ROTATED_CUTTER == 1)//#if ROTATED_CUTTER
 		{
-			if( rotated_cutter_enable == 1)
+			if( rotated_cutter_enable == 1)//K150,旋转切刀打开
 			{
 							if ( milling_cutter_action_flag ==1)
 							{
@@ -12639,7 +12648,7 @@ void pause_stop(void)
 	
 	zpl_pass = 0;
 	#if ONESTEP_STOP
-		if(u97 == 0)//三针降速
+		if(u97 == 0)//急停时自动剪线，三针降速
 		{	
 			if(motor.spd_obj >= 50 && motor.spd_obj <= 800)
 			{
@@ -12718,7 +12727,7 @@ void pause_stop(void)
 				motor.spd_obj = 1900;      
 			}
 		}
-		else //u97 = 1
+		else //u97 = 1，急停时手动剪线
 		{
 			temp16 = motor.angle_adjusted;
 			if( temp16 >angle_tab[150])//给急停留个角度区间，150度以内可以急停下来
@@ -14427,6 +14436,7 @@ void zoom_in_one_stitch(UINT8 stitchs,UINT8 cflag)
 void do_pat_point_add_one(void)
 {
 	pat_point++;
+	//pat_buff_total_counter：当前已缝制的总花样点数
 	pat_buff_total_counter ++;
 	if(super_pattern_flag == 1)
 	{
@@ -14468,10 +14478,10 @@ void find_start_point1(void)
 	
 	timer_x = 1;
 	flag = 0;
-	origin_mode = 0;
+	origin_mode = 0;//X轴为导轨
 	
 #if (COMPILE_MACHINE_TYPE == MACHINE_CONFIG_NUMBER38)||(COMPILE_MACHINE_TYPE == MACHINE_CONFIG_NUMBER35 )||(COMPILE_MACHINE_TYPE == MACHINE_CONFIG_NUMBER18 )|| (COMPARE_NOPMOVE_SPEED	==1)
-	origin_mode = 1;
+	origin_mode = 1;//X轴为横梁
 #elif ENABLE_CONFIG_PARA ==1
 	if( para.x_origin_mode == 1)
 		origin_mode = 1;
@@ -14479,7 +14489,7 @@ void find_start_point1(void)
 	origin_mode = 0;	
 #endif
 	
-	if( origin_mode ==1)
+	if( origin_mode ==1)//横梁X轴找原点
 	{
 		go_origin_x1();
 		delay_ms(100);
@@ -14897,7 +14907,10 @@ void PBP_Line (UINT8 stitch_cnt)
 
 */
 
-void PBP_Line (UINT8 stitch_cnt) 
+
+//逐点比较法直线插补，此算法原理参考：
+//https://blog.csdn.net/qq_36552550/article/details/79356398。
+void PBP_Line (UINT8 stitch_cnt)//参数未使用
 {   
 	INT32  lDevVal;              	//偏差值  	
 	INT32  XEnd,YEnd; 			 	//目标位置、当前位置
@@ -14910,11 +14923,11 @@ void PBP_Line (UINT8 stitch_cnt)
 	YEnd    = ystep_cou;			//目标位置	
 	nDir=Judge_Quadrant(XEnd,YEnd); //象限判断 	
 	lDevVal = 0;
-	XEnd = fabs(XEnd);  
+	XEnd = fabs(XEnd);//绝对值  
 	YEnd = fabs(YEnd);     
 	x_count = XEnd;
 	y_count = YEnd;
-	StepMount = (UINT16) (XEnd+YEnd);    
+	StepMount = (UINT16) (XEnd+YEnd);//总步数
 
 	while ((x_count>0)||(y_count>0)) //(StepCount < StepMount) //终点判别  
 	{
@@ -14926,7 +14939,7 @@ void PBP_Line (UINT8 stitch_cnt)
 		rec_com();
 		if (lDevVal>=0)  //偏差〉=0       
 		{ 
-			switch(nDir) 
+			switch(nDir) //按象限处理,这里的处理，因为机头不动XY动，所以是反向的运动
 			{    
 				case 1:   
 				case 4: 
@@ -15272,6 +15285,11 @@ UINT16 calculae_arctan_angle(void)
 	}
 	return alpha_out;
 }
+
+
+
+
+
 //--------------------------------------------------------------------------------------
 //         COPYRIGHT(C) 2006 Beijing xindahao technology Co., Ltd.
 //                     ALL RIGHTS RESERVED 

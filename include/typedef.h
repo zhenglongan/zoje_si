@@ -129,40 +129,40 @@ typedef struct
 	UINT8  dsp2A_half_current;	//43
 	UINT8  dsp2B_half_current;	//44
 		
-	UINT8  platform_type;		//45	
-	UINT8  mainmotor_type;      //46
+	UINT8  platform_type;		//45,主控中无实际使用
+	UINT8  mainmotor_type;      //46,主控中无实际使用
 	UINT8  x_origin_mode;		//47
-	UINT8  yj_org_direction;    //48
-	UINT8  Corner_deceleration_speed;//49
-    UINT8  wipper_type;			//50
-	UINT8  x_sensor_open_level; //51
-	UINT8  y_sensor_open_level;	//52
-	UINT8  laser_function_enable;//53
-	UINT8  dvb_open_level;		//54
-	UINT8  last_8_speed;		//55
-	UINT8  last_7_speed;		//56
-	UINT8  last_6_speed;		//57
-	UINT8  last_5_speed;		//58
-	UINT8  last_4_speed;		//59
-	UINT8  last_3_speed;		//60
-	UINT8  last_2_speed;		//61
-	UINT8  last_1_speed;		//62
-	UINT8  dva_open_level;		//63
+	UINT8  yj_org_direction;    //48,主控中无实际使用
+	UINT8  Corner_deceleration_speed;//49，主控中无实际使用
+    UINT8  wipper_type;			//50,主控中无实际使用
+	UINT8  x_sensor_open_level; //51，主控中无实际使用
+	UINT8  y_sensor_open_level;	//52，主控中无实际使用
+	UINT8  laser_function_enable;//53，主控中无实际使用
+	UINT8  dvb_open_level;		//54，主控中无实际使用
+	UINT8  last_8_speed;		//55，主控中无实际使用
+	UINT8  last_7_speed;		//56，主控中无实际使用
+	UINT8  last_6_speed;		//57，主控中无实际使用
+	UINT8  last_5_speed;		//58，主控中无实际使用
+	UINT8  last_4_speed;		//59，主控中无实际使用
+	UINT8  last_3_speed;		//60，主控中无实际使用
+	UINT8  last_2_speed;		//61，主控中无实际使用
+	UINT8  last_1_speed;		//62，主控中无实际使用
+	UINT8  dva_open_level;		//63，主控中无实际使用
 	
-	UINT16  dsp1_step_crc;		//64,65
-	UINT16  dsp2_step_crc;		//66,67
+	UINT16  dsp1_step_crc;		//64,65，主控中无实际使用
+	UINT16  dsp2_step_crc;		//66,67，主控中无实际使用
 	
-	UINT16 y_backward_dis;		//68,69
-    UINT16 x_take_offset;		//70,71
-	UINT16 x_take_offset2;		//72,73
+	UINT16 y_backward_dis;		//68,69，主控中无实际使用
+    UINT16 x_take_offset;		//70,71，主控中无实际使用
+	UINT16 x_take_offset2;		//72,73，主控中无实际使用
 	UINT16 left_barcode_position;	//74,75
-	UINT16 right_barcode_position;	//76,77
-	UINT16 catch_delay_time;	//78,79
-	UINT16 y_barcode_position;	//80,81
-	UINT16 blow_air_counter;	//82,83
-	UINT16 cut_air_counter;		//84,85
-	UINT8  yj_go_origin_enable;			//86
-	UINT8  second_origin_footer_status; //87
+	UINT16 right_barcode_position;	//76,77，主控中无实际使用
+	UINT16 catch_delay_time;	//78,79，主控中无实际使用
+	UINT16 y_barcode_position;	//80,81，主控中无实际使用
+	UINT16 blow_air_counter;	//82,83，主控中无实际使用
+	UINT16 cut_air_counter;		//84,85，主控中无实际使用
+	UINT8  yj_go_origin_enable;			//86，主控中无实际使用
+	UINT8  second_origin_footer_status; //87，主控中无实际使用
 	UINT8  go_special_position_mode;	//88
 	
 	UINT16  dsp3_step_crc;		//89,90
@@ -184,28 +184,28 @@ typedef struct
 	UINT8  dsp3B_half_current;	//115
 	UINT8  dsp3A_current;		//116
 	UINT8  dsp3B_current;		//117
-	UINT8  dsp3_enable;			//118
+	UINT8  dsp3_enable;			//118，主控中无实际使用
 	
 	UINT8  dsp3a_motor_dir;		//119
 	UINT8  dsp3b_motor_dir;		//120
-	UINT8  dsp3a_sensor_dir;	//121	
-	UINT8  dsp3b_sensor_dir;	//122
+	UINT8  dsp3a_sensor_dir;	//121，主控中无实际使用	
+	UINT8  dsp3b_sensor_dir;	//122，主控中无实际使用
 	
 	UINT8  bobbin_platform_speed;//123
 	 INT8  bobbin_shake_distance;//124
 	UINT8  bobbin_shake_time;	 //125
 	
-	UINT8  rotate_cutter_delaytime1;//126
-	UINT8  rotate_cutter_delaytime2;//127	
-	UINT8  rotate_cutter_movetime;//128
+	UINT8  rotate_cutter_delaytime1;//126,旋转切刀角度电机动作前延时
+	UINT8  rotate_cutter_delaytime2;//127,旋转切刀机型XY动框前延时
+	UINT8  rotate_cutter_movetime;//128,旋转切刀机型XY动框时间限定
 	
-	UINT8  rotate_cutter_working_mode;//129
-	UINT8  rotate_cutter_detect_valve_down;//130 
+	UINT8  rotate_cutter_working_mode;//129,旋转切刀的工作模式
+	UINT8  rotate_cutter_detect_valve_down;//130,旋转切刀机型是否使用下降安全传感器
 	UINT8  x_motor_dir;			//131
 	UINT8  y_motor_dir;			//132
 	UINT8  zx_motor_dir;		//133
 	
-	UINT16 cutter_speed;		//134,135
+	UINT16 cutter_speed;		//134,135,旋转切刀电机速度
 	UINT8  speed_limit_switch;  //136
 	UINT8  speed_percent;		//137
 	UINT8  one_key_run_function;//138

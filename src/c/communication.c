@@ -100,7 +100,7 @@ UINT8 send_command[BUF_MIN];  		 // transmit buffer  100 byte
 #define SHIFT        0x85
 #define SHIFT_RET    0xE5
 
-#define STEP         0x86
+#define STEP         0x86//试缝
 #define STEP_RET     0xE6
 
 #define VERSION      0x87
@@ -1813,20 +1813,20 @@ void protocol(UINT8* command)
 				u48 = rec_buf[32]; //u48 设置起缝点复位路径 *0-直线 1-图案 2-原点检索 
 				u49 = rec_buf[33]; //u49 绕线速度设置 *16
 				u51 = rec_buf[34]; //u51 拨线器是否打开 0-关闭 *1-打开  0-起缝打开，1-结束打开，2-关
-				u68 = rec_buf[35]; //u68 线张力设定时的线张力输出时间 *0
-				u69 = rec_buf[36]; //u69 抓线的弯曲位置 *0
-				u70 = rec_buf[37]; //u70 抓线位置 *0-标准 1-后方 
+				u68 = rec_buf[35]; //u68 线张力设定时的线张力输出时间 *0,主控程序中已经未使用
+				u69 = rec_buf[36]; //u69 抓线的弯曲位置 *0,主控程序中已经未使用
+				u70 = rec_buf[37]; //u70 抓线位置 *0-标准 1-后方 ,主控程序中已经未使用
 				u71 = rec_buf[38]; //u71 断线检测是否有效 *0-无效 1-有效
 				u72 = rec_buf[39]; //u72 断线检测时缝制开始的无效针数 *8
 				u73 = rec_buf[40]; //u73 断线检测时缝制中途的无效针数 *3
 				u81 = rec_buf[41]; //u81 外压脚-脚踏开闭 *0-1段
-				u82 = rec_buf[42]; //u82 外压脚控制-中途停止时开闭 *0
-				u84 = rec_buf[43]; //u84 踏板SW1是否锁定 0-无 *1-有
-				u85 = rec_buf[44]; //u85 踏板SW2是否锁定 0-无 *1-有
-				u86 = rec_buf[45]; //u86 踏板SW3是否锁定 0-无 *1-有
-				u87 = rec_buf[46]; //u87 踏板SW4是否锁定 0-无 *1-有
-				u89 = rec_buf[47]; //u89 移动模式 0-禁止 1-平行 *2-后设第二原点
-				u91 = rec_buf[48]; //u91 滚珠轨道补正动作 *0-无 1-有
+				u82 = rec_buf[42]; //u82 外压脚控制-中途停止时开闭 *0,主控程序中已经未使用
+				u84 = rec_buf[43]; //u84 踏板SW1是否锁定 0-无 *1-有,主控程序中已经未使用
+				u85 = rec_buf[44]; //u85 踏板SW2是否锁定 0-无 *1-有,主控程序中已经未使用
+				u86 = rec_buf[45]; //u86 踏板SW3是否锁定 0-无 *1-有,主控程序中已经未使用
+				u87 = rec_buf[46]; //u87 踏板SW4是否锁定 0-无 *1-有,主控程序中已经未使用
+				u89 = rec_buf[47]; //u89 移动模式 0-禁止 1-平行 *2-后设第二原点,主控程序中已经未使用
+				u91 = rec_buf[48]; //u91 滚珠轨道补正动作 *0-无 1-有,主控程序中已经未使用
 				u94 = rec_buf[49]; //u94 原点检索时是否选择上死点 *0-无 1-是
 				u97 = rec_buf[50]; //u97 暂停时切线方式  0-自动 *1-手动
 				u101 = rec_buf[51]; //u101 主马达XY传送同步 *0-2700rpm/3.0mm
@@ -1834,9 +1834,9 @@ void protocol(UINT8* command)
 				u104 = rec_buf[53]; //u104 中压脚下降同步 *0-启动之前 1-外压脚同步
 				u105 = rec_buf[54]; //u105 中压脚/拨线器挑线位置 *0-中压脚上拨 1-下降位置 2-中压脚下
 				u108 = rec_buf[55]; //u108 气动压力检测 *0-无 1-有
-				u112 = rec_buf[56]; //u112 中压脚下降位置设定 *35 ,程序中未使用
+				u112 = rec_buf[56]; //u112 中压脚下降位置设定 *35 ,主控程序中已经未使用
 				u129 = rec_buf[57];	//u129 机针冷却有无 *0-无 1-有
-				u245 = rec_buf[58];	//u245 加润滑脂异常	
+				u245 = rec_buf[58];	//u245 加润滑脂异常	,主控程序中已经未使用
 				
 				k01 = rec_buf[59];	//k01 取消范围保护 *0-关闭 1-打开
 				k31 = rec_buf[60];	//k31 暂停输入选择 0-无效 *1-有效
@@ -1846,25 +1846,25 @@ void protocol(UINT8* command)
 			#endif
 				k52 = rec_buf[62];	//k52 电磁拨线器：打开输出时间 *5
 				k53 = rec_buf[63];	//k53 电磁拨线器：关闭推迟时间 *8
-				k54 = rec_buf[64];	//k54 上死点停止时的拨线输出时相选择 *0-上位置 1-上死点
+				k54 = rec_buf[64];	//k54 上死点停止时的拨线输出时相选择 *0-上位置 1-上死点,主控程序中已经未使用
 				k56 = rec_buf[65];	//k56 移动界限+x方向 （小幅面） *1000
 				k57 = rec_buf[66];	//k57 移动界限-x方向 *1000
 				k58 = rec_buf[67];  //k58 移动界限+Y方向 *0
 				k59 = rec_buf[68];  //k59 移动界限-Y方向 *750
 				k63 = rec_buf[69];	//k63 针杆停止上下针停止模式选择 0-无效 *1-有效
-				k67 = rec_buf[70];	//k67 拨线器输出时的线张力输出 *0-无输出 1-最大输出
+				k67 = rec_buf[70];	//k67 拨线器输出时的线张力输出 *0-无输出 1-最大输出 ,主控程序中已经未使用
 				k74 = rec_buf[71];	//k74 电机/气动压脚选择 0-电机 *1-气动压脚
-				k75 = rec_buf[72];	//k75 气动压脚下降推迟时间 *10
+				k75 = rec_buf[72];	//k75 气动压脚下降推迟时间 *10，主控程序中已未使用
 				k92 = rec_buf[73];	//k92 平时原点检索/原点复位线路选择 *0-标准 1-反转 2-Y-X 3-X-Y 4-只动Y轴
 				k93 = rec_buf[74];	//k93 反转时原点检索/原点复位线路选择
 				k95 = rec_buf[75];	//k95 正向切线时相 *0
-				k98 = rec_buf[76];	//k98 空送布命令:顶点休止时间 *2
+				k98 = rec_buf[76];	//k98 空送布命令:顶点休止时间 *2，主控程序中已未使用
 				k98 = k98 <<1;
 				k100 = rec_buf[77];	//k100 结束命令:停止控制 *0-无 1-有，主控程序中已未使用
 				k110 = rec_buf[78]; //k110 翻转装置与伸缩压脚控制 *0-无 1-翻转 2-伸缩
 				temp = (UINT16)rec_buf[79] << 8;                
 				k111 = temp | (UINT16)rec_buf[80];  //k111 翻转装置自动翻转Y坐标*170，主控程序中已经未使用 
-				k131 = rec_buf[81]; //k131 暂停出错时有无抬压脚 *0-无 1-有
+				k131 = rec_buf[81]; //k131 暂停出错时有无抬压脚 *0-无 1-有，主控程序中已未使用
 				k150 = rec_buf[82]; //k150 *0
 				tension = rec_buf[83]; //  线张力基准值
 				tension_hole  = rec_buf[83];
@@ -1999,7 +1999,7 @@ void protocol(UINT8* command)
 				}
 				
 				k04 = rec_buf[149]; 
-				k05 = (INT8)rec_buf[150];
+				k05 = (INT8)rec_buf[150];//主控程序中已未使用，UI面板中也已经不能设置
 				
 			    xy_move_mode = k04 ;//0-同步动框 1-分时动框	
 		        if( k02 == 0)
@@ -2019,6 +2019,7 @@ void protocol(UINT8* command)
 				}
 				if( para_length >=156)
 				{
+					//主控程序中已未使用
 					check_bottom_thread_switch = rec_buf[158];	      //k136，底线提前报警开关  0-缝制中警报 1-提前警报
 					temp16 = (INT16)rec_buf[156]<<8;
 					bottom_thread_remain = temp16|(INT16)rec_buf[157];//底线剩余长度或针数
@@ -2042,7 +2043,7 @@ void protocol(UINT8* command)
 				{
 					power_on_ready = rec_buf[165]; 				//k137 开机是否直接进入可缝制状态 0-否 1-是
 					second_start_switch =rec_buf[166];          //k138 二次启动设置 0-关闭 *1-打开 2--自启动 3--一键启动
-					if( second_start_switch == 2)
+					if( second_start_switch == 2)//自动启动转换为二次启动，其他均认为一键启动
 						autosewing_control_flag = 1;
 					else
 						autosewing_control_flag = 0;
@@ -2298,7 +2299,7 @@ void protocol(UINT8* command)
 				
 				if(para_length >= 210)
 				{
-					ct_bump_workingtime = rec_buf[207]; //k178
+					ct_bump_workingtime = rec_buf[207]; //k178，抓线吸风时间，单位是秒
 					if( ct_bump_workingtime > 60)
 						ct_bump_workingtime = 60;
 					ct_bump_workingtime = ct_bump_workingtime * 1000;
@@ -2306,7 +2307,7 @@ void protocol(UINT8* command)
 					last2_speed = rec_buf[209];//k180
 					last3_speed = rec_buf[210];//k181
 					last4_speed = rec_buf[211];//k182
-					cutter_syn_delay = rec_buf[212];//k183
+					cutter_syn_delay = rec_buf[212];//k183，切刀同步延时
 				}
 				
 				if(para_length >= 215)
@@ -2414,7 +2415,8 @@ void protocol(UINT8* command)
 				#if COMPILE_MACHINE_TYPE == MACHINE_CONFIG_NUMBER36
 				x_motor_dir = (x_motor_dir==0)?1:0;	
 				#endif
-				
+
+				//支持参数配置时，XY电机方向由系统参数第1组决定在K127、K128、K207基础上进行方向
 				#if ENABLE_CONFIG_PARA
 				if( para.x_motor_dir == 55)
 					x_motor_dir = (x_motor_dir==0)?1:0;	
@@ -2483,7 +2485,7 @@ void protocol(UINT8* command)
 				bobbin_case_inout_delay = temp | (UINT16)rec_buf[14];//k158,前后抓紧气缸到位延时
 				temp = (UINT16)rec_buf[15] << 8;                
 				bobbin_case_scrath_delay = temp | (UINT16)rec_buf[16];//k159,夹紧气缸到位延时
-				bobbin_case_current_level = rec_buf[17];//k160,抓臂电机工作电流档位
+				bobbin_case_current_level = rec_buf[17];//k160,抓臂电机工作电流档位，主控程序中已未使用
 			    
 				bobbin_case_stop_position = rec_buf[18]; //k161 换梭停止位置 0-梭盘侧 1-机头侧
 				bobbin_case_alarm_mode = rec_buf[19];//k162，换梭方式，0-底线警报后手动换梭，1-底线警报时自动换梭
@@ -4374,10 +4376,11 @@ void protocol(UINT8* command)
 				cut_test_flag = 1;
 				predit_shift = 11 ;//2014-8-15
 				break;	
-			case SET_BASELINE_ALARM:
+			case SET_BASELINE_ALARM://通过数据流分析，发指令时机和baseline_alarm_stitchs取值
 						baseline_alarm_flag = rec_buf[3];
 						temp = (UINT16)rec_buf[4]<<8;
 				        baseline_alarm_stitchs = temp | (UINT16)rec_buf[5];//总针数
+				        //???都应该加，为啥增加，可以注释掉测试下
 						if( pat_buff_total_counter >= baseline_alarm_stitchs)
 						    baseline_alarm_stitchs += pat_buff_total_counter;
 						bobbin_case_once_done_flag = 0;
@@ -4633,13 +4636,13 @@ void protocol(UINT8* command)
 			#if ENABLE_RFID_FUNCTION
 			case RFID_WRITE:
 				 rc522_control_falg = 1;
-				 rc522_write_falg = 1;
+				 rc522_write_falg = 1;//RFID_SCAN()中将写卡，写入值为Rfid_Nom
 				 rc522_write_ret_falg = 1;
 				 temp16 = (UINT16)rec_buf[3]<<8;
 			     Rfid_Nom = temp16 | (UINT16)rec_buf[4];
 			  break;
 			case RFID_READ:		
-				 rc522_write_falg = 0;
+				 rc522_write_falg = 0;//RFID_SCAN()中将读卡
 				 rc522_control_falg = 1; 
 				 
 			  break;

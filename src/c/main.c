@@ -52,7 +52,8 @@ void main(void)
 	reset_panel();
 	version_check();   
 	config_flag = 0; 
-	
+
+//机型4、6、8、9、10、11、12、13、14、15、16
 #if DOUBLE_X_60MOTOR
 	if( DVB == 0)
 	{
@@ -88,7 +89,7 @@ void main(void)
 				delay_ms(30);
 				if( DVB == 0)
 				{
-					special_encoder_mode = 1;
+					special_encoder_mode = 1;//上电同时按急停和DVB
 				}
 			}
 		}
@@ -96,6 +97,7 @@ void main(void)
 	SNT_H = 0;    
 	SNT_ON = 0;     
 	delay_ms(300);	        //延时给系统硬件环境一个建立时间
+	
 	#if SUPPORT_NEW_DRIVER == 0
 	config_stepmotor_drv();
 	#endif
@@ -137,6 +139,9 @@ void main(void)
 	//	predit_shift = 0; 
     //}
 	#endif	
+	
+	//机型2、3、4、5、6、8、9、10、11、12、13、14、15、16、17、18、19、20、21、22、23、24、25、26、
+	//27、28、29、30、31、33、34、35、36、37、38、39、40、41、42、44、55
 	#if SUPPORT_NEW_DRIVER
 	else
 	{
@@ -148,8 +153,8 @@ void main(void)
 	#if ENABLE_RFID_FUNCTION
 	if((auto_function_flag == 1)&&(formwork_identify_device ==3)&&(PAUSE != pause_active_level))
 	{
-		RFID_initial();
-		init_uart1_RC522(); 	
+		RFID_initial();//初始化MFRC522，同时更改MFRC522通信波特率为115200
+		init_uart1_RC522();//将UART1的波特率改到115200，以便和MFRC522匹配，此前波特率默认9600
 		rfid_config_flag = 1;
 	}
 	#endif
@@ -359,7 +364,7 @@ void ta0_int(void)
 			//drill_motor_run_enable = 0;  
 		}
 	}
-	if( ct_bump_action_flag == 1)
+	if( ct_bump_action_flag == 1)//计时关闭抓线吸风时间
 	{
 		ct_bump_counter++;
 		if( ct_bump_counter > ct_bump_workingtime)
@@ -401,7 +406,7 @@ void ta0_int(void)
 		    indraft_control_counter --;
 	}
 	#endif
-	if( blow_air_flag == 1 )
+	if( blow_air_flag == 1 )//吹气功能定时关闭
 	{
 		if(blow_air_counter > 0)
 		  blow_air_counter--;
@@ -452,12 +457,12 @@ void ta0_int(void)
 		if(DAActionCounter >= 100)
 		{
 			//DAActionFlag = 0;
-			da0 = release_tension_current; 
+			da0 = release_tension_current;//夹线器松开
 		}
 		if(DAActionCounter >= 300)
 		{
 			DAActionFlag = 0;
-			da0 = 0; 
+			da0 = 0; //夹线器夹紧
 		}
 	}
 	if( da0_release_flag == 1)
@@ -517,7 +522,7 @@ void ta0_int(void)
 			{
 				cool_air_1_sec = 0;
 				cool_air_counter++;
-				if ( cool_air_counter >= cool_air_close_time)
+					if ( cool_air_counter >= cool_air_close_time)
 				{
 				   cool_air_counter = 0;
 				   cool_air_action_flag = 1;
@@ -545,7 +550,7 @@ void ta0_int(void)
 	//准备状态或是测试状态下，打开模板识读，并且没进过RUN
 	if( (auto_function_flag == 1) && (return_from_setout==0) && ( (sys.status == READY)||(sys.status == CHECKI03)  )  )
 	{
-			tmp_pattern = identify_pattern();
+			tmp_pattern = identify_pattern();//对于RFID方式来说，只是返回了全局变量serail_number，其他什么都没做
 			if( (formwork_identify_device <2)&&(tmp_pattern!=0) )
 		    {
 				if( (identify_mode == 0)||((identify_mode == 1)&&(foot_flag == 0)) )
@@ -594,7 +599,7 @@ void ta0_int(void)
 				else
 				{
 					pattern_chage_recover_counter++;
-					if( pattern_chage_recover_counter >= 3000)
+					if( pattern_chage_recover_counter >= 3000)//3000ms后，才能重新识别模板
 					{
 						pattern_change_flag = 0;
 						pattern_chage_recover_counter = 0;
@@ -622,14 +627,14 @@ void ta0_int(void)
 		{
 			laser_power_on_counter++;
 		}
-		else
+		else//超过120s即2min后关闭总点源
 		{
 			laser_power_on_flag = 0;
 			laser_power_on_counter = 0;
 			LASET_POWER_SWITCH = 0;       //关闭激光总电源
 			first_start_flag = 0;
 		}
-		//检测激光电源信号
+		//检测激光电源信号，已经不使用了
 		temp16 = (ad1 & 0x03ff);
 		if(temp16 > 500)
 		{
@@ -773,6 +778,7 @@ void tb3_int(void)
 }
 /**
   * @函数功能 定时器B4中断程序，产生微秒级时间基准
+  			  同时用于将画笔和激光切刀等的插补算法计算出的运动序列通过此函数发给DSP驱动器
   * @参数 
   * @返回值 
   */
@@ -781,7 +787,7 @@ void tb4_int(void)
 	
 	UINT8 coder;
 	us_counter++;
-#if INSERPOINT_ENABLE
+#if INSERPOINT_ENABLE//执行XY插补算法，从缓存区tra1_buf[]中取出动作序列
 	if( laser_cutter_aciton_flag == 1 )
 	{
 		if( rec1_total_counter > 0 )//缓冲区不空

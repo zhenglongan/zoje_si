@@ -272,7 +272,7 @@ void rec1_com(void)
 	#if  ENABLE_RFID_FUNCTION	
 	if( formwork_identify_device == 3)
 	{
-		#if SECOND_GENERATION_PLATFORM
+		#if SECOND_GENERATION_PLATFORM//TASC二代一体机
 		if( (ms_scan_counter >= 150)&&(pattern_change_flag ==0) )
 		#else
 		if( (ms_scan_counter >= para.left_barcode_position )&&(pattern_change_flag ==0) )
@@ -462,7 +462,7 @@ UINT8 uart1_get_char(void)
 	return (UINT8)u1rb;
 }
 /////////////////////////////////////////////////////////////////////
-//功  能：读RC632寄存器
+//功  能：读RC522寄存器
 //参数说明：Address[IN]:寄存器地址
 //返  回：读出的值
 //94 14 28 94  --0x14
@@ -477,7 +477,7 @@ UINT8 ReadRawRC(UINT8 Address)
 } 
 
 /////////////////////////////////////////////////////////////////////
-//功  能：写RC632寄存器
+//功  能：写RC522寄存器
 //参数说明：Address[IN]:寄存器地址
 //      value[IN]:写入的值
 /////////////////////////////////////////////////////////////////////
@@ -487,7 +487,7 @@ void WriteRawRC(UINT8 Address, UINT8 value)
    ucAddr = Address&0x7F;
    uart1_send_char(ucAddr);
    uart1_send_char(value);
-   i = uart1_get_char();
+   i = uart1_get_char();//这个字节实际上是发送地址后MFRC522反馈的地址
 }
 #endif
 

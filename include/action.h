@@ -169,7 +169,9 @@ extern UINT16 get_IORG_status(void);
 
 extern void check_output_pattern_done(void);
 
-extern void calculate_inpress_angle(INT16 speed);
+void calculate_inpress_angle(INT16 speed);
+
+
 
 #endif
 //--------------------------------------------------------------------------------------

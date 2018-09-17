@@ -386,11 +386,11 @@ INT16 sys_watch(void)
   	//-------------------------------------------------------------------------------------- 
 //  	if(sys.status == RUN)            
 //  	{
-	  		if(k31 == 1)
+	  		if(k31 == 1)//K31，急停输入有效
 	  		{
 	  			if(pause_flag == 0)
 	  			{		  	
-	  	  			if(PAUSE == pause_active_level)
+	  	  			if(PAUSE == pause_active_level)//K193,急停开关机型pause_active_level
 	  	  			{
 	  	  				pause_count++;
 	  	  				if(pause_count >= 5)
@@ -463,7 +463,7 @@ INT16 sys_watch(void)
     		{    		
     			if(stitch_counter > u72)
     	  		{    	  
-    	  			if(thbrk_count > u73)
+    	  			if(thbrk_count > u73)//run状态机函数中thbrk_count++
     	  			{    	  	
     	  				thbrk_flag = 1;     //thread breakage
     	  			}	

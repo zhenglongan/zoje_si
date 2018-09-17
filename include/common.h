@@ -25,7 +25,29 @@
 #define VERSION_MONTH   		07  
 #define VERSION_DAY     		21      
 #define MainFatherVersion       4
-#define MainSVNVersion		   	2967//2966//2965//2964//2963//2962//2961//2952//2951//2950//2925
+//#define MainSVNVersion		   	2967//2966//2965//2964//2963//2962//2961//2952//2951//2950//2925
+/*
+	1、修改起缝加固打开后导致功能段前几针跳过的问题
+	--问题描述：
+     当K18设置为2，表示起缝使用前K19针进行加固，如果K19大于0表示使用V型线迹加固时，程序的加固方式是先
+   空送到车缝后的K19针，然后再倒缝到起缝第一针，接着正常缝制下去，这样就完成了V型加固线迹，然而由于
+   很多时候空送后是激光切割、画笔、旋转切刀、直线切刀等功能段（借用了车缝数据表示运动路径），因此导
+   致这些功能段的前K19针没有处理，直接跳过了
+   
+	--解决方法：
+     为了解决这个问题，本版本（2968）进行了相应的修改，增加了花样码分析程序文件pattern_check.c/.h，内部
+   增加函数check_subsequent_special_segment(pat)用于判断传入的空送码后面出现的车缝码属于什么功能段，是车缝
+   还是画笔、激光、旋转切刀、空送等段。然后在空送段处理函数go_beginpoint()中处理到最后一针空送对起缝加固
+   进行处理的时候，增加这个函数机型判断，只有当接下来的是车缝段而不是其他功能段的时候才进行起缝加固的处理。
+    
+   **修改适用机型：激光、画笔、旋转切刀、直线切刀相关所有机型
+
+   备注：暂时未经过上机实测验证
+*/
+#define MainSVNVersion		   	2968//2018-9-17
+
+
+
 //--------------------------------------------------------------------------------------
 // 机型配置信息  
 //--------------------------------------------------------------------------------------
@@ -343,7 +365,7 @@
 	#define SUPPORT_UNIFY_DRIVER        1 
 	#define ENABLE_RFID_FUNCTION        1  //RFID 接口
 	#define INSERPOINT_ENABLE           1  //插补算法
-	#define ENABLE_LASER_CUTTER         1 
+	#define ENABLE_LASER_CUTTER         1 	
 	#define NEW_LASER_DEVICE            1
 	#define FW_TYPE_SOLENOID_VALVE      1  //0-SOLENOID 1-VALVE
 	#define NEW_CUT_MODE				1  //新剪线模式	
@@ -374,7 +396,7 @@
     #define SINGLE_X_MOTOR              1
 	#define SUPPORT_NEW_DRIVER          1
 	#define ENABLE_SCRATCH_FUN          1 
-	#define SUPPORT_NEW_DRIVER          1
+	#define SUPPORT_NEW_DRIVER          1//重复了一次
 	#define SC0413                      1
 	#define SUPPORT_UNIFY_DRIVER        1 
 	#define SEND_SERVO_PARA_ONLINE      0  //实时下发伺服参数
@@ -386,7 +408,7 @@
     #define SINGLE_X_MOTOR              1
 	#define SUPPORT_NEW_DRIVER          1
 	#define ENABLE_SCRATCH_FUN          1 
-	#define SUPPORT_NEW_DRIVER          1
+	//#define SUPPORT_NEW_DRIVER          1
 	#define SC0413                      1
 	#define SUPPORT_UNIFY_DRIVER        1 
 	#define SEND_SERVO_PARA_ONLINE      0  //实时下发伺服参数
@@ -693,7 +715,7 @@
 	#define NEW_STEEPER_ANGLE_MODE16    1  //新步距角换算方法
 	#define ENABLE_CONFIG_PARA          1  //支持参数配置
 	#define FOLLOW_INPRESS_FUN_ENABLE   1
-	#define NEW_STRUCTURE_800_INPRESS   1
+//	#define NEW_STRUCTURE_800_INPRESS   1
 	
     #define CURRENT_MACHINE             MACHINE_900_FIFTH_BOBBIN
 	#define CURRENT_STEPPER_CONFIG_TYPE   CONFIG_MACHINE_TYPE_FIFTH_BOBBIN	
@@ -841,7 +863,7 @@
 	#define CURRENT_STEPPER_CONFIG_TYPE   CONFIG_MACHINE_TYPE_6037_55
 	
 #endif
-
+//二代一体机中，DA1用于夹线器，五代中为DA0，在这里取反，这样可以统一按DA0处理
 #if SECOND_GENERATION_PLATFORM
 	#define		da1		da0_addr
 	#define		da0		da1_addr
@@ -1142,7 +1164,7 @@
   
 #if COMPILE_MACHINE_TYPE == MACHINE_CONFIG_NUMBER18    
 	#define XORG        p2_2//p2_6    
-	#define PORG        p2_6 
+	#define PORG        p2_6//小模板机未使用此引脚
 #else
 	#define XORG        p2_0 
 	#define PORG        p2_2        //INPUT 1
@@ -1307,7 +1329,7 @@
 
 #define OIL_EMPTY_DETECT        	    CSENS   //输入3--5V
 #define CUTTER_DOWN_POSITON             PSENS   //输入2
-
+//TASC
 #if SECOND_GENERATION_PLATFORM
 
 	#define LASER_POWER_PIN             FA      //X30

@@ -43,9 +43,9 @@ void test_stepper_moving(void);
 */
 void marking_pen_stop(void)
 {
-	while( rec1_total_counter > 0 )
+	while( rec1_total_counter > 0 )//？？？？串口1有数据调用UART0处理？
 		   rec_com();
-	tb4s = 0;
+	tb4s = 0;//关闭TB4定时器，TB4用于delay_us()计时，同时用于画笔的插补运动
 	MARKING_PEN = 0;
 	laser_cutter_aciton_flag = 0;	
 }
@@ -55,7 +55,7 @@ void process_marking_pen(UINT8 flag)
 	UINT16 dly;
 	UINT8 slow_flag ,action_flag ,i ,protect_flag,stop_status,first_flag,stitch_cnt;
 	
-#if SUPPORT_SEWING_MARKING_PEN	
+#if SUPPORT_SEWING_MARKING_PEN//支持记号笔用车缝数据表示形状
   if( sys.status == RUN)
   {	
 	//先处理偏移
@@ -63,11 +63,11 @@ void process_marking_pen(UINT8 flag)
 	{
 		allx_step_tmp = allx_step;
 		ally_step_tmp = ally_step;
-		go_commandpoint(pen_x_bios_offset + allx_step,pen_y_bios_offset + ally_step);
-		allx_step = allx_step_tmp;
+		go_commandpoint(pen_x_bios_offset + allx_step,pen_y_bios_offset + ally_step);//移动到画笔偏移地址
+		allx_step = allx_step_tmp;//函数go_commandpoint会重置allx_step、ally_step，这里不把偏移量计算在内
 		ally_step = ally_step_tmp;
-		milling_first_move = 1;
-		MARKING_PEN = 1;
+		milling_first_move = 1;//保证只偏移一次
+		MARKING_PEN = 1;//打开画笔
 	}
 	delay_ms(50);
 	rec1_total_counter = 0;
@@ -80,8 +80,8 @@ void process_marking_pen(UINT8 flag)
 	*/
 	
 	dly = marking_speed;
-	dly = dly*2400+9600;
-	tb4 = dly;
+	dly = dly*2400+9600;//(4+marking_speed)*100us
+	tb4 = dly;//100us中断定时器TB4暂时用于画笔插补算法，后续要恢复计数初值
 	laser_cutter_aciton_flag = 0;
 	//逐针扫描处理记号笔
 	while(1)
@@ -91,7 +91,7 @@ void process_marking_pen(UINT8 flag)
 		//急停的处理	
 		if( PAUSE == pause_active_level)//press sotp button when stepper motor moving
 	  	{
-			delay_ms(20);
+			delay_ms(20);//防抖动
 			if( PAUSE == pause_active_level)
 			{
 				while( rec1_total_counter > 0 )
@@ -193,7 +193,7 @@ void process_marking_pen(UINT8 flag)
 			   inpress_up();
 			break;
 		}
-		//按回原点键
+		//急停后按回原点键
 		if( origin_com == 1 )
 			break;
 			
@@ -212,12 +212,12 @@ void process_marking_pen(UINT8 flag)
 		  	ally_step = ally_step + ystep_cou;	
 			if (first_flag == 1)//启动
 			{
-				tb4 = dly; 
+				tb4 = dly; //这一步已经做过了
 				tb4s = 1;
-				laser_cutter_aciton_flag = 1;
+				laser_cutter_aciton_flag = 1;//设置为1，TB4中断函数中才能执行插补算法
 				first_flag = 0;
 			}			
-			PBP_Line(stitch_cnt);
+			PBP_Line(stitch_cnt);//参数未使用，逐点比较法直线插补算法
 		}
 		//忽略剪线
 		if( cut_flag == 1)
@@ -273,7 +273,7 @@ void process_marking_pen(UINT8 flag)
 	marking_pen_stop();
 	stitch_cnt = 0;
 	first_flag = 1;
-	
+	//画笔处理完成，回到偏移前的地址
 	if( (milling_first_move == 1)  &&( (pen_x_bios_offset!=0)||(pen_y_bios_offset!=0) ) )
 	{ 
 		 allx_step_tmp = allx_step;
@@ -512,15 +512,15 @@ void trim_action(void)
 		  }
 		  //8.0  执行拨线动作
 
-		  if(blow_air_enable == 1)
+		  if(blow_air_enable == 1)//吹气功能打开
 		  {
-			  if( k171 ==1 )
+			  if( k171 ==1 )//机头板CZ137功能选择-1,机针吹气
 			  	BLOW_AIR3 = 1;
 			  else
 			  	BLOW_AIR2 = 1;
 			  
 			  blow_air_counter = (UINT16)k166*100; 
-			  blow_air_flag = 1;
+			  blow_air_flag = 1;//TA0中断中关闭
 		  }
 		  else
 		  {
@@ -571,15 +571,15 @@ void trim_action(void)
         while( temp16 <= angle_tab[240-8*k95] ) 
 	    { 
         	rec_com();
-			if(sys.status == POWEROFF)   
+			if(sys.status == POWEROFF)
 			      return;
         	temp16 = motor.angle_adjusted;          
         }            	      		 		   
 		process_flag = 0;
-		if(u46 == 0)
+		if(u46 == 0)//剪线开关打开
 		{
 		   #if SECOND_GENERATION_PLATFORM 
-			   FL = 1;
+			   FL = 1;//二代一体机剪线电磁铁动作
 			   FL_pwm_counter = 0;
 			   FL_pwm_period = 400;//(UINT16)k113*10;
 			   FL_pwm_action_flag = 1;
@@ -635,13 +635,13 @@ void trim_action(void)
 						flag = 0;
 						#if FW_TYPE_SOLENOID_VALVE || CURRENT_STEPPER_CONFIG_TYPE == CONFIG_MACHINE_TYPE_6037_800
 						  	  #if SECOND_GENERATION_PLATFORM
-								FK_OFF = 1;
+								FK_OFF = 1;//小模板机，拨线气缸p5_4
 							  #else
 							    FR_ON = 1;
 							  #endif		  
 						#else
 							SNT_H = 1;        // 24V to 33V
-						  	FW = 1;
+						  	FW = 1;//拨线电磁铁
 						#endif
 					}					
 				}
@@ -1215,14 +1215,14 @@ void ready_status(void)
 	#if AUTO_CHANGE_PATTERN_FUNCTION == 0
 
 		#if DOUBLE_X_60MOTOR	
-			if( oil_empty_alarm_enable == 1)
+			if( oil_empty_alarm_enable == 1)//k199，油量报警开关
 			{
 				if(OIL_EMPTY_DETECT == 1)
 				{
 					status_now = READY;
 					sys.status = ERROR;
 					StatusChangeLatch = ERROR;
-			    	sys.error = ERROR_80;
+			    	sys.error = ERROR_80;//油量警报
 				}
 			}
 		#endif
@@ -1849,6 +1849,7 @@ void ready_status(void)
 			if( bobbin_case_enable == 1)
 				bobbin_case_workflow1();
 			bobbin_case_once_done_flag = 0;
+			//换梭后，可能针杆位置出现了变化，这个时候回死点
 			temp8 = detect_position();	
 	    	if(temp8 == OUT)    
 	      	{
@@ -2272,7 +2273,7 @@ void ready_status(void)
 			} 	
 			else
 			{
-			      if(k60 == 1)
+			      if(k60 == 1)//使用三联踏板
 				  {
 				  		if(DVSM == 0)
 						{
@@ -2304,7 +2305,7 @@ void ready_status(void)
 						  	}
 						 	DVSMLastState = DVSM;
 					}//k60
-					
+					//enable_footer_up ==1表示急停后允许压框抬起
 					if( ( enable_footer_up ==1 )|| (((foot_flag ==1)||(return_from_setout == 0))&& (u38 == 0) && ((u41 == 1)||(stop_flag == 0)||((stop_flag == 1) && (stop_number%2 == 1)) )) )
 					{
 						  	if(DVB == 0)           				
@@ -2335,7 +2336,7 @@ void ready_status(void)
 					
 					
 				  //==============================================================================================
-				  
+				  //满足启动条件了
 				   if( (k60 == 0 || k60 == 1 && DVSM == 1) && DVA == 0 && DVB == 1 )   
                    {
 	 	                  delay_ms(10);
@@ -2574,10 +2575,10 @@ void run_status(void)
 	    		{	
 					do_pat_point_sub_one();
 					
-					if( release_tension_before_nopmove ==1)
+					if( release_tension_before_nopmove ==1)//K30，空送前打开夹线器
 					{
 						da0_release_flag = 0;
-						da0 = 255;  
+						da0 = 255; //夹线器最松
 						da0_release_conter = 0;
 						da0_release_flag = 1;
 					}
@@ -2594,10 +2595,10 @@ void run_status(void)
 					tmp16_stitchs = pat_point - (PATTERN_DATA *)(pat_buf);
 					set_func_code_info(RUN,20,tmp16_stitchs>>8,tmp16_stitchs);
 				
-					if( release_tension_before_nopmove ==1 )
+					if( release_tension_before_nopmove ==1 )//K30，空送前打开夹线器
 					{
 						da0_release_flag = 0;
-						da0 = 0;  
+						da0 = 0;  //空送后关闭夹线器，此时最紧
 						da0_release_conter = 0;							
 					}
 						
@@ -2632,16 +2633,16 @@ void run_status(void)
 				
 				if( FootRotateFlag ==1 )//启动前记号笔功能
 				{
-					if( (k110 == 0) )
+					if( (k110 == 0) )//无翻转与伸缩压脚装置
 					{
 						marking_flag = 1;
 						process_marking_pen(0);
 					}
-					if(k110 == 1)
+					if(k110 == 1)//有翻转装置
 					{
 						R_AIR = R_AIR^1;
 					}					
-					else if(k110 == 2)      
+					else if(k110 == 2)//有伸缩装置   
 					{
 						if( stretch_foot_flag == 0)
 							stretch_foot_in();
@@ -2807,8 +2808,10 @@ void run_status(void)
 			SNT_H = 0;
 		}
 		
-		if( baseline_alarm_flag == 1)
+		if( baseline_alarm_flag == 1)//如果底线不足警报开关打开（面板控制）
 		{
+			//baseline_alarm_stitchs面板实时发送到主控，表示当前底线还够缝制的针数
+			//pat_buff_total_counter表示当前已经缝制的总花样点数，包括车缝和其他功能码
 			 if( pat_buff_total_counter >= baseline_alarm_stitchs)
 			 {
 				 if( ENABLE_BOBBIN_CASE_FUN == ENABLE_FUN)
@@ -2821,15 +2824,22 @@ void run_status(void)
 						{
 							sys.status =  ERROR;
 							sys.error = ERROR_45;
-							if( bobbin_case_restart_mode == 1)
+							if( bobbin_case_restart_mode == 1)//换梭起缝方式0-手动启动，1-自动启动
 							{
-								delay_ms(300);
-								sys.status =  RUN;
+								delay_ms(300);//用于告知面板，底线不足
+								sys.status =  RUN;//面板显示的底线不足自动消失，继续缝制
 								sys.error = 0;
 								StatusChangeLatch = READY;
 							}
-							temp8 = bobbin_case_workflow1();
+							temp8 = bobbin_case_workflow1();//换梭
 							bobbin_case_once_done_flag = 0;
+							//2018-9-17，防止换梭失败后错误被ERROR_45覆盖
+							if(temp8==0)//换梭失败了
+							{
+								delay_ms(500);
+								//换梭失败，返回，相关的错误状态已经在函数bobbin_case_workflow1()中被设置了
+								return;
+							}
 						}
 						if( (bobbin_case_restart_mode == 1)&&(temp8 ==1) )
 						{
@@ -2838,7 +2848,7 @@ void run_status(void)
 								delay_ms(20);
 							}
 						}
-						else
+						else//如果手动换梭，直接跳转到这里，等待拿下面板确认，然后跳转到READY中换梭，然后等待DVA按下后重新启动
 						{
 							sys.status =  ERROR;
 							sys.error = ERROR_45;
@@ -2954,7 +2964,7 @@ void run_status(void)
 				tmp32_spd1 = para.speed_percent;
 				tmp32_spd2 = sew_speed;				
 				tmp32_spd2 = tmp32_spd2 * tmp32_spd1 /100; //转速百分比
-				tmp32_spd2 = ( tmp32_spd2 + 50 )/100*100;
+				tmp32_spd2 = ( tmp32_spd2 + 50 )/100*100;//四舍五入
 				if( tmp32_spd2 < 200)
 					tmp32_spd2 = 200;
 				sew_speed = tmp32_spd2;
@@ -3189,18 +3199,18 @@ void run_status(void)
 						  temp16 = motor.angle_adjusted;
 						  rec_com();
 					  }
-					  if(TH_BRK == thread_break_detect_level)//???
+					  if(TH_BRK == thread_break_detect_level)//断线了
 				      {
-				  	  		thbrk_count = thbrk_count + 1;
+				  	  		thbrk_count = thbrk_count + 1;//断线次数+1
 				      }
 				}
 			
 			if( (front2stitchs_tension_off ==  1) && ( stitch_counter > 1) )
 			{
-				if( k03 == 0 )
+				if( k03 == 0 )//机械夹线器
 				{
 					da0_release_flag = 0;
-					da0 = 0;
+					da0 = 0;//最紧
 					SNT_H = 0;
 				}
 			}
@@ -3228,7 +3238,7 @@ void run_status(void)
 				tmp32_spd1 = para.speed_percent;
 				tmp32_spd2 = sew_speed;				
 				tmp32_spd2 = tmp32_spd2 * tmp32_spd1 /100; //转速百分比
-				tmp32_spd2 = ( tmp32_spd2 + 50 )/100*100;
+				tmp32_spd2 = ( tmp32_spd2 + 50 )/100*100;//四舍五入
 				if( tmp32_spd2 < 200)
 					tmp32_spd2 = 200;
 				sew_speed = tmp32_spd2;
@@ -3425,10 +3435,10 @@ void run_status(void)
 				   temp_tension = 0;     
       			   at_solenoid();         
 				}
-				if(k167 == 1)
+				if(k167 == 1)//断线后辅助压脚降下，已经降下了，这里不需要动作
 				{
 				}
-				else
+				else//断线后辅助压脚抬起
 				{
 					inpress_up();
 				}
@@ -5871,7 +5881,7 @@ void emerstop_status(void)
 	
 	if(OutOfRange_flag == 0)
 	{
-		if(u97 == 1)
+		if(u97 == 1)//急停时手动剪线
 		{
 			if(pedal_style == single_pedal)
 			{
@@ -5893,7 +5903,7 @@ void emerstop_status(void)
 				
 			} 
 		}
-		else if(u97 == 0)
+		else if(u97 == 0)//急停时自动剪线
 		{
 			sys.status = EMERMOVE;  
 			StatusChangeLatch = EMERMOVE;   
@@ -7453,7 +7463,7 @@ void checki05_status(void)
 			}			  
 			output_com = 0;
 		    #if MACHINE_900_LASER_CUTTER2
-			if( laser_power_on_enable == 1)
+			if( laser_power_on_enable == 1)//k196,激光使能开关
 				LASER_POWER_PIN = 1;
 			delay_ms(500);
 			LASER_POWER_PIN = 0;
@@ -8243,7 +8253,7 @@ void checki10_status(void)
 #if MACHINE_900_BOBBIN_DEBUG_MODE
 
 #else	
-	initial_mainmotor();
+	initial_mainmotor();//保证主轴位置正确
   	if(sys.status == ERROR)
   	{
   	  return;
@@ -8254,7 +8264,7 @@ void checki10_status(void)
 		delay_ms(500);
 		if( (sys.error != 0)&&(sys.status == ERROR) )
 		return;
-		go_commandpoint(0,-5670);//
+		go_commandpoint(0,-5670);//Y轴向后退，给调试留下空间
 	}
 #endif
 	if( (bobbin_case_switch_flag ==1 )&&(bobbin_case_enable == 1) )
@@ -9065,7 +9075,7 @@ void emermove_status(void)
 					tension = tension_hole;
 					if(u42 == 0)
 					{
-						if(u94 == 1)
+						if(u94 == 1)//停车到上死点（0度）
 						{  
 							find_dead_point();
 						}
@@ -9684,6 +9694,7 @@ void downloaddsp_status(void)
 	}
     rec_com();		
 }
+//？？？？2018-9-12，为何有这个状态
 void bobbin_change_status(void)
 {
 	UINT8 temp8;
