@@ -112,6 +112,7 @@
 [PROJECT_FILES]
 "E:\zla_git\zhongjie_si\zhongjie\src\asm\ncrt0.a30" "User" "Assembly source file" 2 
 "E:\zla_git\zhongjie_si\zhongjie\src\asm\sect30.inc" "User" "Assembly include file" 2 
+"E:\zla_git\zhongjie_si\zhongjie\src\c\DS28E01-100.C" "User" "C source file" 2 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\M_debug.c" "User" "C source file" 2 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\RC522.C" "User" "C source file" 2 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\action.c" "User" "C source file" 2 
@@ -149,6 +150,7 @@
 "E:\zla_git\zhongjie_si\zhongjie\src\asm\ncrt0.a30" "056d10ba31d71d10" 2 
 [OPTIONS_Debug_Renesas M16C C Compiler]
 "C source file" "0b98393831d71d10" 1 
+"E:\zla_git\zhongjie_si\zhongjie\src\c\DS28E01-100.C" "064bc69bcf564d10" 1 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\M_debug.c" "01ed6a4fb9f71d10" 1 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\RC522.C" "017c6de327713d10" 1 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\action.c" "0327e82a31d71d10" 1 
@@ -170,15 +172,15 @@
 "E:\zla_git\zhongjie_si\zhongjie\src\c\variables.c" "0327e82a31d71d10" 1 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\watch.c" "0327e82a31d71d10" 1 
 [OPTIONS_Debug_Renesas M16C Configurator]
-"Single Shot" "0a331b88d7e44d10" 6 
+"Single Shot" "064bc69bcf564d10" 6 
 [OPTIONS_Debug_Renesas M16C Jump table Composer]
-"Single Shot" "0a331b88d7e44d10" 7 
+"Single Shot" "064bc69bcf564d10" 7 
 [OPTIONS_Debug_Renesas M16C Librarian]
-"Single Shot" "0a331b88d7e44d10" 5 
+"Single Shot" "064bc69bcf564d10" 5 
 [OPTIONS_Debug_Renesas M16C Linker]
-"Single Shot" "02c62b88d7e44d10" 3 
+"Single Shot" "00b3e69bcf564d10" 3 
 [OPTIONS_Debug_Renesas M16C Stype Converter]
-"Single Shot" "02c62b88d7e44d10" 4 
+"Single Shot" "00b3e69bcf564d10" 4 
 [OPTIONS_Debug]
 "" 0 
 "[V|VERSION|1] " 7 
@@ -198,6 +200,7 @@
 "E:\zla_git\zhongjie_si\zhongjie\src\asm\ncrt0.a30" "056d10ba31d71d10" 2 
 [OPTIONS_Release_Renesas M16C C Compiler]
 "C source file" "0b98393831d71d10" 1 
+"E:\zla_git\zhongjie_si\zhongjie\src\c\DS28E01-100.C" "064bc69bcf564d10" 1 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\M_debug.c" "01ed6a4fb9f71d10" 1 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\RC522.C" "017c6de327713d10" 1 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\action.c" "0327e82a31d71d10" 1 
@@ -219,15 +222,15 @@
 "E:\zla_git\zhongjie_si\zhongjie\src\c\variables.c" "0327e82a31d71d10" 1 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\watch.c" "0327e82a31d71d10" 1 
 [OPTIONS_Release_Renesas M16C Configurator]
-"Single Shot" "0a331b88d7e44d10" 6 
+"Single Shot" "064bc69bcf564d10" 6 
 [OPTIONS_Release_Renesas M16C Jump table Composer]
-"Single Shot" "0a331b88d7e44d10" 7 
+"Single Shot" "064bc69bcf564d10" 7 
 [OPTIONS_Release_Renesas M16C Librarian]
-"Single Shot" "0a331b88d7e44d10" 5 
+"Single Shot" "064bc69bcf564d10" 5 
 [OPTIONS_Release_Renesas M16C Linker]
-"Single Shot" "02c62b88d7e44d10" 3 
+"Single Shot" "00b3e69bcf564d10" 3 
 [OPTIONS_Release_Renesas M16C Stype Converter]
-"Single Shot" "02c62b88d7e44d10" 4 
+"Single Shot" "00b3e69bcf564d10" 4 
 [OPTIONS_Release]
 "" 0 
 "[V|VERSION|1] " 7 
