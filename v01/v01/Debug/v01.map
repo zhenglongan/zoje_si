@@ -5,70 +5,70 @@ C:\Renesas\NC30WA\V540R00\bin\ln30.exe @E:\zla_git\zhongjie_si\zhongjie\v01\v01\
 
 # LINK FILE INFORMATION
 ncrt0 (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\ncrt0.r30)
-	Nov  3 14:49:22 2018
+	Nov  5 16:02:52 2018
 
 action (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\action.r30)
-	Nov  3 14:48:35 2018
+	Nov  5 16:01:47 2018
 
 communication (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\communication.r30)
-	Nov  3 14:48:38 2018
+	Nov  5 16:01:52 2018
 
 ctmotor (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\ctmotor.r30)
-	Nov  3 14:48:40 2018
+	Nov  5 16:01:58 2018
 
 delay (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\delay.r30)
-	Nov  3 14:48:43 2018
+	Nov  5 16:02:05 2018
 
 DS28E01-100 (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\DS28E01-100.r30)
-	Nov  3 14:48:26 2018
+	Nov  5 16:01:35 2018
 
 easystep (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\easystep.r30)
-	Nov  3 14:48:45 2018
+	Nov  5 16:02:08 2018
 
 iic_bus_eeprom (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\iic_bus_eeprom.r30)
-	Nov  3 14:48:48 2018
+	Nov  5 16:02:12 2018
 
 initial (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\initial.r30)
-	Nov  3 14:48:51 2018
+	Nov  5 16:02:15 2018
 
 M_debug (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\M_debug.r30)
-	Nov  3 14:48:28 2018
+	Nov  5 16:01:39 2018
 
 main (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\main.r30)
-	Nov  3 14:48:53 2018
+	Nov  5 16:02:18 2018
 
 motor (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\motor.r30)
-	Nov  3 14:48:55 2018
+	Nov  5 16:02:21 2018
 
 motor_0830 (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\motor_0830.r30)
-	Nov  3 14:48:58 2018
+	Nov  5 16:02:24 2018
 
 pattern_check (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\pattern_check.r30)
-	Nov  3 14:49:00 2018
+	Nov  5 16:02:28 2018
 
 RC522 (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\RC522.r30)
-	Nov  3 14:48:30 2018
+	Nov  5 16:01:43 2018
 
 servo_para (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\servo_para.r30)
-	Nov  3 14:49:04 2018
+	Nov  5 16:02:32 2018
 
 solenoid (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\solenoid.r30)
-	Nov  3 14:49:08 2018
+	Nov  5 16:02:35 2018
 
 step_motor_drv (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\step_motor_drv.r30)
-	Nov  3 14:49:11 2018
+	Nov  5 16:02:38 2018
 
 system (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\system.r30)
-	Nov  3 14:49:15 2018
+	Nov  5 16:02:43 2018
 
 uart1 (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\uart1.r30)
-	Nov  3 14:49:16 2018
+	Nov  5 16:02:46 2018
 
 variables (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\variables.r30)
-	Nov  3 14:49:19 2018
+	Nov  5 16:02:48 2018
 
 watch (E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\watch.r30)
-	Nov  3 14:49:21 2018
+	Nov  5 16:02:51 2018
 
 _f8add (C:\Renesas\NC30WA\V540R00\lib30\nc30lib.lib)
 	Dec  8 19:42:58 2005
@@ -176,10 +176,10 @@ bss_NO                           REL DATA    006DC3 000000       ncrt0
                                  REL DATA    006FD8 000006       step_motor_drv
                                  REL DATA    006FDE 000001       system
                                  REL DATA    006FDF 000100       uart1
-                                 REL DATA    0070DF 0003EA       variables
-                                 REL DATA    0074C9 00000A       watch
-stack                            REL DATA    0074D3 000700       ncrt0
-heap                             REL DATA    007BD3 000400       ncrt0
+                                 REL DATA    0070DF 0003EB       variables
+                                 REL DATA    0074CA 00000A       watch
+stack                            REL DATA    0074D4 000700       ncrt0
+heap                             REL DATA    007BD4 000400       ncrt0
 rom_NE                           REL ROMDATA 007FD4 000000 2     ncrt0
 rom_NO                           REL ROMDATA 007FD4 000000       ncrt0
 data_FE                          ABS DATA    010000 000000       ncrt0
@@ -210,98 +210,98 @@ data_NOI                         REL ROMDATA 0D4FC3 000000       ncrt0
 data_FEI                         REL ROMDATA 0D4FD8 000000       ncrt0
 data_FOI                         REL ROMDATA 0D4FD8 000000       ncrt0
 program                          REL CODE    0D4FD8 000000       ncrt0
-                                 REL CODE    0D4FD8 00A66F 2     action
-                                 REL CODE    0DF648 003A9D 2     communication
-                                 REL CODE    0E30E6 0001C8 2     ctmotor
-                                 REL CODE    0E32AE 000062 2     delay
-                                 REL CODE    0E3310 0013A1 2     DS28E01-100
-                                 REL CODE    0E46B2 001417 2     iic_bus_eeprom
-                                 REL CODE    0E5ACA 000A64 2     initial
-                                 REL CODE    0E652E 0000CE 2     M_debug
-                                 REL CODE    0E65FC 000759 2     main
-                                 REL CODE    0E6D56 00261C 2     motor
-                                 REL CODE    0E9372 00056C 2     pattern_check
-                                 REL CODE    0E98DE 0007C5 2     RC522
-                                 REL CODE    0EA0A4 000077 2     solenoid
-                                 REL CODE    0EA11C 0033A9 2     step_motor_drv
-                                 REL CODE    0ED4C6 006C5B 2     system
-                                 REL CODE    0F4122 0008A8 2     uart1
-                                 REL CODE    0F49CA 0007FE 2     watch
-                                 REL CODE    0F51C8 000913 2     _f8add
-                                 REL CODE    0F5ADC 0002C9 2     _f8div
-                                 REL CODE    0F5DA6 0000A7 2     _f8lt
-                                 REL CODE    0F5E4E 0002C7 2     _f8mul
-                                 REL CODE    0F6116 000025 2     _f8toi4u
-                                 REL CODE    0F613C 000111 2     _ftol
-                                 REL CODE    0F624E 000083 2     _i4div
-                                 REL CODE    0F62D2 00004D 2     _i4divu
-                                 REL CODE    0F6320 000041 2     _i4i2div
-                                 REL CODE    0F6362 00001C 2     _i4mulu
-                                 REL CODE    0F637E 000022 2     _i4tof8
-                                 REL CODE    0F63A0 000022 2     _i4utof8
-                                 REL CODE    0F63C2 0000D4 2     _ltof
-                                 REL CODE    0F6496 000035 2     bcopy
-                                 REL CODE    0F64CC 000028 2     bzero
-                                 REL CODE    0F64F4 00004F 2     memcpy
-                                 REL CODE    0F6544 000041 2     memset
-                                 REL CODE    0F6586 000033 2     rand
-                                 REL CODE    0F65BA 000054 2     _f8ltor
-                                 REL CODE    0F660E 000041 2     _f8rtol
-program_S                        REL CODE    0F664F 000000       ncrt0
+                                 REL CODE    0D4FD8 00A6E5 2     action
+                                 REL CODE    0DF6BE 003A9D 2     communication
+                                 REL CODE    0E315C 0001C8 2     ctmotor
+                                 REL CODE    0E3324 000062 2     delay
+                                 REL CODE    0E3386 0013A1 2     DS28E01-100
+                                 REL CODE    0E4728 001439 2     iic_bus_eeprom
+                                 REL CODE    0E5B62 000A66 2     initial
+                                 REL CODE    0E65C8 0000CE 2     M_debug
+                                 REL CODE    0E6696 000759 2     main
+                                 REL CODE    0E6DF0 00261C 2     motor
+                                 REL CODE    0E940C 00056C 2     pattern_check
+                                 REL CODE    0E9978 0007C5 2     RC522
+                                 REL CODE    0EA13E 000077 2     solenoid
+                                 REL CODE    0EA1B6 0033A9 2     step_motor_drv
+                                 REL CODE    0ED560 006C09 2     system
+                                 REL CODE    0F416A 0008A8 2     uart1
+                                 REL CODE    0F4A12 0007FE 2     watch
+                                 REL CODE    0F5210 000913 2     _f8add
+                                 REL CODE    0F5B24 0002C9 2     _f8div
+                                 REL CODE    0F5DEE 0000A7 2     _f8lt
+                                 REL CODE    0F5E96 0002C7 2     _f8mul
+                                 REL CODE    0F615E 000025 2     _f8toi4u
+                                 REL CODE    0F6184 000111 2     _ftol
+                                 REL CODE    0F6296 000083 2     _i4div
+                                 REL CODE    0F631A 00004D 2     _i4divu
+                                 REL CODE    0F6368 000041 2     _i4i2div
+                                 REL CODE    0F63AA 00001C 2     _i4mulu
+                                 REL CODE    0F63C6 000022 2     _i4tof8
+                                 REL CODE    0F63E8 000022 2     _i4utof8
+                                 REL CODE    0F640A 0000D4 2     _ltof
+                                 REL CODE    0F64DE 000035 2     bcopy
+                                 REL CODE    0F6514 000028 2     bzero
+                                 REL CODE    0F653C 00004F 2     memcpy
+                                 REL CODE    0F658C 000041 2     memset
+                                 REL CODE    0F65CE 000033 2     rand
+                                 REL CODE    0F6602 000054 2     _f8ltor
+                                 REL CODE    0F6656 000041 2     _f8rtol
+program_S                        REL CODE    0F6697 000000       ncrt0
 interrupt                        ABS CODE    0F9000 000000       ncrt0
                                  REL CODE    0F9000 000130       ncrt0
 vector                           ABS CODE    0F9200 0000C0       ncrt0
 fvector                          REL CODE    0F92C0 000000       ncrt0
 # Total -------------------------------------------------------------------
-                                     DATA           007BD3(0031699) Byte(s)
+                                     DATA           007BD4(0031700) Byte(s)
                                      ROMDATA        004FD8(0020440) Byte(s)
-                                     CODE           021867(0137319) Byte(s)
+                                     CODE           0218AF(0137391) Byte(s)
 
 ##########################################
 # (3) GLOBAL LABEL INFORMATION           #
 ##########################################
-$ByteRead          0e48aa  $ByteWrite         0e483c  $CalulateCRC       0e9c30
-$ClearBitMask      0e9d9e  $IicBusRead        0e46bc  $IicBusWrite       0e4764
-$IsChangeNopMove   0e95f6  $IsChangeSewSpee   0e95b6  $IsCutCode         0e94a8
-$IsInflectionPoi   0e9576  $IsLaserEndCode    0e9626  $IsLaserStartCod   0e9686
-$IsNopMoveCode     0e9538  $IsPatternEndCod   0e947a  $IsPatternStartC   0e944e
-$IsPenEndCode      0e96e6  $IsPenStartCode    0e9744  $IsRotateCutterE   0e97a4
-$IsRotateCutterS   0e983e  $IsRotateCutterS   0e97f2  $IsSewCode         0e94e6
-$M500PcdConfigIS   0e9d06  $PBP_Line          0df2e0  $PcdAnticoll       0e9942
-$PcdAuthState      0e9a3e  $PcdComMF522       0e9dc0  $PcdRead           0e9aac
-$PcdRequest        0e98de  $PcdSelect         0e99cc  $PcdWrite          0e9b0c
-$ReadRawRC         0f498c  $SetBitMask        0e9d7c  $UpdateCrc         0e9be4
-$WriteRawRC        0f49a8  $_f8ltor           0f65ba  $_f8rtol           0f660e
-$_ftol             0f613c  $_ltof             0f63c2  $add_one_action    0df2a4
-$adjust_xy_time    0d74d8  $cal_crc16         0f42ac  $cal_forward       0e72ee
-$cal_pid_p_stop    0e7a40  $cal_pid_s         0e7680  $cal_spd_ref       0e7fe2
-$calculate_inpre   0d637e  $check_data        0d6622  $check_subsequen   0e9372
-$crc_calcu         0ed084  $delay_ms          0e32ae  $delay_us          0e32da
-$exit              0f912d  $find_a_bobbin_c   0ec6ee  $go_beginpoint     0d9120
-$go_origin_bobbi   0ec3a8  $go_yj             0d5718  $inpress_down      0d5d1a
-$inpress_to        0d5d46  $inpress_to_fors   0d5e56  $int2string        0e4abc
-$m_start           0e7b3a  $memset            0f6544  $motor_stop        0e8326
-$movestep_cs3      0ec1f4  $movestep_ct       0eab94  $movestep_lct      0eac9e
-$movestep_x        0ea8d2  $movestep_x2       0ea6f0  $movestep_x3       0ea7fe
-$movestep_y        0eaad2  $movestep_y2       0ea8e0  $movestep_y3       0ea9f6
-$movestep_yj       0eaae0  $movestep_zx       0ead9c  $multipule_progr   0ed360
-$multipule_progr   0ed3f0  $nop_move_emerge   0eb6a6  $output_cs3        0ec348
-$process_marking   0ed4de  $process_nop_mov   0edbf0  $protocol          0df880
-$quickmove_y       0eb1fe  $quickmove_y2      0eb0dc  $read_multipule_   0ed3d0
-$read_par          0e4998  $read_para_group   0e4a14  $read_stepmotor_   0ed022
-$read_stepmotor_   0ed0dc  $rotated_cutter_   0ec174  $select_dsp        0ecde2
-$send_dsp1_comma   0ecee4  $send_dsp1_comma   0ece3a  $send_dsp2_comma   0ecefc
-$send_dsp3_comma   0ecf14  $send_dsp4_comma   0ecf2c  $send_dsp_comman   0ece7e
-$send_dsp_comman   0ecec6  $send_multipule_   0ed380  $set_control_loc   0e30a4
-$set_func_code_i   0e656c  $set_protocol_us   0e65ea  $set_rotated_cut   0ed474
-$sew_nomove        0de88e  $special_sewing    0de4b2  $spi_err_dis       0ea160
-$srand             0f65b0  $string2int        0e4aa2  $test_nop_emerge   0e652e
-$tra1_com          0f4244  $tra_com           0df76c  $uart1_send_char   0f4920
-$verify            0df746  $verify_code       0e307c  $write_par         0e49d6
-$write_para_grou   0e4a5a  $write_stepmotor   0ecfdc  $write_stepmotor   0ed12e
-$zoom_in_one_sti   0dea7a  _AUTO_SEARCH_STA   00727e  _AdjustAngle       0067d6
+$ByteRead          0e4920  $ByteWrite         0e48b2  $CalulateCRC       0e9cca
+$ClearBitMask      0e9e38  $IicBusRead        0e4732  $IicBusWrite       0e47da
+$IsChangeNopMove   0e9690  $IsChangeSewSpee   0e9650  $IsCutCode         0e9542
+$IsInflectionPoi   0e9610  $IsLaserEndCode    0e96c0  $IsLaserStartCod   0e9720
+$IsNopMoveCode     0e95d2  $IsPatternEndCod   0e9514  $IsPatternStartC   0e94e8
+$IsPenEndCode      0e9780  $IsPenStartCode    0e97de  $IsRotateCutterE   0e983e
+$IsRotateCutterS   0e98d8  $IsRotateCutterS   0e988c  $IsSewCode         0e9580
+$M500PcdConfigIS   0e9da0  $PBP_Line          0df356  $PcdAnticoll       0e99dc
+$PcdAuthState      0e9ad8  $PcdComMF522       0e9e5a  $PcdRead           0e9b46
+$PcdRequest        0e9978  $PcdSelect         0e9a66  $PcdWrite          0e9ba6
+$ReadRawRC         0f49d4  $SetBitMask        0e9e16  $UpdateCrc         0e9c7e
+$WriteRawRC        0f49f0  $_f8ltor           0f6602  $_f8rtol           0f6656
+$_ftol             0f6184  $_ltof             0f640a  $add_one_action    0df31a
+$adjust_xy_time    0d754a  $cal_crc16         0f42f4  $cal_forward       0e7388
+$cal_pid_p_stop    0e7ada  $cal_pid_s         0e771a  $cal_spd_ref       0e807c
+$calculate_inpre   0d637e  $check_data        0d6694  $check_subsequen   0e940c
+$crc_calcu         0ed11e  $delay_ms          0e3324  $delay_us          0e3350
+$exit              0f912d  $find_a_bobbin_c   0ec788  $go_beginpoint     0d9192
+$go_origin_bobbi   0ec442  $go_yj             0d5718  $inpress_down      0d5d1a
+$inpress_to        0d5d46  $inpress_to_fors   0d5e56  $int2string        0e4b32
+$m_start           0e7bd4  $memset            0f658c  $motor_stop        0e83c0
+$movestep_cs3      0ec28e  $movestep_ct       0eac2e  $movestep_lct      0ead38
+$movestep_x        0ea96c  $movestep_x2       0ea78a  $movestep_x3       0ea898
+$movestep_y        0eab6c  $movestep_y2       0ea97a  $movestep_y3       0eaa90
+$movestep_yj       0eab7a  $movestep_zx       0eae36  $multipule_progr   0ed3fa
+$multipule_progr   0ed48a  $nop_move_emerge   0eb740  $output_cs3        0ec3e2
+$process_marking   0ed578  $process_nop_mov   0edc8a  $protocol          0df8f6
+$quickmove_y       0eb298  $quickmove_y2      0eb176  $read_multipule_   0ed46a
+$read_par          0e4a0e  $read_para_group   0e4a8a  $read_stepmotor_   0ed0bc
+$read_stepmotor_   0ed176  $rotated_cutter_   0ec20e  $select_dsp        0ece7c
+$send_dsp1_comma   0ecf7e  $send_dsp1_comma   0eced4  $send_dsp2_comma   0ecf96
+$send_dsp3_comma   0ecfae  $send_dsp4_comma   0ecfc6  $send_dsp_comman   0ecf18
+$send_dsp_comman   0ecf60  $send_multipule_   0ed41a  $set_control_loc   0e311a
+$set_func_code_i   0e6606  $set_protocol_us   0e6684  $set_rotated_cut   0ed50e
+$sew_nomove        0de902  $special_sewing    0de524  $spi_err_dis       0ea1fa
+$srand             0f65f8  $string2int        0e4b18  $test_nop_emerge   0e65c8
+$tra1_com          0f428c  $tra_com           0df7e2  $uart1_send_char   0f4968
+$verify            0df7bc  $verify_code       0e30f2  $write_par         0e4a4c
+$write_para_grou   0e4ad0  $write_stepmotor   0ed076  $write_stepmotor   0ed1c8
+$zoom_in_one_sti   0deaee  _AUTO_SEARCH_STA   00727e  _AdjustAngle       0067d6
 _AdjustAngleSet    0067ce  _AreaDivisionFla   007105  _CRC16             0006c2
-_CRC8              006fcf  _Calculate_Quick   0d8ed4  _CancelAllCoorFl   007111
+_CRC8              006fcf  _Calculate_Quick   0d8f46  _CancelAllCoorFl   007111
 _CancelAllXCoor    006788  _CancelAllYCoor    00678a  _CancelOverlabPo   007125
 _Corner_decelera   0068a8  _CourseBackStart   0070e0  _CurrentPointShi   007123
 _CurrentPointShi   0067a0  _CurrentXCoor      006798  _CurrentYCoor      00679a
@@ -320,7 +320,7 @@ _FindZeroFlag      007154  _FootNumber        0071f2  _FootRotateFlag    007129
 _FootUpCom         007126  _HighSpeedStitch   00721e  _IniFlag           0070df
 _InpressAbsolute   0070fb  _InpressHighCont   0070fa  _InpressHighRela   00710c
 _InpressHighRela   00710d  _InpresserIni_fl   006dc2  _InputFlag         0070fe
-_InputNumber       0070ff  _Judge_Quadrant    0df266  _K227              0073e1
+_InputNumber       0070ff  _Judge_Quadrant    0df2dc  _K227              0073e1
 _KnifeDriveFlag    007106  _KnifeStyle        007107  _LastNopMoveFlag   007116
 _MotionSet         00712a  _MotiongSetFlag    00712b  _MotorPositionSe   0070f9
 _MotorSpeedRigis   007110  _MotorStuckCount   000950  _MoveStartAngle1   0d0b6c
@@ -333,36 +333,36 @@ _MoveTimeSpeedTa   0d2d38  _MoveTime_Limtit   0d4d6b  _MoveTime_Speed_   0d4dce
 _MoveTime_Speed_   0d4def  _MoveTime_k04_3    0d4dad  _MoveToCurrentCo   00711f
 _NopMoveElement    00678e  _NopMoveSpd_flag   007134  _NopmoveFuncFlag   00710a
 _NopmoveSpeed      00710b  _OW_Buffer         006fce  _OW_RomID          006c34
-_OW_check          0e45f2  _OW_random         0e467c  _OW_status         0e4644
+_OW_check          0e4668  _OW_random         0e46f2  _OW_status         0e46ba
 _OutOfRange_flag   0070ec  _OutputFlag        0070fc  _OutputNumber      0070fd
 _PORG_action_fla   007207  _PatEnd            006db4  _PatStart          006db1
 _PattenrDelayTim   006786  _PatternDelayFla   007100  _PatternShiftVal   006796
-_PcdAntennaOff     0e9f4e  _PcdAntennaOn      0e9f2c  _PcdHalt           0e9bb4
-_PcdReset          0e9c6e  _PointShiftDirec   007114  _PointShiftFlag    007113
-_PointShiftNumbe   00678c  _RFID_SCAN         0e9f88  _RFID_initial      0e9f5a
+_PcdAntennaOff     0e9fe8  _PcdAntennaOn      0e9fc6  _PcdHalt           0e9c4e
+_PcdReset          0e9d08  _PointShiftDirec   007114  _PointShiftFlag    007113
+_PointShiftNumbe   00678c  _RFID_SCAN         0ea022  _RFID_initial      0e9ff4
 _ROTATED_CUTTER    007280  _Rfid_Nom          006b4c  _RotateFlag        007101
 _SEND_SERVO_PARA   00727f  _SHAVM_Hash        0006c4  _SHAVM_MAC         0006d8
-_SHAVM_Message     000682  _SPI_init          0ea11c  _SUPPORT_CS3_FUN   007281
+_SHAVM_Message     000682  _SPI_init          0ea1b6  _SUPPORT_CS3_FUN   007281
 _SewDataFlag       00711a  _SewStitchCounte   007117  _SewTestStitchCo   006794
-_SewingElement     006790  _SewingReverse     0de8b6  _SewingSpeedFlag   007108
+_SewingElement     006790  _SewingReverse     0de92a  _SewingSpeedFlag   007108
 _SewingSpeedValu   007109  _SewingStopFlag    00710e  _SewingStopValue   00710f
 _SewingTestEndFl   007121  _ShapePointFlag    007119  _SingleManualFla   007118
-_StartCondition    0e47e0  _StatusChangeLat   007122  _Step1Version      006db7
+_StartCondition    0e4856  _StatusChangeLat   007122  _Step1Version      006db7
 _Step2Version      006dbc  _StepDrive1Versi   00679c  _StepDrive2Versi   00679e
-_StitchStartFlag   00714f  _StitchUpFlag      007112  _StopCondition     0e4810
+_StitchStartFlag   00714f  _StitchUpFlag      007112  _StopCondition     0e4886
 _StopStatusFlag    00712c  _TaccTmp           000882  _Tension3thFlag    007102
 _TestStatusChang   00711e  _X2_tab            0d406a  _X_AXIS_ORGIN_EN   00727d
 _XorgLast          007243  _YorgLast          007244  _ZJ_8060           00727c
-__WaitTime0us      0e493a  __WaitTime1us      0e4940  __WaitTime2us      0e494c
-__WaitTime6ms      0e4974  __f8add            0f51c8  __f8div            0f5adc
-__f8lt             0f5da6  __f8mul            0f5e4e  __f8toi4U          0f6116
-__i4Utof8          0f63a0  __i4div            0f624e  __i4divU           0f62d2
-__i4i2div          0f6320  __i4mulU           0f6362  __i4tof8           0f637e
+__WaitTime0us      0e49b0  __WaitTime1us      0e49b6  __WaitTime2us      0e49c2
+__WaitTime6ms      0e49ea  __f8add            0f5210  __f8div            0f5b24
+__f8lt             0f5dee  __f8mul            0f5e96  __f8toi4U          0f615e
+__i4Utof8          0f63e8  __i4div            0f6296  __i4divU           0f631a
+__i4i2div          0f6368  __i4mulU           0f63aa  __i4tof8           0f63c6
 __mbase            006da2  __memt             000594  __mnext            006da6
 __msize            006daa  __nop_stich        006c44  __num              0074c5
 __pool             00058c  __speed_array      006c4a  __time             006c48
 __x                006c3c  __y                006c40  _acc_spd_tab_con   0d494e
-_acc_tactic        0e798a  _adtc_count        0071d6  _adtc_flag         0071d7
+_acc_tactic        0e7a24  _adtc_count        0071d6  _adtc_flag         0071d7
 _aging_com         0071da  _aging_delay       0071a5  _aging_flag        0071a4
 _alarm_output_en   00723c  _alarm_thread_le   00688a  _alarmbuz_flag     0071d0
 _alarmled_flag     0071cf  _allct_step        0067b4  _allin_step        0067b2
@@ -370,346 +370,347 @@ _allow             0071eb  _allx_edit_step    006742  _allx_step         00673a
 _allx_step_temp    00677e  _ally_edit_step    006744  _ally_step         00673e
 _ally_step_temp    006782  _allyj_step        0067b0  _already_auto_fi   007268
 _already_find_st   0072c5  _already_in_orig   007240  _angle_tab         0d084c
-_at_solenoid       0ea0d8  _atan_tab          0d484c  _auto_enable_cat   0073e6
+_at_solenoid       0ea172  _atan_tab          0d484c  _auto_enable_cat   0073e6
 _auto_function_f   007202  _auto_origin_mod   00725b  _auto_select_fla   007201
 _autosewing_allo   0072bb  _autosewing_alls   0072ba  _autosewing_cont   0072b9
-_autosewing_offs   0073e8  _autosewing_swit   0072bc  _back_edit_start   0db39c
-_back_endpoint     0da806  _back_startpoint   0db36c  _bakeup_total_co   006874
+_autosewing_offs   0073e8  _autosewing_swit   0072bc  _back_edit_start   0db40e
+_back_endpoint     0da878  _back_startpoint   0db3de  _bakeup_total_co   006874
 _bar_coder_refre   0073da  _bar_coder_refre   0073d8  _baseline_alarm_   007246
-_baseline_alarm_   00689a  _bcopy             0f6496  _before_down_spe   006822
+_baseline_alarm_   00689a  _bcopy             0f64de  _before_down_spe   006822
 _blow_air_counte   0069f2  _blow_air_enable   007289  _blow_air_flag     00728a
 _bobbin_case_ala   007278  _bobbin_case_arm   007264  _bobbin_case_arm   007266
 _bobbin_case_cur   00726d  _bobbin_case_dum   0068b0  _bobbin_case_ena   007269
-_bobbin_case_ino   0068b6  _bobbin_case_mot   0ec87e  _bobbin_case_onc   007276
+_bobbin_case_ino   0068b6  _bobbin_case_mot   0ec918  _bobbin_case_onc   007276
 _bobbin_case_pla   007265  _bobbin_case_pla   007267  _bobbin_case_res   007279
 _bobbin_case_scr   0068b8  _bobbin_case_sto   007277  _bobbin_case_swi   007261
-_bobbin_case_swi   007262  _bobbin_case_wor   0ec8ee  _bobbin_case_wor   007263
-_bobbin_change_s   0f4064  _bobbin_platefor   0072bf  _bottom_thread_a   007232
-_bottom_thread_r   006882  _brkdt_flag        0071d5  _bzero             0f64cc
-_calculae_arctan   0df4f6  _calculate_angle   0d7622  _calculate_flag    00714a
-_chang_parameter   0073fc  _check_DSP3_inpu   0ecf44  _check_autosewin   0ecfcc
-_check_bottom_re   0d911e  _check_bottom_th   007230  _check_data_spee   006854
-_check_flag        007148  _check_motion_do   0ecbe0  _check_output_pa   0df48c
-_check_sewing_ra   0df1c8  _check_valve1_fl   0072c0  _check_valve2_fl   0072c1
-_check_valve3_fl   0072c2  _check_valve4_fl   00729d  _check_valve5_fl   00729e
-_check_valve6_fl   0072c3  _check_yj_done     0eb20c  _checki03_status   0f25bc
-_checki04_status   0f26bc  _checki05_status   0f281a  _checki06_status   0f2ac2
-_checki07_status   0f2c3e  _checki08_status   0f2e3e  _checki10_action   0074c2
-_checki10_action   0074c3  _checki10_follow   0074c1  _checki10_status   0f2fc2
-_checki11_action   007270  _checki11_item     00726e  _checki11_output   007271
-_checki11_status   0f34c8  _checki11_status   0f3140  _checki11_test_f   00726f
-_clamp_backstep1   0e31ec  _clamp_backstep2   0e3204  _clamp_com         00718f
-_clamp_flag        0070eb  _clamp_in          0e31e4  _clamp_out         0e3190
-_clamp_stepflag    007150  _com_error         0e3070  _com_monitor_cod   0073eb
-_com_refresh_fla   0073ea  _commandpoint_co   0070f1  _comx_polar_step   00676a
-_comx_step         006756  _comy_polar_step   00676c  _comy_step         00675a
-_config_para       0d4a8e  _config_stepmoto   0ea5de  _confirm_barcode   006a18
-_connect_flag      00714c  _conprocess_data   0d9bee  _conprocess_edit   0d9d9e
-_conprocess_sewi   0da232  _cool_air_1_sec    00687c  _cool_air_action   00687a
-_cool_air_action   00722e  _cool_air_close_   00687e  _cool_air_counte   006878
-_cool_air_open_t   006880  _coor_com          0070f6  _cooradjust_com    0070f7
-_cooradjustx_ste   00676e  _cooradjustxtota   006772  _cooradjusty_ste   006770
-_cooradjustytota   006774  _coordisxtotal_s   006776  _coordisytotal_s   006778
-_cos_tab           0d464c  _counter           006dae  _counter1          006daf
-_counter_1ms       006a1a  _counter_wait_co   00728c  _course_back       0dbffc
-_course_edit_bac   0dc4dc  _course_edit_con   0dc5f0  _course_edit_con   0dbe50
-_course_edit_nex   0dbc66  _course_inpresse   0dc202  _course_inpresse   0db974
-_course_next       0db732  _course_next_fla   007209  _course_run_stop   0071c2
-_course_stop       0dc782  _course_thread_b   0dc374  _course_thread_n   0dbaee
-_course_thread_r   0071c3  _cpy_para_buff     0e51a0  _crc1              006b5a
-_crc2              006b5c  _crc3              006b5e  _crc_value         006b30
-_ct_bump_action_   0072a8  _ct_bump_counter   006a0a  _ct_bump_working   006a0c
-_ct_holding_step   006898  _curpat_have_ori   0070f8  _currentpyx_step   006766
-_currentpyy_step   006768  _cut_control_fla   0071fb  _cut_count         0067f2
-_cut_end_angle     006730  _cut_end_flag      007139  _cut_flag          007136
-_cut_start_angle   00672e  _cut_start_flag    007138  _cut_test_flag     00722f
-_cutter_angle_ad   006b90  _cutter_current_   0d4a6e  _cutter_function   00729c
-_cutter_motoer_r   0072a0  _cutter_motor_in   006a0e  _cutter_output_t   00723d
-_cutter_protect_   006b3a  _cutter_protect_   0073e2  _cutter_rotated_   0069f8
-_cutter_speed_do   0072c8  _cutter_syn_coun   0072a7  _cutter_syn_dela   0072ad
-_cutter_test_cnt   0072b4  _da0_release_con   0068aa  _da0_release_fla   007259
-_data2             00056c  _data_length_drv   007292  _de_bug            007295
-_debug_counter     0072d4  _debug_dsp_flag    0072b1  _debug_para1       006a1e
-_debug_para2       006a22  _debug_read_poin   0072d2  _debug_write_poi   0072d3
-_delay_before_in   006b4e  _delay_process     0f3e74  _detect_position   0dd99e
-_dither_tactic     0e79a0  _do_pat_point_ad   0ded5c  _do_pat_point_su   0ded80
-_door_ac           000586  _door_dt           000588  _double_xy_time_   0072d0
-_download_drv_fl   007290  _download_dsp_cu   0f407a  _download_multip   0f40ee
-_download_status   0f3eea  _downloaddsp_sta   0f3f5a  _drill_motor_cou   0069fe
-_drill_motor_pwm   0069fc  _drill_motor_run   0069fa  _drill_motor_upd   0072d1
-_drv_satus         0069f6  _dscrc_table       000428  _dsp3_input_valu   006a00
-_dsp3_moto1_dire   0072b6  _e                 006db0  _edit_status       0f20ae
-_emergency         0dd70e  _emergency_resta   0074b5  _emermove_high     0067ee
-_emermove_status   0f34f0  _emerstop_status   0f17e6  _enable_footer_u   0073d7
-_enable_inpress_   0072a3  _enable_stop_in_   00723e  _enable_thread_b   007241
-_end_flag          007144  _erase_falg        007293  _error_status      0f053e
-_exit              0f912d  _fall_back_tacti   0e7a2a  _fd                000842
-_find_communicat   0071fe  _find_dead_cente   0d5f56  _find_dead_point   0d6022
-_find_deadpoint_   0071e6  _find_laser_star   0074b6  _find_start_poin   0df1b8
-_find_start_poin   0dedb6  _find_up_positio   0d6098  _find_x_origin_c   006a26
-_find_zero         0d610e  _findorigin_flag   007158  _finish_nopmove_   007242
-_finish_status     0f2406  _first_select_fl   00720a  _first_start_fla   007401
-_first_stitch_fl   007146  _fk_count          0067f4  _fk_cut            0071c5
-_fk_status         0071c4  _flag1             0074c8  _flag_1ms          0070e1
-_flag_start_wait   00728b  _flag_wait_com     00728d  _flash_buz         0dd6fe
-_flash_led         0dd6ee  _foot_2step_flag   0071e4  _foot_2step_star   0071e5
-_foot_com          0070f4  _foot_count        0071c1  _foot_down         0d59e6
-_foot_flag         0070e8  _foot_half_down    0d5a1e  _foot_half_flag    0070e9
-_foot_half_up      0d5946  _foot_step_confi   0d49ce  _foot_step_confi   0d4a0e
-_foot_step_confi   0d4a2e  _foot_step_curre   0071ea  _foot_up           0d591a
-_footer_both_dow   0d5a40  _footer_both_up    0d5966  _footer_procedur   0d5ab0
-_formwork_identi   00720e  _frame_start_cou   0073f4  _frame_start_fla   0073f5
-_free_status       0ede60  _front2stitchs_t   007254  _fw_solenoid       0ea0a4
-_g_ucTempbuf       0008a2  _get               000844  _get_IORG_status   0ed428
-_get_YJORG_statu   0ed40e  _get_bobbin_case   0ecfc4  _get_cutter_moto   0ed464
-_get_func_debug_   0e6588  _get_para_from_e   0e583e  _get_stepper_cut   0ed446
-_get_x_distance    0eb688  _get_y_distance    0eb696  _go_commandpoint   0ddd1e
-_go_manualpoint    0dda30  _go_origin_allmo   0d5724  _go_origin_ct      0e30e8
-_go_origin_rotat   0eb6dc  _go_origin_speed   007216  _go_origin_x       0d5454
-_go_origin_x1      0d523a  _go_origin_xy      0d5126  _go_origin_y       0d546c
-_go_origin_yj      0d5716  _go_origin_zx      0d4fd8  _go_original_fla   007213
-_go_setout_speed   007217  _go_setoutpoint    0dd3ae  _go_sewingtest_b   0d98de
-_go_startpoint     0d6184  _id_alarm_counte   00689c  _id_alarm_flag     007248
-_id_pattern        00689e  _identify_mode     00725a  _identify_patter   0ed9e2
-_indraft_control   006a08  _indraft_control   0072a6  _inflection_poin   0072d6
-_initIicBus        0e46b2  _init_ad           0e5b00  _init_clk          0e5b42
-_init_comm         0df670  _init_ct           0e30e6  _init_da           0e5b2c
-_init_eeprom       0e4970  _init_io           0e5b9c  _init_motor        0e6d66
-_init_para_varia   0e596e  _init_stepmotor_   0ea588  _init_ta0          0e5aca
-_init_tb0          0e6d56  _init_tb3          0e5adc  _init_tb4          0e5aee
-_init_uart0        0df648  _init_uart1        0f4174  _init_uart1_RC52   0f48f2
-_init_var          0e5c1c  _init_watch        0f49ca  _initial           0e6448
-_initial_mainmot   0ddc0c  _initial_uart1_v   0f4122  _inpress_act_fla   0071fc
-_inpress_com       0070f5  _inpress_delta     0067ea  _inpress_end_fla   00713d
-_inpress_flag      0070ea  _inpress_follow_   006a02  _inpress_follow_   006a28
-_inpress_follow_   0d0324  _inpress_follow_   0d03a8  _inpress_follow_   0d042c
-_inpress_follow_   0d04b0  _inpress_follow_   0d0534  _inpress_follow_   0d05b8
-_inpress_follow_   0d063c  _inpress_follow_   0d06c0  _inpress_follow_   0d0744
-_inpress_follow_   0d07c8  _inpress_follow_   0072a1  _inpress_follow_   0072bd
-_inpress_follow_   0d4ad7  _inpress_follow_   0d4b19  _inpress_follow_   0d4b5b
-_inpress_follow_   0d4b9d  _inpress_follow_   0d4bdf  _inpress_follow_   0d4c21
-_inpress_follow_   0d4c63  _inpress_follow_   0d4ca5  _inpress_follow_   0d4ce7
-_inpress_follow_   0d4d29  _inpress_follow_   0072b7  _inpress_follow_   0073f3
-_inpress_follow_   006a06  _inpress_follow_   006a2c  _inpress_follow_   0074c7
-_inpress_follow_   006a04  _inpress_follow_   006a2a  _inpress_follow_   0d0366
-_inpress_follow_   0d03ea  _inpress_follow_   0d046e  _inpress_follow_   0d04f2
-_inpress_follow_   0d0576  _inpress_follow_   0d05fa  _inpress_follow_   0d067e
-_inpress_follow_   0d0702  _inpress_follow_   0d0786  _inpress_follow_   0d080a
-_inpress_follow_   0072a2  _inpress_follow_   0072be  _inpress_follow_   0d4af8
-_inpress_follow_   0d4b3a  _inpress_follow_   0d4b7c  _inpress_follow_   0d4bbe
-_inpress_follow_   0d4c00  _inpress_follow_   0d4c42  _inpress_follow_   0d4c84
-_inpress_follow_   0d4cc6  _inpress_follow_   0d4d08  _inpress_follow_   0d4d4a
-_inpress_high      0067e6  _inpress_high_ho   0067e8  _inpress_litter_   006b58
-_inpress_litter_   0073fe  _inpress_litter_   0073ff  _inpress_not_wor   0073f2
-_inpress_port      007245  _inpress_positio   0067ec  _inpress_positio   006ca4
-_inpress_real_de   0067f0  _inpress_start_f   00713c  _inpress_status    0f0c9c
-_inpress_step_co   0d49ae  _inpress_step_co   0d49ee  _inpress_step_co   0d4a4e
-_inpress_step_cu   0071e9  _inpress_tab       0d0200  _inpress_tab2      0d0292
-_inpress_time      0070e2  _inpress_type      007255  _inpress_up        0d5cfa
-_int0_int          0e82b4  _int1_int          0f5150  _int2_int          0f5182
-_io_test           0ea102  _iq_max_tester     000582  _jump_to_begin     0ecd64
-_k01               007171  _k02               007186  _k03               0071bf
-_k04               0071c0  _k05               007249  _k06               0071f3
-_k07               0071fa  _k100              0071bc  _k110              007187
-_k111              0067cc  _k112              0071f4  _k113              0071f5
-_k114              0071f6  _k115              0071fd  _k131              0071bd
-_k150              0071be  _k165              007286  _k166              0069f0
-_k167              007283  _k168              007284  _k169              007285
-_k170              007287  _k171              007288  _k21               00724a
-_k22               00724b  _k23               00724c  _k24               00724d
-_k25               00724e  _k26               00724f  _k27               007250
-_k28               007251  _k31               0071b3  _k43               0067ba
-_k52               0070e6  _k53               0071b4  _k54               0071b5
-_k56               0067bc  _k57               0067c0  _k58               0067c4
-_k59               0067c8  _k60               00718a  _k61               0067d8
-_k63               0071b6  _k67               0071b7  _k74               0071b8
-_k75               0071b9  _k92               007188  _k93               007189
-_k95               0071ba  _k98               0071bb  _laser_already_b   0074b7
-_laser_cutter_ac   0073d6  _laser_emergency   0074b4  _laser_fun_delay   006a30
-_laser_fun_delay   0072c6  _laser_offset_x    006b34  _laser_offset_y    006b36
-_laser_power_err   0072ca  _laser_power_on_   006a40  _laser_power_on_   0073db
-_laser_power_on_   0072c9  _laser_preturnon   006a32  _laser_preturnon   0072c7
-_laser_test_flag   0073dc  _last1_speed       0072a9  _last2_speed       0072aa
-_last3_speed       0072ab  _last4_speed       0072ac  _last_allx_step    006868
-_last_ally_step    00686c  _last_direction    007256  _last_max_length   006800
-_last_pattern_nu   006826  _last_pattern_po   006866  _last_rotated_di   00729f
-_last_speed        0067ae  _last_temp_speed   006802  _last_x_directio   007257
-_lastmove_flag     007132  _laststitch_flag   007137  _led_light_adjus   007212
-_m_spd_n           006816  _m_spd_n_last      006818  _m_spd_ref_n       006814
-_m_status          0071e0  _machine_stop_fl   007145  _main              0e65fc
-_main_control_lo   0074ba  _main_control_lo   0074bb  _making_pen_acto   0074bd
-_making_pen_stat   0074be  _manual_status     0f13aa  _manx_step         006752
-_many_step         006754  _marking_finish_   00720d  _marking_flag      00720c
-_marking_pen_sto   0ed4c6  _marking_speed     00720b  _memcpy            0f64f4
-_milling_cutter_   00725d  _milling_cutter_   00725f  _milling_first_m   00725e
-_monitor_allx_st   006a36  _monitor_ally_st   006a3a  _monitor_cutter_   006b92
-_monitor_pat_poi   006a34  _monitor_point     006b56  _monitor_refresh   0072cb
-_monitor_tabx_ti   0073fa  _monitor_taby_ti   0073fb  _monitor_x_step    0073f6
-_monitor_x_time    0073f8  _monitor_y_step    0073f7  _monitor_y_time    0073f9
-_motor             00092a  _motor_control     0e8374  _motor_para        006808
-_motor_start       0e82de  _motor_stuck_fla   007156  _motorconfig_fla   00714d
-_move_back         0db5d2  _move_ct           0e3226  _move_edit_start   0db70e
-_move_flag         00712d  _move_next         0db4d4  _move_startpoint   0db6cc
-_move_xy           0de228  _movect_angle      0067ac  _movestep_angle    0067a6
-_movestep_x_flag   007130  _movestep_y_flag   007131  _movestepx_angle   0067a8
-_movestepx_delay   007235  _movestepy_angle   0067aa  _movestepy_delay   007236
-_movex_flag        00712e  _movexy_delay_co   0071f8  _movexy_delay_fl   0071f9
-_movey_flag        00712f  _movezx_delay_co   0072a5  _movezx_delay_fl   0072a4
-_ms_counter        000952  _ms_scan_counter   006b50  _multipule_io_st   0f40de
-_need_action_onc   007227  _need_action_two   007228  _need_backward_s   007225
-_needle_status     0f24d6  _new_pattern_don   007206  _noedit_status     0f23ec
-_nop_move_contro   0069f4  _nop_move_pause_   007222  _nop_move_remain   00685e
-_nop_move_remain   006862  _nop_move_speed    007218  _nopmove_flag      007135
-_normal_control    0e78c0  _oil_empty_alarm   0073d9  _one_step_delay    00682c
-_one_step_delay_   0dc786  _one_step_run_fl   0074c4  _open_or_close_l   007231
-_opl_origin_flag   00720f  _origin2_lastmov   007133  _origin2x_step     006762
-_origin2y_step     006764  _origin_com        0070f0  _origin_com_afte   00723b
-_output_com        0071c7  _over_counter      006a3e  _over_spd_flag     0071e2
-_ow_status         006fd0  _para              007403  _para5             006b94
-_para7             006c5e  _para_catch_dela   006b46  _para_confirm      0dd780
-_para_right_barc   006b44  _para_x_take_off   006b42  _para_x_take_off   006b4a
-_para_y_backward   006b48  _pat_buf           000958  _pat_buff_total_   006872
-_pat_buff_write_   006870  _pat_offset        006876  _pat_point         00094c
-_pattern_chage_r   006a12  _pattern_change_   006830  _pattern_change_   007205
-_pattern_change_   007204  _pattern_delay     007203  _pattern_id_dela   007253
-_pattern_number    006824  _pause_active_le   0072d5  _pause_count       0067fa
-_pause_flag        0071d1  _pause_stop        0dd854  _pedal_last_stat   0070e4
-_pedal_state       0070e3  _pedal_style       0070e7  _pen_x_bios_offs   006b52
-_pen_y_bios_offs   006b54  _power_off_count   0067f8  _power_on_ask_fo   0073e5
-_power_on_first_   0073e7  _power_on_laser_   0074b9  _power_on_ready    007239
-_poweroff_status   0f0d54  _powr_on_zx_flag   0073fd  _pre_run_conditi   0f3c74
-_predit_shift      006dc1  _preedit_status    0f1854  _prewind_status    0f08e2
-_printf_uart       0f444c  _process_bottom_   0de226  _process_data      0d7d64
-_process_edit_da   0d89f6  _process_flag      007149  _process_rotated   0eb8e4
-_process_sewingt   0d846e  _pwm_forbid_flag   0071e1  _pwm_int           0e6ee4
-_quickmove_x       0eb0cc  _quickmove_x2      0eaf2e  _quickmove_x_pro   0eb318
-_quickmove_y_pro   0eb56c  _quickmove_yj_pr   0eb228  _quickmove_z_pro   0eb408
-_rand              0f6586  _ratio_array       006832  _rc522_control_f   0073f0
-_rc522_write_fal   0073ee  _rc522_write_ret   0073ef  _rc_write_data     00055c
-_read_step_x       006856  _read_step_y       00685a  _read_stepmotor_   0ecbae
-_read_stepmotor_   0ecd14  _readback_crc_va   006b32  _ready_go_setout   0071ff
-_ready_status      0ee0ee  _rec1_com          0f433c  _rec1_datalength   006a44
-_rec1_package_le   006a46  _rec1_status_mac   0072cc  _rec1_total_coun   006b2e
-_rec_buf           006e9d  _rec_com           0df7e8  _rec_status        006fca
-_recieve_flag      007291  _recieve_x         0008bc  _recieve_y         0008be
-_recieve_z         0008c0  _recpat_point      00672c  _release_poweron   007247
-_release_tension   007258  _release_tension   007220  _release_tension   007221
-_release_tension   0072b8  _remain_stitchs    006b40  _remote_control_   0074bc
-_remove_01         0dcea0  _remove_03         0dcf86  _remove_04         0dcffc
-_remove_06         0dd0e2  _remove_07         0dd15a  _remove_09         0dd240
-_remove_10         0dd2b8  _remove_12         0dce28  _remove_stop       0dd39e
-_repeat_com        0070f3  _repeat_pattern    0dda0a  _requery_dsp1_st   0ed350
-_reset_panel       0ddbfe  _restore_para_fr   0e4ae2  _return_from_pre   00723a
-_return_from_set   007200  _return_origin_f   007208  _rfid_config_fla   0073f1
-_rfid_debug_flag   0074bf  _rfid_read_write   0f40f0  _rfid_wr_ret       0e2fe6
-_rotated_cutter_   0eb7f2  _rotated_cutter_   00726c  _rotated_cutter_   0df44c
-_rotated_cutter_   00726a  _rotated_cutter_   0068ac  _rotated_cutter_   006b8c
-_rotated_cutter_   0068b2  _rotated_cutter_   0074b8  _rotated_cutter_   0ec170
-_rotated_cutter_   0ec0b2  _rotated_cutter_   0ec1ba  _rotated_cutter_   00726b
-_rotated_cutter_   0068b4  _run_status        0eefa0  _running_overflo   0071ed
-_running_overflo   0071ee  _second_point_pa   0072c4  _second_start_co   007238
-_second_start_sw   007237  _send_command      0005aa  _send_stepmotor_   0eccd6
-_send_stepmotor_   0ecbf6  _serail_config_f   007215  _serail_module_s   007214
-_serail_number     00682e  _set_default_len   006886  _set_uart1_debug   0f41a2
-_setout_status     0f15d2  _setup_stepper_m   0ed1f8  _sew_speed         0067b6
-_sew_stitch        0067b8  _sewing_stop       0dd83a  _sewingcontrol_f   007223
-_sewingcontrol_s   007224  _sewingcontrol_t   007226  _sfsw_count        0071d8
-_sfsw_flag         0071d9  _shift_01          0dc838  _shift_03          0dc942
-_shift_04          0dc9d6  _shift_06          0dcae2  _shift_07          0dcb78
-_shift_09          0dcc86  _shift_10          0dcd1c  _shift_12          0dc7a4
-_shift_flag        0071ce  _shift_no_pause    0074c6  _shift_reply       0071cd
-_sin_tab           0d426a  _single_back       0daf4a  _single_comm       0071f0
-_single_edit_bac   0db276  _single_edit_nex   0dae3e  _single_end        0db3a6
-_single_flag       0071cc  _single_inpress_   0071f1  _single_inpresse   0db034
-_single_inpresse   0db3d6  _single_inpresse   0dab5a  _single_inpresse   0db452
-_single_next       0daa82  _single_reply      0071cb  _single_start      0db41e
-_single_status     0f0dd4  _single_stop       0db4be  _single_thread_b   0db166
-_single_thread_e   0db3fa  _single_thread_n   0daccc  _single_thread_s   0db496
-_slack_status      0f2560  _slow_flag         007147  _smotor_speed      0071c6
-_sound_count       0067f6  _sox_step          00674a  _soy_step          00674e
-_spd_last_value    000880  _spd_tmp           00087e  _spdlimit1_tab     0d0000
-_spdlimit2_tab_8   0d0ba6  _spdlimit2_tab_N   0d0da6  _special_encoder   007402
-_special_go_allm   00723f  _special_pause_f   0072b3  _speed_down_coun   00721b
-_speed_down_stit   007219  _speed_min_teste   000584  _speed_up_counte   00721f
-_spi_flag          0071db  _spi_out_status    006b68  _spider_lim        0067fe
-_spider_man        0067fc  _spiint            0ea19e  _sta_point         00094e
-_stacoorx_step     00675e  _stacoory_step     006760  _stapoint_calc     0d632a
-_start_flag        00714b  _start_sewcontro   00728e  _start_to_speed_   00721a
-_status_15         007153  _status_now        007152  _stay_flag         0071d2
-_step_curve_writ   006b28  _step_movetype     00728f  _stepconfig_flag   00714e
-_stepmotor_comm    0071c8  _stepmotor_need_   007234  _stepmotor_para    0ecb40
-_stepmotor_singl   0071ca  _stepmotor_state   0071c9  _stepper_cutter_   0072b0
-_stepper_cutter_   0072ae  _stepper_cutter_   0072b5  _stepper_cutter_   006a10
-_stepper_cutter_   0072af  _stepstatus1       006804  _stepstatus2       006806
-_stepversion1      00681a  _stepversion2      00681c  _stepversion3      00681e
-_stepversion4      006820  _stitch_counter    006738  _stitch_counter_   0070ef
-_stitch_num        006736  _stm32_input       006b60  _stm32_output      006b64
-_stop_flag         007142  _stop_number       007143  _stretch_foot_fl   0071f7
-_stretch_foot_in   0d5c94  _stretch_foot_ou   0d5c1a  _sum_rotated_ang   0068ae
-_super_pattern_f   00722d  _sv_offset_angle   006b38  _svpara_buf        0068ba
-_svpara_disp_buf   00691e  _svpara_trans_fl   00727a  _synchronization   00727b
-_sys               000924  _sys_de_bug        006a48  _sys_watch         0f4a82
-_ta0_int           0e6980  _tactic_flag       000580  _tactic_flag_las   00057e
-_tan_tab           0d444c  _target_allx_ste   00688e  _target_ally_ste   006892
-_target_pat_poin   00688c  _target_total_co   006896  _tb1_flag          007151
-_tb3_int           0e6d2a  _tb4_int           0e6d4c  _temp_tension      0067e0
-_temp_tension_la   0067e2  _tension           0067da  _tension_delta     0067de
-_tension_end_ang   006734  _tension_end_fla   00713f  _tension_hole      0067dc
-_tension_start_a   006732  _tension_start_f   00713e  _test_flag         00721c
-_test_tension      0067e4  _test_value1       006fcc  _test_value2       006fcd
-_testpin           0073e9  _thbrk_count       0071d3  _thbrk_flag        0071d4
-_thread_break_de   007233  _timer_x           0071dc  _timer_y           0071dd
-_timer_yj          0071de  _timer_zx          0071df  _tra1_buf          0072d7
-_tra1_ind_r        006b2a  _tra1_ind_w        006b2c  _trans_x           0008b6
-_trans_y           0008b8  _trans_z           0008ba  _trim_action       0eda7c
-_trim_origin_pos   0071ef  _trim_status       0f253a  _turnoff_buz       0dd6bc
-_turnoff_led       0dd6ae  _turnoff_ledbuz    0dd6ca  _turnon_buz        0dd6e0
-_turnon_led        0dd6d2  _u02               00715b  _u03               00715c
-_u04               00715d  _u05               00715e  _u06               00715f
-_u07               007160  _u08               007161  _u09               007162
-_u10               007163  _u101              00719e  _u102              0071e3
-_u103              00719f  _u104              0071a0  _u105              0071a1
-_u108              0071b0  _u11               007164  _u112              0071a2
-_u12               007165  _u129              0071b1  _u13               007166
-_u14               007167  _u15               007157  _u16               00718b
-_u201              007168  _u202              007169  _u203              00716a
-_u204              00716b  _u205              00716c  _u207              00716e
-_u208              00716f  _u209              007170  _u217              007172
-_u218              007173  _u219              007174  _u220              007175
-_u221              007176  _u222              007177  _u223              007178
-_u224              007179  _u225              00717a  _u226              00717b
-_u227              00717c  _u228              00717d  _u229              00717e
-_u230              00717f  _u231              007180  _u232              007181
-_u233              007182  _u234              007183  _u235              007184
-_u236              007185  _u245              0071b2  _u26               00718c
-_u33               00718d  _u34               00718e  _u35               0071a8
-_u36               007190  _u37               007191  _u38               007192
-_u39               007193  _u40               007194  _u41               007195
-_u42               007196  _u46               007197  _u48               007198
-_u49               00715a  _u51               00716d  _u68               007199
-_u69               00719a  _u70               00719b  _u71               007159
-_u72               0071a6  _u73               0071a7  _u81               0071a9
-_u82               0071aa  _u84               0071ab  _u85               0071ac
-_u86               0071ad  _u87               0071ae  _u89               0071a3
-_u91               0071af  _u94               00719c  _u97               00719d
-_uart1_get_char    0f4948  _uart1_rec_int     0f4208  _uart1_sending_f   0074c0
-_uart1_tra_int     0f41d4  _uart_rec_int      0df710  _uart_tra_int      0df6c4
-_us_counter        000956  _valve_3_open_co   006b88  _version_check     0ea69a
-_waiting_count     0005a8  _waitoff_status    0f2514  _waitting_for_pa   007260
-_watch_initializ   0f50e2  _wind_com          0070f2  _wind_status       0f0b42
-_wipe_end_flag     00713b  _wipe_end_time     007141  _wipe_start_flag   00713a
-_wipe_start_time   007140  _wipe_time         000954  _wiper_start_tim   0070e5
-_wirte_stepermot   0072cd  _write_eeprom_pa   0072ce  _write_stepmotor   0072cf
-_x_bios            0067d0  _x_bios_offset     006828  _x_compensation    0068a2
-_x_gear_compensa   0068a6  _x_monitor_steps   0073ec  _x_motor_dir       007210
-_x_origin_offset   006a14  _x_origin_offset   0072b2  _x_sensor_pos      007252
-_x_step_configur   0d496e  _x_step_current_   0071e7  _xcurrent_coordi   00677a
-_xstep_cou         006746  _xy_move_mode      00721d  _y_bios            0067d2
-_y_bios_offset     00682a  _y_compensation    0068a0  _y_curver_number   00725c
-_y_gear_compensa   0068a4  _y_monitor_steps   0073ed  _y_motor_dir       007211
-_y_step_configur   0d498e  _y_step_current_   0071e8  _ycurrent_coordi   00677c
-_yj_motor_dir      007400  _ystep_cou         006748  _z_motor_dir       007229
-_zpl_pass          0070ee  _zpl_process       0de464  start              0f9000
+_bobbin_case_swi   007262  _bobbin_case_wor   0ec988  _bobbin_case_wor   007263
+_bobbin_change_s   0f40ac  _bobbin_platefor   0072bf  _bottom_thread_a   007232
+_bottom_thread_r   006882  _brkdt_flag        0071d5  _bzero             0f6514
+_calculae_arctan   0df56c  _calculate_angle   0d7694  _calculate_flag    00714a
+_cfg_inpress_hol   0074c9  _chang_parameter   0073fc  _check_DSP3_inpu   0ecfde
+_check_autosewin   0ed066  _check_bottom_re   0d9190  _check_bottom_th   007230
+_check_data_spee   006854  _check_flag        007148  _check_motion_do   0ecc7a
+_check_output_pa   0df502  _check_sewing_ra   0df23e  _check_valve1_fl   0072c0
+_check_valve2_fl   0072c1  _check_valve3_fl   0072c2  _check_valve4_fl   00729d
+_check_valve5_fl   00729e  _check_valve6_fl   0072c3  _check_yj_done     0eb2a6
+_checki03_status   0f2604  _checki04_status   0f2704  _checki05_status   0f2862
+_checki06_status   0f2b0a  _checki07_status   0f2c86  _checki08_status   0f2e86
+_checki10_action   0074c2  _checki10_action   0074c3  _checki10_follow   0074c1
+_checki10_status   0f300a  _checki11_action   007270  _checki11_item     00726e
+_checki11_output   007271  _checki11_status   0f3510  _checki11_status   0f3188
+_checki11_test_f   00726f  _clamp_backstep1   0e3262  _clamp_backstep2   0e327a
+_clamp_com         00718f  _clamp_flag        0070eb  _clamp_in          0e325a
+_clamp_out         0e3206  _clamp_stepflag    007150  _com_error         0e30e6
+_com_monitor_cod   0073eb  _com_refresh_fla   0073ea  _commandpoint_co   0070f1
+_comx_polar_step   00676a  _comx_step         006756  _comy_polar_step   00676c
+_comy_step         00675a  _config_para       0d4a8e  _config_stepmoto   0ea678
+_confirm_barcode   006a18  _connect_flag      00714c  _conprocess_data   0d9c60
+_conprocess_edit   0d9e10  _conprocess_sewi   0da2a4  _cool_air_1_sec    00687c
+_cool_air_action   00687a  _cool_air_action   00722e  _cool_air_close_   00687e
+_cool_air_counte   006878  _cool_air_open_t   006880  _coor_com          0070f6
+_cooradjust_com    0070f7  _cooradjustx_ste   00676e  _cooradjustxtota   006772
+_cooradjusty_ste   006770  _cooradjustytota   006774  _coordisxtotal_s   006776
+_coordisytotal_s   006778  _cos_tab           0d464c  _counter           006dae
+_counter1          006daf  _counter_1ms       006a1a  _counter_wait_co   00728c
+_course_back       0dc06e  _course_edit_bac   0dc54e  _course_edit_con   0dc662
+_course_edit_con   0dbec2  _course_edit_nex   0dbcd8  _course_inpresse   0dc274
+_course_inpresse   0db9e6  _course_next       0db7a4  _course_next_fla   007209
+_course_run_stop   0071c2  _course_stop       0dc7f4  _course_thread_b   0dc3e6
+_course_thread_n   0dbb60  _course_thread_r   0071c3  _cpy_para_buff     0e5238
+_crc1              006b5a  _crc2              006b5c  _crc3              006b5e
+_crc_value         006b30  _ct_bump_action_   0072a8  _ct_bump_counter   006a0a
+_ct_bump_working   006a0c  _ct_holding_step   006898  _curpat_have_ori   0070f8
+_currentpyx_step   006766  _currentpyy_step   006768  _cut_control_fla   0071fb
+_cut_count         0067f2  _cut_end_angle     006730  _cut_end_flag      007139
+_cut_flag          007136  _cut_start_angle   00672e  _cut_start_flag    007138
+_cut_test_flag     00722f  _cutter_angle_ad   006b90  _cutter_current_   0d4a6e
+_cutter_function   00729c  _cutter_motoer_r   0072a0  _cutter_motor_in   006a0e
+_cutter_output_t   00723d  _cutter_protect_   006b3a  _cutter_protect_   0073e2
+_cutter_rotated_   0069f8  _cutter_speed_do   0072c8  _cutter_syn_coun   0072a7
+_cutter_syn_dela   0072ad  _cutter_test_cnt   0072b4  _da0_release_con   0068aa
+_da0_release_fla   007259  _data2             00056c  _data_length_drv   007292
+_de_bug            007295  _debug_counter     0072d4  _debug_dsp_flag    0072b1
+_debug_para1       006a1e  _debug_para2       006a22  _debug_read_poin   0072d2
+_debug_write_poi   0072d3  _delay_before_in   006b4e  _delay_process     0f3ebc
+_detect_position   0dda10  _dither_tactic     0e7a3a  _do_pat_point_ad   0dedd2
+_do_pat_point_su   0dedf6  _door_ac           000586  _door_dt           000588
+_double_xy_time_   0072d0  _download_drv_fl   007290  _download_dsp_cu   0f40c2
+_download_multip   0f4136  _download_status   0f3f32  _downloaddsp_sta   0f3fa2
+_drill_motor_cou   0069fe  _drill_motor_pwm   0069fc  _drill_motor_run   0069fa
+_drill_motor_upd   0072d1  _drv_satus         0069f6  _dscrc_table       000428
+_dsp3_input_valu   006a00  _dsp3_moto1_dire   0072b6  _e                 006db0
+_edit_status       0f20f6  _emergency         0dd780  _emergency_resta   0074b5
+_emermove_high     0067ee  _emermove_status   0f3538  _emerstop_status   0f182e
+_enable_footer_u   0073d7  _enable_inpress_   0072a3  _enable_stop_in_   00723e
+_enable_thread_b   007241  _end_flag          007144  _erase_falg        007293
+_error_status      0f0586  _exit              0f912d  _fall_back_tacti   0e7ac4
+_fd                000842  _find_communicat   0071fe  _find_dead_cente   0d5f56
+_find_dead_point   0d6022  _find_deadpoint_   0071e6  _find_laser_star   0074b6
+_find_start_poin   0df22e  _find_start_poin   0dee2c  _find_up_positio   0d6098
+_find_x_origin_c   006a26  _find_zero         0d610e  _findorigin_flag   007158
+_finish_nopmove_   007242  _finish_status     0f244e  _first_select_fl   00720a
+_first_start_fla   007401  _first_stitch_fl   007146  _fk_count          0067f4
+_fk_cut            0071c5  _fk_status         0071c4  _flag1             0074c8
+_flag_1ms          0070e1  _flag_start_wait   00728b  _flag_wait_com     00728d
+_flash_buz         0dd770  _flash_led         0dd760  _foot_2step_flag   0071e4
+_foot_2step_star   0071e5  _foot_com          0070f4  _foot_count        0071c1
+_foot_down         0d59e6  _foot_flag         0070e8  _foot_half_down    0d5a1e
+_foot_half_flag    0070e9  _foot_half_up      0d5946  _foot_step_confi   0d49ce
+_foot_step_confi   0d4a0e  _foot_step_confi   0d4a2e  _foot_step_curre   0071ea
+_foot_up           0d591a  _footer_both_dow   0d5a40  _footer_both_up    0d5966
+_footer_procedur   0d5ab0  _formwork_identi   00720e  _frame_start_cou   0073f4
+_frame_start_fla   0073f5  _free_status       0edefa  _front2stitchs_t   007254
+_fw_solenoid       0ea13e  _g_ucTempbuf       0008a2  _get               000844
+_get_IORG_status   0ed4c2  _get_YJORG_statu   0ed4a8  _get_bobbin_case   0ed05e
+_get_cutter_moto   0ed4fe  _get_func_debug_   0e6622  _get_para_from_e   0e58d6
+_get_stepper_cut   0ed4e0  _get_x_distance    0eb722  _get_y_distance    0eb730
+_go_commandpoint   0ddd90  _go_manualpoint    0ddaa2  _go_origin_allmo   0d5724
+_go_origin_ct      0e315e  _go_origin_rotat   0eb776  _go_origin_speed   007216
+_go_origin_x       0d5454  _go_origin_x1      0d523a  _go_origin_xy      0d5126
+_go_origin_y       0d546c  _go_origin_yj      0d5716  _go_origin_zx      0d4fd8
+_go_original_fla   007213  _go_setout_speed   007217  _go_setoutpoint    0dd420
+_go_sewingtest_b   0d9950  _go_startpoint     0d6184  _id_alarm_counte   00689c
+_id_alarm_flag     007248  _id_pattern        00689e  _identify_mode     00725a
+_identify_patter   0eda7c  _indraft_control   006a08  _indraft_control   0072a6
+_inflection_poin   0072d6  _initIicBus        0e4728  _init_ad           0e5b98
+_init_clk          0e5bda  _init_comm         0df6e6  _init_ct           0e315c
+_init_da           0e5bc4  _init_eeprom       0e49e6  _init_io           0e5c34
+_init_motor        0e6e00  _init_para_varia   0e5a06  _init_stepmotor_   0ea622
+_init_ta0          0e5b62  _init_tb0          0e6df0  _init_tb3          0e5b74
+_init_tb4          0e5b86  _init_uart0        0df6be  _init_uart1        0f41bc
+_init_uart1_RC52   0f493a  _init_var          0e5cb4  _init_watch        0f4a12
+_initial           0e64e2  _initial_mainmot   0ddc7e  _initial_uart1_v   0f416a
+_inpress_act_fla   0071fc  _inpress_com       0070f5  _inpress_delta     0067ea
+_inpress_end_fla   00713d  _inpress_flag      0070ea  _inpress_follow_   006a02
+_inpress_follow_   006a28  _inpress_follow_   0d0324  _inpress_follow_   0d03a8
+_inpress_follow_   0d042c  _inpress_follow_   0d04b0  _inpress_follow_   0d0534
+_inpress_follow_   0d05b8  _inpress_follow_   0d063c  _inpress_follow_   0d06c0
+_inpress_follow_   0d0744  _inpress_follow_   0d07c8  _inpress_follow_   0072a1
+_inpress_follow_   0072bd  _inpress_follow_   0d4ad7  _inpress_follow_   0d4b19
+_inpress_follow_   0d4b5b  _inpress_follow_   0d4b9d  _inpress_follow_   0d4bdf
+_inpress_follow_   0d4c21  _inpress_follow_   0d4c63  _inpress_follow_   0d4ca5
+_inpress_follow_   0d4ce7  _inpress_follow_   0d4d29  _inpress_follow_   0072b7
+_inpress_follow_   0073f3  _inpress_follow_   006a06  _inpress_follow_   006a2c
+_inpress_follow_   0074c7  _inpress_follow_   006a04  _inpress_follow_   006a2a
+_inpress_follow_   0d0366  _inpress_follow_   0d03ea  _inpress_follow_   0d046e
+_inpress_follow_   0d04f2  _inpress_follow_   0d0576  _inpress_follow_   0d05fa
+_inpress_follow_   0d067e  _inpress_follow_   0d0702  _inpress_follow_   0d0786
+_inpress_follow_   0d080a  _inpress_follow_   0072a2  _inpress_follow_   0072be
+_inpress_follow_   0d4af8  _inpress_follow_   0d4b3a  _inpress_follow_   0d4b7c
+_inpress_follow_   0d4bbe  _inpress_follow_   0d4c00  _inpress_follow_   0d4c42
+_inpress_follow_   0d4c84  _inpress_follow_   0d4cc6  _inpress_follow_   0d4d08
+_inpress_follow_   0d4d4a  _inpress_high      0067e6  _inpress_high_ho   0067e8
+_inpress_litter_   006b58  _inpress_litter_   0073fe  _inpress_litter_   0073ff
+_inpress_not_wor   0073f2  _inpress_port      007245  _inpress_positio   0067ec
+_inpress_positio   006ca4  _inpress_real_de   0067f0  _inpress_start_f   00713c
+_inpress_status    0f0ce4  _inpress_step_co   0d49ae  _inpress_step_co   0d49ee
+_inpress_step_co   0d4a4e  _inpress_step_cu   0071e9  _inpress_tab       0d0200
+_inpress_tab2      0d0292  _inpress_time      0070e2  _inpress_type      007255
+_inpress_up        0d5cfa  _int0_int          0e834e  _int1_int          0f5198
+_int2_int          0f51ca  _io_test           0ea19c  _iq_max_tester     000582
+_jump_to_begin     0ecdfe  _k01               007171  _k02               007186
+_k03               0071bf  _k04               0071c0  _k05               007249
+_k06               0071f3  _k07               0071fa  _k100              0071bc
+_k110              007187  _k111              0067cc  _k112              0071f4
+_k113              0071f5  _k114              0071f6  _k115              0071fd
+_k131              0071bd  _k150              0071be  _k165              007286
+_k166              0069f0  _k167              007283  _k168              007284
+_k169              007285  _k170              007287  _k171              007288
+_k21               00724a  _k22               00724b  _k23               00724c
+_k24               00724d  _k25               00724e  _k26               00724f
+_k27               007250  _k28               007251  _k31               0071b3
+_k43               0067ba  _k52               0070e6  _k53               0071b4
+_k54               0071b5  _k56               0067bc  _k57               0067c0
+_k58               0067c4  _k59               0067c8  _k60               00718a
+_k61               0067d8  _k63               0071b6  _k67               0071b7
+_k74               0071b8  _k75               0071b9  _k92               007188
+_k93               007189  _k95               0071ba  _k98               0071bb
+_laser_already_b   0074b7  _laser_cutter_ac   0073d6  _laser_emergency   0074b4
+_laser_fun_delay   006a30  _laser_fun_delay   0072c6  _laser_offset_x    006b34
+_laser_offset_y    006b36  _laser_power_err   0072ca  _laser_power_on_   006a40
+_laser_power_on_   0073db  _laser_power_on_   0072c9  _laser_preturnon   006a32
+_laser_preturnon   0072c7  _laser_test_flag   0073dc  _last1_speed       0072a9
+_last2_speed       0072aa  _last3_speed       0072ab  _last4_speed       0072ac
+_last_allx_step    006868  _last_ally_step    00686c  _last_direction    007256
+_last_max_length   006800  _last_pattern_nu   006826  _last_pattern_po   006866
+_last_rotated_di   00729f  _last_speed        0067ae  _last_temp_speed   006802
+_last_x_directio   007257  _lastmove_flag     007132  _laststitch_flag   007137
+_led_light_adjus   007212  _m_spd_n           006816  _m_spd_n_last      006818
+_m_spd_ref_n       006814  _m_status          0071e0  _machine_stop_fl   007145
+_main              0e6696  _main_control_lo   0074ba  _main_control_lo   0074bb
+_making_pen_acto   0074bd  _making_pen_stat   0074be  _manual_status     0f13f2
+_manx_step         006752  _many_step         006754  _marking_finish_   00720d
+_marking_flag      00720c  _marking_pen_sto   0ed560  _marking_speed     00720b
+_memcpy            0f653c  _milling_cutter_   00725d  _milling_cutter_   00725f
+_milling_first_m   00725e  _monitor_allx_st   006a36  _monitor_ally_st   006a3a
+_monitor_cutter_   006b92  _monitor_pat_poi   006a34  _monitor_point     006b56
+_monitor_refresh   0072cb  _monitor_tabx_ti   0073fa  _monitor_taby_ti   0073fb
+_monitor_x_step    0073f6  _monitor_x_time    0073f8  _monitor_y_step    0073f7
+_monitor_y_time    0073f9  _motor             00092a  _motor_control     0e840e
+_motor_para        006808  _motor_start       0e8378  _motor_stuck_fla   007156
+_motorconfig_fla   00714d  _move_back         0db644  _move_ct           0e329c
+_move_edit_start   0db780  _move_flag         00712d  _move_next         0db546
+_move_startpoint   0db73e  _move_xy           0de29a  _movect_angle      0067ac
+_movestep_angle    0067a6  _movestep_x_flag   007130  _movestep_y_flag   007131
+_movestepx_angle   0067a8  _movestepx_delay   007235  _movestepy_angle   0067aa
+_movestepy_delay   007236  _movex_flag        00712e  _movexy_delay_co   0071f8
+_movexy_delay_fl   0071f9  _movey_flag        00712f  _movezx_delay_co   0072a5
+_movezx_delay_fl   0072a4  _ms_counter        000952  _ms_scan_counter   006b50
+_multipule_io_st   0f4126  _need_action_onc   007227  _need_action_two   007228
+_need_backward_s   007225  _needle_status     0f251e  _new_pattern_don   007206
+_noedit_status     0f2434  _nop_move_contro   0069f4  _nop_move_pause_   007222
+_nop_move_remain   00685e  _nop_move_remain   006862  _nop_move_speed    007218
+_nopmove_flag      007135  _normal_control    0e795a  _oil_empty_alarm   0073d9
+_one_step_delay    00682c  _one_step_delay_   0dc7f8  _one_step_run_fl   0074c4
+_open_or_close_l   007231  _opl_origin_flag   00720f  _origin2_lastmov   007133
+_origin2x_step     006762  _origin2y_step     006764  _origin_com        0070f0
+_origin_com_afte   00723b  _output_com        0071c7  _over_counter      006a3e
+_over_spd_flag     0071e2  _ow_status         006fd0  _para              007403
+_para5             006b94  _para7             006c5e  _para_catch_dela   006b46
+_para_confirm      0dd7f2  _para_right_barc   006b44  _para_x_take_off   006b42
+_para_x_take_off   006b4a  _para_y_backward   006b48  _pat_buf           000958
+_pat_buff_total_   006872  _pat_buff_write_   006870  _pat_offset        006876
+_pat_point         00094c  _pattern_chage_r   006a12  _pattern_change_   006830
+_pattern_change_   007205  _pattern_change_   007204  _pattern_delay     007203
+_pattern_id_dela   007253  _pattern_number    006824  _pause_active_le   0072d5
+_pause_count       0067fa  _pause_flag        0071d1  _pause_stop        0dd8c6
+_pedal_last_stat   0070e4  _pedal_state       0070e3  _pedal_style       0070e7
+_pen_x_bios_offs   006b52  _pen_y_bios_offs   006b54  _power_off_count   0067f8
+_power_on_ask_fo   0073e5  _power_on_first_   0073e7  _power_on_laser_   0074b9
+_power_on_ready    007239  _poweroff_status   0f0d9c  _powr_on_zx_flag   0073fd
+_pre_run_conditi   0f3cbc  _predit_shift      006dc1  _preedit_status    0f189c
+_prewind_status    0f092a  _printf_uart       0f4494  _process_bottom_   0de298
+_process_data      0d7dd6  _process_edit_da   0d8a68  _process_flag      007149
+_process_rotated   0eb97e  _process_sewingt   0d84e0  _pwm_forbid_flag   0071e1
+_pwm_int           0e6f7e  _quickmove_x       0eb166  _quickmove_x2      0eafc8
+_quickmove_x_pro   0eb3b2  _quickmove_y_pro   0eb606  _quickmove_yj_pr   0eb2c2
+_quickmove_z_pro   0eb4a2  _rand              0f65ce  _ratio_array       006832
+_rc522_control_f   0073f0  _rc522_write_fal   0073ee  _rc522_write_ret   0073ef
+_rc_write_data     00055c  _read_step_x       006856  _read_step_y       00685a
+_read_stepmotor_   0ecc48  _read_stepmotor_   0ecdae  _readback_crc_va   006b32
+_ready_go_setout   0071ff  _ready_status      0ee156  _rec1_com          0f4384
+_rec1_datalength   006a44  _rec1_package_le   006a46  _rec1_status_mac   0072cc
+_rec1_total_coun   006b2e  _rec_buf           006e9d  _rec_com           0df85e
+_rec_status        006fca  _recieve_flag      007291  _recieve_x         0008bc
+_recieve_y         0008be  _recieve_z         0008c0  _recpat_point      00672c
+_release_poweron   007247  _release_tension   007258  _release_tension   007220
+_release_tension   007221  _release_tension   0072b8  _remain_stitchs    006b40
+_remote_control_   0074bc  _remove_01         0dcf12  _remove_03         0dcff8
+_remove_04         0dd06e  _remove_06         0dd154  _remove_07         0dd1cc
+_remove_09         0dd2b2  _remove_10         0dd32a  _remove_12         0dce9a
+_remove_stop       0dd410  _repeat_com        0070f3  _repeat_pattern    0dda7c
+_requery_dsp1_st   0ed3ea  _reset_panel       0ddc70  _restore_para_fr   0e4b58
+_return_from_pre   00723a  _return_from_set   007200  _return_origin_f   007208
+_rfid_config_fla   0073f1  _rfid_debug_flag   0074bf  _rfid_read_write   0f4138
+_rfid_wr_ret       0e305c  _rotated_cutter_   0eb88c  _rotated_cutter_   00726c
+_rotated_cutter_   0df4c2  _rotated_cutter_   00726a  _rotated_cutter_   0068ac
+_rotated_cutter_   006b8c  _rotated_cutter_   0068b2  _rotated_cutter_   0074b8
+_rotated_cutter_   0ec20a  _rotated_cutter_   0ec14c  _rotated_cutter_   0ec254
+_rotated_cutter_   00726b  _rotated_cutter_   0068b4  _run_status        0eeffc
+_running_overflo   0071ed  _running_overflo   0071ee  _second_point_pa   0072c4
+_second_start_co   007238  _second_start_sw   007237  _send_command      0005aa
+_send_stepmotor_   0ecd70  _send_stepmotor_   0ecc90  _serail_config_f   007215
+_serail_module_s   007214  _serail_number     00682e  _set_default_len   006886
+_set_uart1_debug   0f41ea  _setout_status     0f161a  _setup_stepper_m   0ed292
+_sew_speed         0067b6  _sew_stitch        0067b8  _sewing_stop       0dd8ac
+_sewingcontrol_f   007223  _sewingcontrol_s   007224  _sewingcontrol_t   007226
+_sfsw_count        0071d8  _sfsw_flag         0071d9  _shift_01          0dc8aa
+_shift_03          0dc9b4  _shift_04          0dca48  _shift_06          0dcb54
+_shift_07          0dcbea  _shift_09          0dccf8  _shift_10          0dcd8e
+_shift_12          0dc816  _shift_flag        0071ce  _shift_no_pause    0074c6
+_shift_reply       0071cd  _sin_tab           0d426a  _single_back       0dafbc
+_single_comm       0071f0  _single_edit_bac   0db2e8  _single_edit_nex   0daeb0
+_single_end        0db418  _single_flag       0071cc  _single_inpress_   0071f1
+_single_inpresse   0db0a6  _single_inpresse   0db448  _single_inpresse   0dabcc
+_single_inpresse   0db4c4  _single_next       0daaf4  _single_reply      0071cb
+_single_start      0db490  _single_status     0f0e1c  _single_stop       0db530
+_single_thread_b   0db1d8  _single_thread_e   0db46c  _single_thread_n   0dad3e
+_single_thread_s   0db508  _slack_status      0f25a8  _slow_flag         007147
+_smotor_speed      0071c6  _sound_count       0067f6  _sox_step          00674a
+_soy_step          00674e  _spd_last_value    000880  _spd_tmp           00087e
+_spdlimit1_tab     0d0000  _spdlimit2_tab_8   0d0ba6  _spdlimit2_tab_N   0d0da6
+_special_encoder   007402  _special_go_allm   00723f  _special_pause_f   0072b3
+_speed_down_coun   00721b  _speed_down_stit   007219  _speed_min_teste   000584
+_speed_up_counte   00721f  _spi_flag          0071db  _spi_out_status    006b68
+_spider_lim        0067fe  _spider_man        0067fc  _spiint            0ea238
+_sta_point         00094e  _stacoorx_step     00675e  _stacoory_step     006760
+_stapoint_calc     0d632a  _start_flag        00714b  _start_sewcontro   00728e
+_start_to_speed_   00721a  _status_15         007153  _status_now        007152
+_stay_flag         0071d2  _step_curve_writ   006b28  _step_movetype     00728f
+_stepconfig_flag   00714e  _stepmotor_comm    0071c8  _stepmotor_need_   007234
+_stepmotor_para    0ecbda  _stepmotor_singl   0071ca  _stepmotor_state   0071c9
+_stepper_cutter_   0072b0  _stepper_cutter_   0072ae  _stepper_cutter_   0072b5
+_stepper_cutter_   006a10  _stepper_cutter_   0072af  _stepstatus1       006804
+_stepstatus2       006806  _stepversion1      00681a  _stepversion2      00681c
+_stepversion3      00681e  _stepversion4      006820  _stitch_counter    006738
+_stitch_counter_   0070ef  _stitch_num        006736  _stm32_input       006b60
+_stm32_output      006b64  _stop_flag         007142  _stop_number       007143
+_stretch_foot_fl   0071f7  _stretch_foot_in   0d5c94  _stretch_foot_ou   0d5c1a
+_sum_rotated_ang   0068ae  _super_pattern_f   00722d  _sv_offset_angle   006b38
+_svpara_buf        0068ba  _svpara_disp_buf   00691e  _svpara_trans_fl   00727a
+_synchronization   00727b  _sys               000924  _sys_de_bug        006a48
+_sys_watch         0f4aca  _ta0_int           0e6a1a  _tactic_flag       000580
+_tactic_flag_las   00057e  _tan_tab           0d444c  _target_allx_ste   00688e
+_target_ally_ste   006892  _target_pat_poin   00688c  _target_total_co   006896
+_tb1_flag          007151  _tb3_int           0e6dc4  _tb4_int           0e6de6
+_temp_tension      0067e0  _temp_tension_la   0067e2  _tension           0067da
+_tension_delta     0067de  _tension_end_ang   006734  _tension_end_fla   00713f
+_tension_hole      0067dc  _tension_start_a   006732  _tension_start_f   00713e
+_test_flag         00721c  _test_tension      0067e4  _test_value1       006fcc
+_test_value2       006fcd  _testpin           0073e9  _thbrk_count       0071d3
+_thbrk_flag        0071d4  _thread_break_de   007233  _timer_x           0071dc
+_timer_y           0071dd  _timer_yj          0071de  _timer_zx          0071df
+_tra1_buf          0072d7  _tra1_ind_r        006b2a  _tra1_ind_w        006b2c
+_trans_x           0008b6  _trans_y           0008b8  _trans_z           0008ba
+_trim_action       0edb16  _trim_origin_pos   0071ef  _trim_status       0f2582
+_turnoff_buz       0dd72e  _turnoff_led       0dd720  _turnoff_ledbuz    0dd73c
+_turnon_buz        0dd752  _turnon_led        0dd744  _u02               00715b
+_u03               00715c  _u04               00715d  _u05               00715e
+_u06               00715f  _u07               007160  _u08               007161
+_u09               007162  _u10               007163  _u101              00719e
+_u102              0071e3  _u103              00719f  _u104              0071a0
+_u105              0071a1  _u108              0071b0  _u11               007164
+_u112              0071a2  _u12               007165  _u129              0071b1
+_u13               007166  _u14               007167  _u15               007157
+_u16               00718b  _u201              007168  _u202              007169
+_u203              00716a  _u204              00716b  _u205              00716c
+_u207              00716e  _u208              00716f  _u209              007170
+_u217              007172  _u218              007173  _u219              007174
+_u220              007175  _u221              007176  _u222              007177
+_u223              007178  _u224              007179  _u225              00717a
+_u226              00717b  _u227              00717c  _u228              00717d
+_u229              00717e  _u230              00717f  _u231              007180
+_u232              007181  _u233              007182  _u234              007183
+_u235              007184  _u236              007185  _u245              0071b2
+_u26               00718c  _u33               00718d  _u34               00718e
+_u35               0071a8  _u36               007190  _u37               007191
+_u38               007192  _u39               007193  _u40               007194
+_u41               007195  _u42               007196  _u46               007197
+_u48               007198  _u49               00715a  _u51               00716d
+_u68               007199  _u69               00719a  _u70               00719b
+_u71               007159  _u72               0071a6  _u73               0071a7
+_u81               0071a9  _u82               0071aa  _u84               0071ab
+_u85               0071ac  _u86               0071ad  _u87               0071ae
+_u89               0071a3  _u91               0071af  _u94               00719c
+_u97               00719d  _uart1_get_char    0f4990  _uart1_rec_int     0f4250
+_uart1_sending_f   0074c0  _uart1_tra_int     0f421c  _uart_rec_int      0df786
+_uart_tra_int      0df73a  _us_counter        000956  _valve_3_open_co   006b88
+_version_check     0ea734  _waiting_count     0005a8  _waitoff_status    0f255c
+_waitting_for_pa   007260  _watch_initializ   0f512a  _wind_com          0070f2
+_wind_status       0f0b8a  _wipe_end_flag     00713b  _wipe_end_time     007141
+_wipe_start_flag   00713a  _wipe_start_time   007140  _wipe_time         000954
+_wiper_start_tim   0070e5  _wirte_stepermot   0072cd  _write_eeprom_pa   0072ce
+_write_stepmotor   0072cf  _x_bios            0067d0  _x_bios_offset     006828
+_x_compensation    0068a2  _x_gear_compensa   0068a6  _x_monitor_steps   0073ec
+_x_motor_dir       007210  _x_origin_offset   006a14  _x_origin_offset   0072b2
+_x_sensor_pos      007252  _x_step_configur   0d496e  _x_step_current_   0071e7
+_xcurrent_coordi   00677a  _xstep_cou         006746  _xy_move_mode      00721d
+_y_bios            0067d2  _y_bios_offset     00682a  _y_compensation    0068a0
+_y_curver_number   00725c  _y_gear_compensa   0068a4  _y_monitor_steps   0073ed
+_y_motor_dir       007211  _y_step_configur   0d498e  _y_step_current_   0071e8
+_ycurrent_coordi   00677c  _yj_motor_dir      007400  _ystep_cou         006748
+_z_motor_dir       007229  _zpl_pass          0070ee  _zpl_process       0de4d6
+start              0f9000  
 
 ##########################################
 # (4) GLOBAL EQU SYMBOL INFORMATION      #
