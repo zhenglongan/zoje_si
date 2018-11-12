@@ -176,7 +176,7 @@
 "{WK_00000001_RAMMONITOR}" "WINDOW" 59422 0 0 "0.50" 183 0 0 350 200 2065 0 "45930|45931|<<separator>>|42302|42303|42300|<<separator>>|42202|42203|42204|42233|<<separator>>|42206|42205|42230|42229|42207|<<separator>>|42208|42209|42210|42227|42228|42231|42232|<<separator>>" "0.0" 
 "{WK_00000001_REGISTERS}0" "WINDOW" 59421 0 0 "0.50" 180 0 0 350 200 2065 0 "" "0.0" 
 "{WK_00000001_REGISTERS}" "WINDOW" 59421 0 0 "1.00" 180 0 0 350 200 2065 0 "" "0.0" 
-"{WK_00000002_WORKSPACE}" "WINDOW" 59420 0 0 "1.00" 284 0 0 350 200 18 0 "" "0.0" 
+"{WK_00000002_WORKSPACE}" "WINDOW" 59420 0 0 "1.00" 398 0 0 350 200 18 0 "" "0.0" 
 "{WK_TB00000001_STANDARD}" "TOOLBAR 0" 59419 0 2 "0.00" 0 0 0 0 0 18 0 "" "0.0" 
 "{WK_TB00000002_EDITOR}" "TOOLBAR 0" 59419 0 0 "0.00" 0 0 0 0 0 18 0 "" "0.0" 
 "{WK_TB00000003_BOOKMARKS}" "TOOLBAR 0" 59419 1 1 "0.00" 0 0 0 0 0 17 0 "" "0.0" 
@@ -232,20 +232,9 @@
 "{WK_TB00000026_MACRO}" "TOOLBAR 0" 59419 2 3 "0.00" 0 0 0 0 0 17 0 "" "0.0" 
 "{WK_TB00000028_RTOSDEBUG}" "TOOLBAR 0" 59419 2 4 "0.00" 0 0 0 0 0 17 0 "" "0.0" 
 [WINDOW_Z_ORDER]
-"E:\zla_git\zhongjie_si\zhongjie\include\common.h" 
-"E:\zla_git\zhongjie_si\zhongjie\src\c\main.c" 
-"E:\zla_git\zhongjie_si\zhongjie\src\c\action.c" 
-"E:\zla_git\zhongjie_si\zhongjie\src\c\step_motor_drv.c" 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\system.c" 
-"E:\zla_git\zhongjie_si\zhongjie\src\c\iic_bus_eeprom.C" 
-"E:\zla_git\zhongjie_si\zhongjie\include\typedef.h" 
-"E:\zla_git\zhongjie_si\zhongjie\src\c\communication.c" 
-"E:\zla_git\zhongjie_si\zhongjie\src\c\solenoid.c" 
-"E:\zla_git\zhongjie_si\zhongjie\src\asm\ncrt0.a30" 
-"E:\zla_git\zhongjie_si\zhongjie\src\c\pattern_check.c" 
-"E:\zla_git\zhongjie_si\zhongjie\src\asm\sect30.inc" 
-"E:\zla_git\zhongjie_si\zhongjie\src\c\RC522.C" 
-"E:\zla_git\zhongjie_si\zhongjie\include\pattern_check.h" 
+"E:\zla_git\zhongjie_si\zhongjie\src\c\inpress_follow_mainmotor.c" 
+"E:\zla_git\zhongjie_si\zhongjie\include\common.h" 
 [TARGET_NAME]
 "M16C R8C Simulator" "" 0 
 [STATUSBAR_STATEINFO_VD1]
