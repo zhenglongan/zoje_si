@@ -10,7 +10,9 @@
 [OPEN_WORKSPACE_FILES]
 "E:\zla_git\zhongjie_si\zhongjie\include\common.h" 
 "E:\zla_git\zhongjie_si\zhongjie\include\communication.h" 
+"E:\zla_git\zhongjie_si\zhongjie\include\program_watch.h" 
 "E:\zla_git\zhongjie_si\zhongjie\include\variables.h" 
+"E:\zla_git\zhongjie_si\zhongjie\src\asm\ncrt0.a30" 
 "E:\zla_git\zhongjie_si\zhongjie\src\asm\sect30.inc" 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\action.c" 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\automatic_feeding.c" 
@@ -21,29 +23,37 @@
 "E:\zla_git\zhongjie_si\zhongjie\src\c\initial.c" 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\inpress_follow_mainmotor.c" 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\main.c" 
+"E:\zla_git\zhongjie_si\zhongjie\src\c\motor.c" 
+"E:\zla_git\zhongjie_si\zhongjie\src\c\program_watch.c" 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\RC522.C" 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\step_motor_drv.c" 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\system.c" 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\variables.c" 
+"E:\zla_git\zhongjie_si\zhongjie\src\c\watch.c" 
 "E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\v01.map" 
 [WORKSPACE_FILE_STATES]
-"E:\zla_git\zhongjie_si\zhongjie\include\common.h" -9 -36 930 402 1 1 
-"E:\zla_git\zhongjie_si\zhongjie\include\communication.h" 120 120 785 311 0 16 
+"E:\zla_git\zhongjie_si\zhongjie\include\common.h" -9 -36 1581 552 1 1 
+"E:\zla_git\zhongjie_si\zhongjie\include\communication.h" 0 0 785 311 0 16 
+"E:\zla_git\zhongjie_si\zhongjie\include\program_watch.h" 0 0 1353 427 0 19 
 "E:\zla_git\zhongjie_si\zhongjie\include\variables.h" 0 0 1359 424 0 14 
-"E:\zla_git\zhongjie_si\zhongjie\src\asm\sect30.inc" 0 0 641 217 0 6 
+"E:\zla_git\zhongjie_si\zhongjie\src\asm\ncrt0.a30" 0 0 1413 357 0 20 
+"E:\zla_git\zhongjie_si\zhongjie\src\asm\sect30.inc" 0 0 1581 682 0 6 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\RC522.C" 0 0 939 319 0 11 
-"E:\zla_git\zhongjie_si\zhongjie\src\c\action.c" 0 0 1557 534 0 2 
+"E:\zla_git\zhongjie_si\zhongjie\src\c\action.c" 0 0 162 45 0 2 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\automatic_feeding.c" 0 0 1105 454 0 8 
-"E:\zla_git\zhongjie_si\zhongjie\src\c\communication.c" 0 0 1557 534 0 10 
+"E:\zla_git\zhongjie_si\zhongjie\src\c\communication.c" 0 0 930 357 0 10 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\delay.c" 0 0 1121 519 0 0 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\easystep.c" 0 0 909 328 0 7 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\iic_bus_eeprom.C" 0 0 1077 487 0 9 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\initial.c" 0 0 1557 619 0 3 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\inpress_follow_mainmotor.c" 0 0 1359 424 0 12 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\main.c" 0 0 1557 692 0 5 
+"E:\zla_git\zhongjie_si\zhongjie\src\c\motor.c" 0 0 852 170 0 21 
+"E:\zla_git\zhongjie_si\zhongjie\src\c\program_watch.c" 0 0 1353 427 0 18 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\step_motor_drv.c" 0 0 1557 682 0 13 
 "E:\zla_git\zhongjie_si\zhongjie\src\c\system.c" 0 0 1557 682 0 4 
-"E:\zla_git\zhongjie_si\zhongjie\src\c\variables.c" 150 150 637 385 0 17 
+"E:\zla_git\zhongjie_si\zhongjie\src\c\variables.c" 0 0 637 385 0 17 
+"E:\zla_git\zhongjie_si\zhongjie\src\c\watch.c" 0 0 1581 552 0 22 
 "E:\zla_git\zhongjie_si\zhongjie\v01\v01\Debug\v01.map" 0 0 824 249 0 15 
 [LOADED_PROJECTS]
 "v01" 
